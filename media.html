@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video and Audio Media</title>
+  <link rel="stylesheet" type="text/css" href="css/mysite.css">
+
+<style>
+/* Step 10: blinking red alarm text */
+
+.blink_me_alarm {
+  color: red;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px red;
+  animation: blinker 0.8s linear infinite;
+}
+/* Step 11: transition box that rotates on hover */
+.div1 {
+  display: inline-block;
+  border: 2px solid black;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: white;
+
+  transition: transform 0.8s;
+}
+
+.div1:hover {
+  transform: rotate(360deg);
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+</style>
+
+
+
+</head>
+<body>
+
+  <div align="center">
+    <h1>Video and Audio Media</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/JdVLnLKC-pk" title="Grand Canyon University Doctrinal Statement" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+    <!-- YouTube Embedded Video -->
+    <!-- Paste the iframe code you copy from YouTube here -->
+    
+    <h4>Grand Canyon University Doctrinal Statement</h4>
+
+    <br />
+
+    <!-- Local Video -->
+    <video width="320" height="240" controls>
+      <source src="media/student_video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- <h4>Student Support Video Clip</h4> -->
+<h4 class="blink_me_alarm">
+  Student Support Video Clip
+</h4>
+
+
+    <br />
+
+    <!-- Local Audio -->
+    <audio controls>
+      <source src="media/student_audio.mp3" type="audio/mp3">
+      Your browser does not support the audio tag.
+    </audio>
+
+    <!-- <h4>Student Support Audio Clip</h4> -->
+<h4 class="blink_me_alarm">
+  Student Support Audio Clip
+</h4>
+
+
+    <br />
+
+<div class="div1" style="width:300px;">
+  GCU is a great university
+</div>
+
+
+
+    <a href="index.html">Back to Main Page</a>
+  </div>
+
+</body>
+</html>
