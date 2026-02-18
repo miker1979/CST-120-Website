@@ -1,0 +1,152 @@
+/* ===== Page Base ===== */
+body {
+  margin-top: 20px;
+  margin-left: 20px;
+  background: rgb(231, 229, 229);
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* ===== Headings ===== */
+h1 {
+  color: #000000;
+  font-weight: bold;
+  font-size: 32px;
+  margin: 0 0 16px;
+  text-align: center;
+  text-shadow: 2px 2px 5px gray;
+}
+
+h2 {
+  color: #4f2fb6;
+  font-weight: bold;
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
+h3 {
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+h4 {
+  color: #000000;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+/* ===== Paragraphs + Lists ===== */
+p {
+  font-size: 18px;
+  margin: 16px 0 24px;
+}
+
+li {
+  color: #000000;
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+/* ===== Links ===== */
+a {
+  color: rgb(221, 94, 20);
+}
+
+/* ===== Flexbox Photo Gallery (Milestone requirement) ===== */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;          /* REQUIRED: makes items wrap to new rows */
+  justify-content: center;  /* centers the row items */
+  gap: 20px;                /* spacing between items (better than margins) */
+  padding: 20px;
+}
+
+/* If you use images inside .gallery */
+.gallery img {
+  width: 200px;             /* controls how many fit per row */
+  height: 150px;
+  object-fit: cover;        /* keeps images from stretching */
+  border-radius: 8px;
+  border: 2px solid #ccc;
+}
+
+/* Optional hover polish */
+.gallery img:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gallery img {
+  width: 200px;
+  height: 150px;
+}
+
+/* ===== Flexbox Photo Gallery (Milestone requirement) ===== */
+.gallery {
+  display: flex;          /* Turns on Flexbox */
+  flex-wrap: wrap;        /* REQUIRED: forces row wrapping */
+  justify-content: center;/* Centers images horizontally */
+  gap: 20px;              /* Controls spacing between images */
+  padding: 20px;
+
+  /* Forces wrapping to be visible even on large screens */
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Flex items (images) */
+.gallery img {
+  width: 200px;
+  height: 150px;
+
+  /* Prevents cropping */
+  object-fit: contain;
+
+  /* Visual enhancements */
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+}
+
+/* Optional hover effect (enhancement credit) */
+.gallery img:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+table.matrix {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table.matrix th,
+table.matrix td {
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+table.matrix th {
+  text-align: left;
+}
+
+table.matrix td:nth-child(2),
+table.matrix td:nth-child(3) {
+  text-align: center;
+  width: 120px;
+}
+
+table.matrix .total-row td {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
