@@ -1,119 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact a Professor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Mike Robinson</title>
 
-  <!-- Your CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- Bootstrap 4.4 CSS (use ONLY this) -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-
-  <!-- Topic 7: load the copyright fragment script in the HEAD -->
-  <script src="js/copyright.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
 <body>
 
-<!-- ✅ Use your same navbar (Bootstrap 4.4 compatible) -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.html">CST-120</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+  <a class="navbar-brand" href="index.html">Mike Robinson</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="hobbies.html">Hobbies</a></li>
-      <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-      <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
-      <li class="nav-item"><a class="nav-link" href="faith.html">Faith</a></li>
-
-      <!-- Topic 6 dropdown (Bootstrap 4.4) -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
-          Topic 6 Activities
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="playjq1.html">jQuery Intro</a>
-          <a class="dropdown-item" href="playjq2.html">jQuery Selectors</a>
-          <a class="dropdown-item" href="playjq3.html">Dynamic Table</a>
-          <a class="dropdown-item" href="playbs.html">Bootstrap Demo</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
       </li>
 
-      <li class="nav-item active"><a class="nav-link" href="contact.html">Contact</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="gallery.html">Projects</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="hobbies.html">Hobbies</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="contact.html">Contact</a>
+      </li>
     </ul>
   </div>
 </nav>
 
-<div class="container mt-4 text-center">
-  <h1>Contact a Professor</h1>
+<div class="container mt-5 mb-5">
+  <h1 class="text-center">Contact</h1>
+  <p class="text-center lead">
+    Connect with me professionally through LinkedIn, GitHub, or email.
+  </p>
 
-  <!-- ✅ REQUIRED: POST form to postman-echo -->
-  <form method="POST" action="https://postman-echo.com/post" class="mt-4">
+  <div class="row mt-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-sm p-4">
 
-    <div class="form-group row">
-      <label for="professor" class="col-sm-2 col-form-label">Professor</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="professor" name="professor" placeholder="Professor name" />
+        <h3 class="mb-4">Professional Links</h3>
+
+        <p>
+          <strong>LinkedIn:</strong><br>
+          <a href="https://www.linkedin.com/in/michael-robinson-391917b3" target="_blank">
+            linkedin.com/in/michael-robinson-391917b3
+          </a>
+        </p>
+
+        <p>
+          <strong>GitHub:</strong><br>
+          <a href="https://github.com/miker1979" target="_blank">
+            github.com/miker1979
+          </a>
+        </p>
+
+        <p>
+  <strong>Email:</strong><br>
+  <a href="mailto:mike.robinson1979@gmail.com">
+    mike.robinson1979@gmail.com
+  </a>
+</p>
+
+        <hr>
+
+        <h3 class="mb-3">Send a Message</h3>
+
+       <form action="https://formspree.io/f/mpqygnyz" method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Your email" required>
+  </div>
+
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+  </div>
+
+  <input type="hidden" name="_subject" value="New portfolio message from Mike Robinson website">
+
+  <button type="submit" class="btn btn-primary">Send</button>
+
+  <input type="hidden" name="_next" value="https://miker1979.github.io/responsive-multi-page-website/thankyou.html">
+</form>
+
       </div>
     </div>
-
-    <div class="form-group row">
-      <label for="college" class="col-sm-2 col-form-label">College</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="college" name="college" placeholder="College name" />
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="course" class="col-sm-2 col-form-label">Course</label>
-      <div class="col-sm-10">
-        <select class="form-control" id="course" name="course">
-          <option>CST-105: Computer Programming I</option>
-          <option selected>CST-120: Web Development</option>
-          <option>CST-150: Programming in C++</option>
-          <option>CST-221: Operating Systems Concepts</option>
-          <option>CST-239: Programming in Java</option>
-          <option>CST-250: Programming in C#</option>
-          <option>CST-323: Cloud Computing</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="message" class="col-sm-2 col-form-label">Message</label>
-      <div class="col-sm-10">
-        <textarea class="form-control" id="message" name="message" rows="3"
-                  placeholder="Type your message..."></textarea>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary">Send</button>
-      </div>
-    </div>
-
-  </form>
-
-  <a href="index.html" class="d-block mt-3">Back to Main Page</a>
+  </div>
 </div>
 
-<!-- ✅ Bootstrap 4.4 scripts (REQUIRED order) -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<footer class="text-center pb-4">
+  <p id="copyright"></p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-<!-- ✅ REQUIRED: div where the fragment loads (bottom of body) -->
-<div id="copyright"></div>
+<script src="js/copyright.js"></script>
 
 </body>
-
 </html>

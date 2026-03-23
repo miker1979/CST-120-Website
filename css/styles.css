@@ -260,3 +260,8 @@ footer {
 .card p {
   margin-bottom: 10px;
 }
+
+footer {
+  font-size: 14px;
+  color: #666;
+}
