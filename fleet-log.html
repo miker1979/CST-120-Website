@@ -16,7 +16,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="index.html">Mike Robinson</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -31,33 +32,68 @@
   </div>
 </nav>
 
-<!-- CONTENT -->
 <div class="container mt-5 mb-5">
 
   <h1 class="text-center">Fleet Management Software</h1>
-  <h4 class="text-center text-muted mb-5">Development Log</h4>
+  <h4 class="text-center text-muted mb-3">Development Log</h4>
 
-  <!-- ENTRY 1 -->
+  <p class="text-center lead mb-2">
+    This log tracks the development progress of my Java-based Fleet Management System,
+    including design decisions, implementation steps, and future improvements.
+  </p>
+
+  <p class="text-center text-muted mb-5">
+    Latest update: <strong>March 23, 2026</strong>
+  </p>
+
+  <!-- ENTRY - MARCH 19 -->
   <div class="card shadow-sm p-4 mb-4">
-    <h5>March 18, 2026</h5>
+    <h3 class="text-primary">March 23, 2026</h3>
+
     <p>
-      Began planning the Fleet Management Software project. Defined the core structure
-      of the application and identified key classes including Vehicle, Driver,
-      MaintenanceRecord, and FleetManager.
+      Started implementation of the <strong>Vehicle</strong> class. Created core
+      attributes including ID, make, model, and mileage.
     </p>
-    <p>
-      Decided to start with a console-based application to focus on logic and structure
-      before expanding into a graphical user interface in the future.
-    </p>
+
+    <h5>Work Completed</h5>
+    <ul>
+      <li>Created Vehicle class structure</li>
+      <li>Added constructors and getters/setters</li>
+      <li>Tested object creation in the main program</li>
+    </ul>
+
+    <h5>Next Steps</h5>
+    <ul>
+      <li>Implement Driver class</li>
+      <li>Design FleetManager logic</li>
+      <li>Add CLI menu system</li>
+      <li>Plan file storage system</li>
+    </ul>
   </div>
 
-  <!-- ENTRY 2 -->
+  <!-- ENTRY - MARCH 18 -->
   <div class="card shadow-sm p-4 mb-4">
-    <h5>Next Steps</h5>
+    <h3 class="text-primary">March 18, 2026</h3>
+
     <p>
-      Begin implementing the Vehicle class with basic attributes such as ID, make,
-      model, and mileage. Plan how data will be stored and displayed in the system.
+      Began planning the Fleet Management Software project. Defined the core
+      structure of the application and identified key classes including
+      <strong>Vehicle</strong>, <strong>Driver</strong>,
+      <strong>MaintenanceRecord</strong>, and <strong>FleetManager</strong>.
     </p>
+
+    <p>
+      Decided to start with a <strong>console-based application</strong> to focus
+      on logic, object-oriented programming, and data handling before expanding
+      into a graphical user interface (GUI).
+    </p>
+
+    <h5>Key Focus</h5>
+    <ul>
+      <li>Class structure and relationships</li>
+      <li>Object-Oriented Programming (OOP)</li>
+      <li>Application design planning</li>
+    </ul>
   </div>
 
 </div>
