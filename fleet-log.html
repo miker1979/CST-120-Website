@@ -25,7 +25,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="gallery.html">Projects</a></li>
+      <li class="nav-item active"><a class="nav-link" href="gallery.html">Projects</a></li>
       <li class="nav-item"><a class="nav-link" href="hobbies.html">Hobbies</a></li>
       <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
     </ul>
@@ -35,64 +35,128 @@
 <div class="container mt-5 mb-5">
 
   <h1 class="text-center">Fleet Management Software</h1>
-  <h4 class="text-center text-muted mb-3">Development Log</h4>
+  <h4 class="text-center text-muted mb-3">Java Development Log</h4>
 
   <p class="text-center lead mb-2">
-    This log tracks the development progress of my Java-based Fleet Management System,
-    including design decisions, implementation steps, and future improvements.
+    This page documents the progress of my Java-based Fleet Management Software project.
+    The goal of this system is to manage trucks, drivers, employees, evaluations,
+    and future business operations through a structured software application.
   </p>
 
   <p class="text-center text-muted mb-5">
     Latest update: <strong>March 23, 2026</strong>
   </p>
 
-  <!-- ENTRY - MARCH 19 -->
+  <!-- ENTRY -->
   <div class="card shadow-sm p-4 mb-4">
-    <h3 class="text-primary">March 23, 2026</h3>
+    <h3 class="text-primary">March 23, 2026 - Dashboard and Employee System Expansion</h3>
 
     <p>
-      Started implementation of the <strong>Vehicle</strong> class. Created core
-      attributes including ID, make, model, and mileage.
+      The project moved beyond basic console planning and into graphical user interface development
+      using Java Swing. I created the main FleetTrack dashboard and began building the employee
+      management side of the software.
     </p>
 
     <h5>Work Completed</h5>
+
+    <h5 class="mt-4">Application Screenshots</h5>
+
+<p class="text-muted">
+  Below are real screenshots from the current version of the Fleet Management application.
+</p>
+
+<div class="row text-center">
+
+  <div class="col-md-4 mb-4">
+    <img src="images/dashboard.jpg" class="img-fluid rounded shadow" alt="Dashboard">
+    <p class="mt-2"><strong>Dashboard UI</strong></p>
+  </div>
+
+  <div class="col-md-4 mb-4">
+    <img src="images/employees.jpg" class="img-fluid rounded shadow" alt="Employee Screen">
+    <p class="mt-2"><strong>Employee Management Screen</strong></p>
+  </div>
+
+  <div class="col-md-4 mb-4">
+    <img src="images/evaluation.jpg" class="img-fluid rounded shadow" alt="Evaluation Form">
+    <p class="mt-2"><strong>Employee Evaluation Form</strong></p>
+  </div>
+
+</div>
     <ul>
-      <li>Created Vehicle class structure</li>
-      <li>Added constructors and getters/setters</li>
-      <li>Tested object creation in the main program</li>
+      <li>Built the main FleetTrack dashboard in Java Swing</li>
+      <li>Created a cleaner home screen with Quick Action buttons</li>
+      <li>Added separate navigation for Employees, Timesheets, and Job Sheets</li>
+      <li>Developed an Employee class with detailed employee information</li>
+      <li>Built an Evaluation class for monthly, quarterly, and yearly performance reviews</li>
+      <li>Created an Employee Management screen with employee list and detail view</li>
+      <li>Added a Create Employee form to allow new employees to be entered in the system</li>
+    </ul>
+
+    <h5>What I Learned</h5>
+    <ul>
+      <li>How to connect backend Java classes to a GUI</li>
+      <li>How object-oriented design improves software organization</li>
+      <li>How separate screens and forms make the system more scalable</li>
     </ul>
 
     <h5>Next Steps</h5>
     <ul>
-      <li>Implement Driver class</li>
-      <li>Design FleetManager logic</li>
-      <li>Add CLI menu system</li>
-      <li>Plan file storage system</li>
+      <li>Build the Timesheet screen</li>
+      <li>Create the Job Sheet screen</li>
+      <li>Display employee evaluations inside the UI</li>
+      <li>Connect more live fleet data to the dashboard</li>
     </ul>
   </div>
 
-  <!-- ENTRY - MARCH 18 -->
+  <!-- ENTRY -->
   <div class="card shadow-sm p-4 mb-4">
-    <h3 class="text-primary">March 18, 2026</h3>
+    <h3 class="text-primary">March 23, 2026 - Core Fleet Classes</h3>
 
     <p>
-      Began planning the Fleet Management Software project. Defined the core
-      structure of the application and identified key classes including
-      <strong>Vehicle</strong>, <strong>Driver</strong>,
-      <strong>MaintenanceRecord</strong>, and <strong>FleetManager</strong>.
+      Continued development of the backend structure by expanding the project into multiple
+      working Java classes. This stage focused on making the application more realistic by
+      organizing data into classes that represent trucks, drivers, employees, and system logic.
     </p>
 
-    <p>
-      Decided to start with a <strong>console-based application</strong> to focus
-      on logic, object-oriented programming, and data handling before expanding
-      into a graphical user interface (GUI).
-    </p>
+    <h5>Work Completed</h5>
+    <ul>
+      <li>Built the Truck class with ID, model, mileage, and availability status</li>
+      <li>Built the Driver class with ID, name, license, and assignment tracking</li>
+      <li>Built the FleetManager class to store and manage trucks, drivers, and employees</li>
+      <li>Added employee search methods such as findEmployeeById()</li>
+      <li>Connected Truck and Driver objects through assignment logic</li>
+    </ul>
 
     <h5>Key Focus</h5>
     <ul>
-      <li>Class structure and relationships</li>
-      <li>Object-Oriented Programming (OOP)</li>
-      <li>Application design planning</li>
+      <li>Object-oriented programming</li>
+      <li>Class relationships</li>
+      <li>Data organization for future scalability</li>
+    </ul>
+  </div>
+
+  <!-- ENTRY -->
+  <div class="card shadow-sm p-4 mb-4">
+    <h3 class="text-primary">March 18, 2026 - Project Planning and Initial Design</h3>
+
+    <p>
+      Began planning the Fleet Management Software project by defining the original structure
+      and identifying major system components. At this stage, the focus was on designing the
+      program and outlining how the software should grow over time.
+    </p>
+
+    <p>
+      The original plan was to start with a console-based Java application to focus on logic,
+      testing, and object-oriented concepts before gradually transitioning into a full graphical
+      interface.
+    </p>
+
+    <h5>Initial Planning Goals</h5>
+    <ul>
+      <li>Define key classes and responsibilities</li>
+      <li>Map out how trucks, drivers, and records connect</li>
+      <li>Build a strong backend foundation before adding UI</li>
     </ul>
   </div>
 
