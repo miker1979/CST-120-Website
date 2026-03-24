@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Mike Robinson</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Mike Robinson</title>
 
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -18,18 +20,17 @@
 
   <h1 class="text-center">Projects</h1>
   <p class="text-center text-muted mb-5">
-    A collection of my software and web development projects.
+    A collection of my web development and software development work.
   </p>
 
   <!-- WEBSITE PROJECT -->
   <div class="card shadow-sm p-4 mb-5">
-
     <h3 class="text-primary">Responsive Multi-Page Website</h3>
 
     <p>
       A fully responsive multi-page website built using HTML, CSS, Bootstrap, and JavaScript.
       This project demonstrates modern front-end development practices including responsive
-      layout design, reusable components, and clean navigation structure.
+      design, reusable layout patterns, and clean navigation structure.
     </p>
 
     <div class="mb-3">
@@ -40,26 +41,24 @@
     </div>
 
     <div class="mt-3">
-      <a href="index.html" target="_blank" class="btn btn-primary mr-2">
-        🌐 View Website
+      <a href="index.html" target="_blank" class="btn btn-primary mr-2 mb-2">
+        <i class="fas fa-globe mr-2"></i>View Website
       </a>
 
-      <a href="https://github.com/miker1979/CST-120-Website" target="_blank" class="btn btn-outline-dark">
-        View Code
+      <a href="https://github.com/miker1979/CST-120-Website" target="_blank" class="btn btn-outline-dark mb-2">
+        <i class="fab fa-github mr-2"></i>View Code
       </a>
     </div>
-
   </div>
 
   <!-- JAVA PROJECT -->
-  <div class="card shadow-sm p-4 mb-4">
-
+  <div class="card shadow-sm p-4 mb-5">
     <h3 class="text-primary">Fleet Management Software (Java)</h3>
 
     <p>
-      A full desktop application built in Java using object-oriented programming and Swing UI.
-      This system manages fleet operations, employee records, and performance evaluations,
-      simulating real-world logistics workflows.
+      A desktop application built in Java using object-oriented programming and Swing UI.
+      This system manages fleet operations, employee records, and performance evaluations
+      in a structured, real-world business workflow.
     </p>
 
     <div class="mb-3">
@@ -70,13 +69,9 @@
     </div>
 
     <h5>Application Screenshots</h5>
-
-    <p class="text-muted">
-      Click any image to view full size.
-    </p>
+    <p class="text-muted">Click any image to view full size.</p>
 
     <div class="row text-center">
-
       <div class="col-md-4 mb-4">
         <img src="images/dashboard.jpg"
              class="img-fluid rounded shadow project-shot screenshot-thumb"
@@ -100,50 +95,91 @@
              onclick="openImage(this)">
         <p class="mt-2"><strong>Employee Evaluation Form</strong></p>
       </div>
-
     </div>
-
-    <h5>Work Completed</h5>
-    <ul>
-      <li>Built the main FleetTrack dashboard in Java Swing</li>
-      <li>Created quick action buttons</li>
-      <li>Added employee management features</li>
-      <li>Built an evaluation system for monthly, quarterly, and yearly reviews</li>
-      <li>Created a separate employee screen and create employee form</li>
-    </ul>
 
     <div class="mt-3">
-      <a href="https://github.com/miker1979/fleet-management-java" target="_blank" class="btn btn-dark mr-2">
-        💻 View Java Code
+      <a href="https://github.com/miker1979/fleet-management-java" target="_blank" class="btn btn-dark mb-2">
+        <i class="fab fa-github mr-2"></i>View Java Code
       </a>
     </div>
+  </div>
 
+  <!-- PRACTICE PAGES -->
+  <div class="card shadow-sm p-4 mb-4">
+    <h3 class="text-secondary">JavaScript, jQuery, and Bootstrap Practice Pages</h3>
+
+    <p>
+      These pages show hands-on practice with JavaScript, jQuery, and Bootstrap, including
+      DOM interaction, effects, layout components, and basic interface behavior.
+    </p>
+
+    <div class="mb-3">
+      <span class="badge badge-warning mr-1">JavaScript</span>
+      <span class="badge badge-info mr-1">jQuery</span>
+      <span class="badge badge-success mr-1">DOM</span>
+      <span class="badge badge-primary mr-1">Bootstrap</span>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <a href="playjs.html" target="_blank" class="btn btn-primary btn-block">
+          <i class="fas fa-code mr-2"></i>Play JavaScript
+        </a>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <a href="playjq1.html" target="_blank" class="btn btn-dark btn-block">
+          <i class="fas fa-magic mr-2"></i>Play jQuery 1
+        </a>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <a href="playjq2.html" target="_blank" class="btn btn-dark btn-block">
+          <i class="fas fa-bolt mr-2"></i>Play jQuery 2
+        </a>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <a href="playjq3.html" target="_blank" class="btn btn-dark btn-block">
+          <i class="fas fa-layer-group mr-2"></i>Play jQuery 3
+        </a>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <a href="playbs.html" target="_blank" class="btn btn-info btn-block">
+          <i class="fas fa-mobile-alt mr-2"></i>Play Bootstrap
+        </a>
+      </div>
+    </div>
   </div>
 
 </div>
 
-<!-- MODAL -->
+<!-- IMAGE MODAL -->
 <div id="imageModal" class="custom-modal">
   <span class="close-modal" onclick="closeImage()">&times;</span>
   <img class="custom-modal-content" id="modalImage" alt="Expanded project screenshot">
   <div id="modalCaption"></div>
 </div>
 
-<!-- SCRIPTS -->
+<footer class="text-center pb-4">
+  <p>&copy; 2026 Mike Robinson. All rights reserved.</p>
+</footer>
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <script>
-window.openImage = function(img) {
+function openImage(img) {
   document.getElementById("imageModal").style.display = "block";
   document.getElementById("modalImage").src = img.src;
   document.getElementById("modalCaption").innerText = img.alt;
-};
+}
 
-window.closeImage = function() {
+function closeImage() {
   document.getElementById("imageModal").style.display = "none";
-};
+}
 
 window.addEventListener("click", function(event) {
   const modal = document.getElementById("imageModal");
