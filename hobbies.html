@@ -72,5 +72,34 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+
+    // reattach dark mode button AFTER navbar loads
+    const toggleButton = document.getElementById("darkModeToggle");
+
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark-mode");
+      toggleButton.textContent = "Light Mode";
+    }
+
+    toggleButton.addEventListener("click", function () {
+      document.body.classList.toggle("dark-mode");
+
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+        toggleButton.textContent = "Light Mode";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleButton.textContent = "Dark Mode";
+      }
+    });
+
+  });
+</script>
+
 </body>
 </html>
