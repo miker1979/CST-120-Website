@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Play jQuery 3 | Dynamic Table</title>
+  <title>Play jQuery 3 | Mike Robinson</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -15,7 +15,6 @@
       alert("I was clicked");
     }
 
-    // Step 4: Logic to generate and append user rows to the table
     function displayUsers() {
       function User(firstName, lastName, age) {
         this.firstName = firstName;
@@ -44,7 +43,6 @@
             "<td>" + user.age + "</td>" +
           "</tr>";
 
-        // Step 5: Append markup to the table body using jQuery find and append
         $("#users").find("tbody").append(markup);
 
         var lastRow = $("#users").find("tbody").find("tr").last();
@@ -59,48 +57,21 @@
       }
     }
 
-    // Initialize display function once DOM is ready
     $(document).ready(displayUsers);
   </script>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.html">CST-120</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="hobbies.html">Hobbies</a></li>
-      <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-      <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
-      <li class="nav-item"><a class="nav-link" href="faith.html">Faith</a></li>
-      <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-          Topic 6 Activities
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="playjq1.html">jQuery Intro</a>
-          <a class="dropdown-item" href="playjq2.html">jQuery Selectors</a>
-          <a class="dropdown-item" href="playjq3.html">Dynamic Table</a>
-          <a class="dropdown-item" href="playbs.html">Bootstrap Demo</a>
-        </div>
-      </li>
-      <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<div id="navbar"></div>
 
-<div class="container mt-4">
+<div class="container mt-5 mb-5 text-center">
   <h1>Play jQuery 3</h1>
+  <p class="lead">Dynamic table generation with jQuery.</p>
 
   <button class="btn btn-secondary mb-3" onclick="clicked()">Click Me</button>
 
-  <table id="users" class="table table-bordered w-100">
+  <table id="users" class="table table-bordered w-100 bg-white">
     <thead class="thead-light">
       <tr>
         <th width="33%">First Name</th>
@@ -109,12 +80,45 @@
       </tr>
     </thead>
     <tbody>
-      </tbody>
+    </tbody>
   </table>
+
+  <div class="mt-4">
+    <a href="gallery.html" class="btn btn-outline-secondary">Back to Projects</a>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+
+    const toggleButton = document.getElementById("darkModeToggle");
+
+    if (toggleButton) {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        toggleButton.textContent = "Light Mode";
+      }
+
+      toggleButton.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("theme", "dark");
+          toggleButton.textContent = "Light Mode";
+        } else {
+          localStorage.setItem("theme", "light");
+          toggleButton.textContent = "Dark Mode";
+        }
+      });
+    }
+  });
+</script>
 
 </body>
 </html>

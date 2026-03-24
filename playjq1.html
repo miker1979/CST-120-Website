@@ -2,28 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Play jQuery 1 | Intro</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play jQuery 1 | Mike Robinson</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <script>
-        // Step 1: Use jQuery to hide a paragraph when a button is clicked
         $(document).ready(function(){
             $("#hideBtn").click(function(){
                 $("p.test-text").hide(1000);
             });
+
             $("#showBtn").click(function(){
                 $("p.test-text").show(1000);
             });
         });
     </script>
 </head>
+
 <body>
-    <div class="container mt-5 text-center">
-        <h1>jQuery Intro</h1>
-        <p class="test-text lead">This text will disappear using jQuery!</p>
-        <button id="hideBtn" class="btn btn-danger">Hide Text</button>
+
+<div id="navbar"></div>
+
+<div class="container text-center mt-5 mb-5">
+
+    <h1>Play jQuery 1</h1>
+
+    <p class="lead">
+        Demonstrates basic jQuery event handling and simple UI interaction.
+    </p>
+
+    <p class="test-text lead">
+        This text will disappear using jQuery!
+    </p>
+
+    <div class="mt-3">
+        <button id="hideBtn" class="btn btn-danger mr-2">Hide Text</button>
         <button id="showBtn" class="btn btn-success">Show Text</button>
     </div>
 
-    </body>
+    <div class="mt-4">
+        <a href="gallery.html" class="btn btn-outline-secondary">Back to Projects</a>
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<!-- NAVBAR LOADER -->
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+
+    const toggleButton = document.getElementById("darkModeToggle");
+
+    if (toggleButton) {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        toggleButton.textContent = "Light Mode";
+      }
+
+      toggleButton.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("theme", "dark");
+          toggleButton.textContent = "Light Mode";
+        } else {
+          localStorage.setItem("theme", "light");
+          toggleButton.textContent = "Dark Mode";
+        }
+      });
+    }
+  });
+</script>
+
+</body>
 </html>
