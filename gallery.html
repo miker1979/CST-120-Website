@@ -3,39 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fleet Management Development Log | Mike Robinson</title>
+    <title>Projects | Mike Robinson</title>
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
-<div id="navbar"></div>
-
 <body>
 
+<div id="navbar"></div>
 
 <div class="container mt-5 mb-5">
 
-  <h1 class="text-center">Fleet Management Software</h1>
-  <h4 class="text-center text-muted mb-3">Java Development Log</h4>
-
-  <p class="text-center lead mb-2">
-    This page documents the progress of my Java-based Fleet Management Software project.
-  </p>
-
+  <h1 class="text-center">Projects</h1>
   <p class="text-center text-muted mb-5">
-    Latest update: <strong>March 23, 2026</strong>
+    A collection of my software and web development projects.
   </p>
 
-  <!-- ENTRY -->
-  <div class="card shadow-sm p-4 mb-4">
+  <!-- WEBSITE PROJECT -->
+  <div class="card shadow-sm p-4 mb-5">
 
-    <h3 class="text-primary">March 23, 2026 - Dashboard and Employee System Expansion</h3>
+    <h3 class="text-primary">Responsive Multi-Page Website</h3>
 
     <p>
-      The project moved beyond console planning and into GUI development using Java Swing.
+      A fully responsive multi-page website built using HTML, CSS, Bootstrap, and JavaScript.
+      This project demonstrates modern front-end development practices including responsive
+      layout design, reusable components, and clean navigation structure.
     </p>
+
+    <div class="mb-3">
+      <span class="badge badge-primary mr-1">HTML</span>
+      <span class="badge badge-success mr-1">CSS</span>
+      <span class="badge badge-info mr-1">Bootstrap</span>
+      <span class="badge badge-warning mr-1">JavaScript</span>
+    </div>
+
+    <div class="mt-3">
+      <a href="index.html" target="_blank" class="btn btn-primary mr-2">
+        🌐 View Website
+      </a>
+
+      <a href="https://github.com/miker1979/CST-120-Website" target="_blank" class="btn btn-outline-dark">
+        View Code
+      </a>
+    </div>
+
+  </div>
+
+  <!-- JAVA PROJECT -->
+  <div class="card shadow-sm p-4 mb-4">
+
+    <h3 class="text-primary">Fleet Management Software (Java)</h3>
+
+    <p>
+      A full desktop application built in Java using object-oriented programming and Swing UI.
+      This system manages fleet operations, employee records, and performance evaluations,
+      simulating real-world logistics workflows.
+    </p>
+
+    <div class="mb-3">
+      <span class="badge badge-dark mr-1">Java</span>
+      <span class="badge badge-secondary mr-1">OOP</span>
+      <span class="badge badge-primary mr-1">Swing UI</span>
+      <span class="badge badge-success mr-1">Data Management</span>
+    </div>
 
     <h5>Application Screenshots</h5>
 
@@ -43,7 +75,6 @@
       Click any image to view full size.
     </p>
 
-    <!-- IMAGES -->
     <div class="row text-center">
 
       <div class="col-md-4 mb-4">
@@ -75,10 +106,17 @@
     <h5>Work Completed</h5>
     <ul>
       <li>Built the main FleetTrack dashboard in Java Swing</li>
-      <li>Created Quick Action buttons</li>
-      <li>Added Employee system</li>
-      <li>Built Evaluation system</li>
+      <li>Created quick action buttons</li>
+      <li>Added employee management features</li>
+      <li>Built an evaluation system for monthly, quarterly, and yearly reviews</li>
+      <li>Created a separate employee screen and create employee form</li>
     </ul>
+
+    <div class="mt-3">
+      <a href="https://github.com/miker1979/fleet-management-java" target="_blank" class="btn btn-dark mr-2">
+        💻 View Java Code
+      </a>
+    </div>
 
   </div>
 
@@ -87,7 +125,7 @@
 <!-- MODAL -->
 <div id="imageModal" class="custom-modal">
   <span class="close-modal" onclick="closeImage()">&times;</span>
-  <img class="custom-modal-content" id="modalImage">
+  <img class="custom-modal-content" id="modalImage" alt="Expanded project screenshot">
   <div id="modalCaption"></div>
 </div>
 
@@ -121,26 +159,26 @@ fetch("navbar.html")
   .then(data => {
     document.getElementById("navbar").innerHTML = data;
 
-    // reattach dark mode button AFTER navbar loads
     const toggleButton = document.getElementById("darkModeToggle");
 
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark-mode");
-      toggleButton.textContent = "Light Mode";
-    }
-
-    toggleButton.addEventListener("click", function () {
-      document.body.classList.toggle("dark-mode");
-
-      if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
+    if (toggleButton) {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
         toggleButton.textContent = "Light Mode";
-      } else {
-        localStorage.setItem("theme", "light");
-        toggleButton.textContent = "Dark Mode";
       }
-    });
 
+      toggleButton.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("theme", "dark");
+          toggleButton.textContent = "Light Mode";
+        } else {
+          localStorage.setItem("theme", "light");
+          toggleButton.textContent = "Dark Mode";
+        }
+      });
+    }
   });
 </script>
 
