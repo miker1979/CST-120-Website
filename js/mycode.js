@@ -4,12 +4,11 @@ function initialize()
 {
   console.log("In initialize()");
 
-  document.getElementById("title").addEventListener("click", function () {
+  document.getElementById("title").addEventListener("click", function ()
+  {
     alert("This is fun!");
   });
 }
-
-
 
 function sayHello()
 {
@@ -17,18 +16,12 @@ function sayHello()
   document.getElementById("hello-text").innerHTML = "Hello world!";
   console.log("Hello world!");
 
-  // =========================
-  // VARIABLES and ASSIGNMENTS
-  // =========================
   var age = 45;
   let name = "Mike";
 
   console.log("My name is " + name);
   console.log("My age is " + age);
 
-  // =========================
-  // MATH OPERATORS
-  // =========================
   var number1 = 10;
   var number2 = 5;
   var result;
@@ -45,24 +38,15 @@ function sayHello()
   result = number1 / number2;
   console.log("Division result is " + result);
 
-  // =========================
-  // INCREMENT / DECREMENT
-  // =========================
   ++number1;
   console.log("Increment result is " + number1);
 
   --number1;
   console.log("Decrement result is " + number1);
 
-  // =========================
-  // EXPONENT
-  // =========================
   result = number1 ** number2;
   console.log("Exponentiation result is " + result);
 
-  // =========================
-  // COMPARISON OPERATORS
-  // =========================
   console.log("Equality for 10 is " + (number1 == 10));
   console.log("Equality for 2 numbers " + (number1 == number2));
   console.log("Equality for 2 numbers and type " + (number1 === number2));
@@ -70,9 +54,6 @@ function sayHello()
   console.log("Greater than for 2 numbers " + (number1 > number2));
   console.log("Less than for 2 numbers " + (number1 < number2));
 
-  // =========================
-  // STRINGS
-  // =========================
   let string1 = 'A String enclosed in Single Quotes';
   console.log("String with single quotes: " + string1);
 
@@ -85,9 +66,6 @@ function sayHello()
   let string4 = "A string \n on two lines";
   console.log("String with newline: " + string4);
 
-  // =========================
-  // STRING METHODS
-  // =========================
   let string5 = "Grand Canyon University";
   console.log("String length is " + string5.length);
   console.log("Upper case: " + string5.toUpperCase());
@@ -95,9 +73,6 @@ function sayHello()
   console.log("Index of Grand: " + string5.indexOf("Grand"));
   console.log("Index of Canyon: " + string5.indexOf("Canyon"));
 
-  // =========================
-  // NUMBERS
-  // =========================
   let numberStr = "1";
   let numberNum = 1;
 
@@ -113,9 +88,6 @@ function sayHello()
   console.log("Parse float: " + parseFloat("10.53"));
   console.log("Random number: " + Math.random());
 
-  // =========================
-  // ARRAYS
-  // =========================
   let shapes1 = ["Circle", "Square", "Triangle", "Rectangle"];
 
   console.log("First shape: " + shapes1[0]);
@@ -138,9 +110,6 @@ function sayHello()
     console.log("Shape: " + shape);
   }
 
-  // =========================
-  // DATES
-  // =========================
   let now = new Date();
   let birthday = new Date(1968, 9, 17, 0, 0, 0);
 
@@ -148,9 +117,6 @@ function sayHello()
   console.log("Past date and time is " + birthday);
   console.log("Time difference is " + (now.getFullYear() - birthday.getFullYear()));
 
-  // =========================
-  // FUNCTION CALLS
-  // =========================
   reusableCode();
 
   let result2 = add(15, 20);
@@ -161,11 +127,6 @@ function sayHello()
 
   shapes1.forEach(displayArray);
 }
-
-
-// =========================
-// REUSABLE FUNCTIONS
-// =========================
 
 function reusableCode()
 {
@@ -189,16 +150,13 @@ function displayArray(value, index)
   console.log("From displayArray() the array value is " + value + " at " + index);
 }
 
-// If and Switch statements
 function conditions()
 {
-  // Create some variables to compare
   let num1 = 10;
   let num2 = 5;
   let text1 = "Mike";
   let text2 = "Mary";
 
-  // Do some comparisons with If statements using numbers
   if (num1 == num2)
     console.log("Number 1 is equal to Number 2");
   else
@@ -211,7 +169,6 @@ function conditions()
   else
     console.log("Number 2 is equal to Number 1");
 
-  // Do some comparisons with If statements using strings
   if (text1 == text2)
     console.log("Text 1 is equal to Text 2");
   else
@@ -222,7 +179,6 @@ function conditions()
   else
     console.log("Text 1 is less than Text 2");
 
-  // Switch statement
   switch (num2)
   {
     case 0:
@@ -248,29 +204,21 @@ function conditions()
       break;
   }
 
-  // Ternary operator
   num1 == num2
     ? console.log("Using Ternary Operator - Number 1 is equal to Number 2")
     : console.log("Using Ternary Operator - Number 1 is not equal to Number 2");
 }
 
-// =========================
-// LOOP STATEMENTS
-// =========================
-
 function loops()
 {
-  // Create an array that we can loop over
-  let shapes = new Array('Triangle', 'Circle', 'Square');
-  let index = 0;  // ✅ ADD THIS
+  let shapes = ["Triangle", "Circle", "Square"];
+  let index = 0;
 
-  // For Loop (prints all array elements)
   for (index = 0; index < shapes.length; ++index)
   {
     console.log("Using For Loop getting Array value of " + shapes[index] + " at " + index);
   }
 
-  // For Loop (prints even indexes)
   for (index = 0; index < shapes.length; ++index)
   {
     if (index % 2 == 0)
@@ -279,7 +227,6 @@ function loops()
     }
   }
 
-  // While Loop
   let i = 0;
 
   while (i < shapes.length)
@@ -288,7 +235,6 @@ function loops()
     ++i;
   }
 
-  // Do While Loop
   i = 0;
 
   do
@@ -299,17 +245,10 @@ function loops()
   while (i < shapes.length);
 }
 
-// =========================
-// OBJECTS
-// =========================
-
 function objects()
 {
   console.log("Inside objects()");
 
-  // -----------------------------------
-  // Object Literal (Person 1)
-  // -----------------------------------
   let person1 =
   {
     firstName: "Bob",
@@ -328,9 +267,6 @@ function objects()
     person1.occupation
   );
 
-  // -----------------------------------
-  // Object using new Object() (Person 2)
-  // -----------------------------------
   let person2 = new Object();
 
   person2.firstName = "Billy";
@@ -348,14 +284,11 @@ function objects()
     person2.occupation
   );
 
-  // -----------------------------------
-  // Constructor Function
-  // -----------------------------------
   function Person(firstName, lastName, age, occupation)
   {
     this.firstName = firstName;
     this.lastName = lastName;
-    this.age = age;              // ← FIXED (prof screenshot had typo)
+    this.age = age;
     this.occupation = occupation;
   }
 
@@ -382,9 +315,6 @@ function objects()
     person4.occupation
   );
 
-  // -----------------------------------
-  // Enhanced Constructor + Method
-  // -----------------------------------
   function EnhancedPerson(firstName, lastName, age, occupation)
   {
     this.firstName = firstName;
@@ -407,7 +337,31 @@ function objects()
   }
 
   let person5 = new EnhancedPerson("Paul", "McCartney", 78, "Musician");
-
   person5.display();
 }
 
+function clearConsoleAndShowHeader(title)
+{
+  console.clear();
+  console.log("=================================");
+  console.log(title);
+  console.log("=================================");
+}
+
+function runConditions()
+{
+  clearConsoleAndShowHeader("CONDITIONS");
+  conditions();
+}
+
+function runLoops()
+{
+  clearConsoleAndShowHeader("LOOPS");
+  loops();
+}
+
+function runObjects()
+{
+  clearConsoleAndShowHeader("OBJECTS");
+  objects();
+}
