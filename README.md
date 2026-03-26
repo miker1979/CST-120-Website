@@ -9,7 +9,7 @@ My commitment to high achievement in this new path is reflected in my **Presiden
 
 ## 🚀 Live Website
 You can view the live project here:  
-**[https://miker1979.github.io/CST-120-Website/](https://miker1979.github.io/CST-120-Website/)**
+**https://miker1979.github.io/responsive-multi-page-website/**
 
 ---
 
