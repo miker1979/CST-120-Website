@@ -20,7 +20,7 @@
 
   <h1 class="text-center">Projects</h1>
   <p class="text-center text-muted mb-5">
-    A collection of my web development and software development work.
+    Real-world software and web applications focused on logistics, operations, and system design.
   </p>
 
   <!-- WEBSITE PROJECT -->
@@ -28,9 +28,8 @@
     <h3 class="text-primary">Responsive Multi-Page Website</h3>
 
     <p>
-      A fully responsive multi-page website built using HTML, CSS, Bootstrap, and JavaScript.
-      This project demonstrates modern front-end development practices including responsive
-      design, reusable layout patterns, and clean navigation structure.
+      A fully responsive website built using HTML, CSS, Bootstrap, and JavaScript.
+      Designed with clean navigation, reusable layouts, and modern front-end practices.
     </p>
 
     <div class="mb-3">
@@ -41,11 +40,13 @@
     </div>
 
     <div class="mt-3">
-      <a href="index.html" target="_blank" class="btn btn-primary mr-2 mb-2">
+      <a href="portfolio.html" target="_blank" class="btn btn-primary mr-2 mb-2">
         <i class="fas fa-globe mr-2"></i>View Website
       </a>
 
-      <a href="https://github.com/miker1979/CST-120-Website" target="_blank" class="btn btn-outline-dark mb-2">
+      <a href="https://github.com/miker1979/CST-120-Website"
+         target="_blank"
+         class="btn btn-outline-dark mr-2 mb-2">
         <i class="fab fa-github mr-2"></i>View Code
       </a>
     </div>
@@ -53,12 +54,12 @@
 
   <!-- JAVA PROJECT -->
   <div class="card shadow-sm p-4 mb-5">
-    <h3 class="text-primary">Fleet Management Software (Java)</h3>
+    <h3 class="text-primary">FleetTrack Pro (Java)</h3>
 
     <p>
-      A desktop application built in Java using object-oriented programming and Swing UI.
-      This system manages fleet operations, employee records, and performance evaluations
-      in a structured, real-world business workflow.
+      FleetTrack Pro is a desktop application built for real-world logistics operations.
+      It manages employees, equipment, jobs, maintenance tracking, and compliance workflows
+      using a structured, object-oriented design.
     </p>
 
     <div class="mb-3">
@@ -72,6 +73,7 @@
     <p class="text-muted">Click any image to view full size.</p>
 
     <div class="row text-center">
+
       <div class="col-md-4 mb-4">
         <img src="images/dashboard.jpg"
              class="img-fluid rounded shadow project-shot screenshot-thumb"
@@ -85,7 +87,7 @@
              class="img-fluid rounded shadow project-shot screenshot-thumb"
              alt="Employee Management Screen"
              onclick="openImage(this)">
-        <p class="mt-2"><strong>Employee Management Screen</strong></p>
+        <p class="mt-2"><strong>Employee Management</strong></p>
       </div>
 
       <div class="col-md-4 mb-4">
@@ -93,24 +95,36 @@
              class="img-fluid rounded shadow project-shot screenshot-thumb"
              alt="Employee Evaluation Form"
              onclick="openImage(this)">
-        <p class="mt-2"><strong>Employee Evaluation Form</strong></p>
+        <p class="mt-2"><strong>Owners Portal</strong></p>
       </div>
+
     </div>
 
     <div class="mt-3">
-      <a href="https://github.com/miker1979/fleet-management-java" target="_blank" class="btn btn-dark mb-2">
-        <i class="fab fa-github mr-2"></i>View Java Code
+
+      <a href="https://github.com/miker1979/fleet-management-java/releases"
+         target="_blank"
+         class="btn btn-success mr-2 mb-2">
+        <i class="fas fa-download mr-2"></i>Download FleetTrack Pro
       </a>
+
+      <a href="https://github.com/miker1979/fleet-management-java"
+         target="_blank"
+         class="btn btn-outline-dark mr-2 mb-2">
+        <i class="fab fa-github mr-2"></i>View Source Code
+      </a>
+
     </div>
+
   </div>
 
   <!-- PRACTICE PAGES -->
   <div class="card shadow-sm p-4 mb-4">
-    <h3 class="text-secondary">JavaScript, jQuery, and Bootstrap Practice Pages</h3>
+    <h3 class="text-secondary">JavaScript, jQuery, and Bootstrap Practice</h3>
 
     <p>
-      These pages show hands-on practice with JavaScript, jQuery, and Bootstrap, including
-      DOM interaction, effects, layout components, and basic interface behavior.
+      Interactive practice pages demonstrating DOM manipulation, UI behavior,
+      and front-end development techniques using JavaScript, jQuery, and Bootstrap.
     </p>
 
     <div class="mb-3">
@@ -121,6 +135,7 @@
     </div>
 
     <div class="row">
+
       <div class="col-md-4 mb-3">
         <a href="playjs.html" target="_blank" class="btn btn-primary btn-block">
           <i class="fas fa-code mr-2"></i>Play JavaScript
@@ -150,6 +165,7 @@
           <i class="fas fa-mobile-alt mr-2"></i>Play Bootstrap
         </a>
       </div>
+
     </div>
   </div>
 
@@ -158,7 +174,7 @@
 <!-- IMAGE MODAL -->
 <div id="imageModal" class="custom-modal">
   <span class="close-modal" onclick="closeImage()">&times;</span>
-  <img class="custom-modal-content" id="modalImage" alt="Expanded project screenshot">
+  <img class="custom-modal-content" id="modalImage">
   <div id="modalCaption"></div>
 </div>
 
@@ -180,13 +196,6 @@ function openImage(img) {
 function closeImage() {
   document.getElementById("imageModal").style.display = "none";
 }
-
-window.addEventListener("click", function(event) {
-  const modal = document.getElementById("imageModal");
-  if (event.target === modal) {
-    closeImage();
-  }
-});
 </script>
 
 <script>

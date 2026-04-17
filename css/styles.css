@@ -1,362 +1,150 @@
+/* ===== Base ===== */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  padding-bottom: 70px; /* pushes page content above the fixed footer */
-}
-
-/* ===== Page Base ===== */
-body {
-  margin-top: 20px;
-  margin-left: 20px;
-  background: rgb(231, 229, 229);
-  font-family: 'Roboto', Arial, sans-serif;
-}
-
-/* ===== Headings ===== */
-h1 {
-  color: #000000;
-  font-weight: bold;
-  font-size: 32px;
-  margin: 0 0 16px;
-  text-align: center;
-  text-shadow: 2px 2px 5px gray;
-}
-
-h2 {
-  color: #4f2fb6;
-  font-weight: bold;
-  font-size: 28px;
-  margin: 0 0 8px;
-}
-
-h3 {
-  color: #000000;
-  font-weight: bold;
-  font-size: 20px;
-  margin: 0 0 8px;
-}
-
-h4 {
-  color: #000000;
-  font-weight: bold;
-  font-size: 16px;
-  margin: 0 0 8px;
-}
-
-/* ===== Paragraphs + Lists ===== */
-p {
-  font-size: 18px;
-  margin: 16px 0 24px;
-}
-
-li {
-  color: #000000;
-  font-size: 16px;
-  margin: 0 0 8px;
-}
-
-/* ===== Links ===== */
-a {
-  color: rgb(221, 94, 20);
-}
-
-/* ===== Flexbox Photo Gallery (Milestone requirement) ===== */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;          /* REQUIRED: makes items wrap to new rows */
-  justify-content: center;  /* centers the row items */
-  gap: 20px;                /* spacing between items (better than margins) */
-  padding: 20px;
-}
-
-/* If you use images inside .gallery */
-.gallery img {
-  width: 200px;             /* controls how many fit per row */
-  height: 150px;
-  object-fit: cover;        /* keeps images from stretching */
-  border-radius: 8px;
-  border: 2px solid #ccc;
-}
-
-/* Optional hover polish */
-.gallery img:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
-}
-
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.gallery img {
-  width: 200px;
-  height: 150px;
-}
-
-/* ===== Flexbox Photo Gallery (Milestone requirement) ===== */
-.gallery {
-  display: flex;          /* Turns on Flexbox */
-  flex-wrap: wrap;        /* REQUIRED: forces row wrapping */
-  justify-content: center;/* Centers images horizontally */
-  gap: 20px;              /* Controls spacing between images */
-  padding: 20px;
-
-  /* Forces wrapping to be visible even on large screens */
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-/* Flex items (images) */
-.gallery img {
-  width: 200px;
-  height: 150px;
-
-  /* Prevents cropping */
-  object-fit: contain;
-
-  /* Visual enhancements */
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  border: 2px solid #ccc;
-}
-
-/* Optional hover effect (enhancement credit) */
-.gallery img:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
-}
-
-table.matrix {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-table.matrix th,
-table.matrix td {
-  border: 1px solid #000;
-  padding: 10px;
-}
-
-table.matrix th {
-  text-align: left;
-}
-
-table.matrix td:nth-child(2),
-table.matrix td:nth-child(3) {
-  text-align: center;
-  width: 120px;
-}
-
-table.matrix .total-row td {
-  font-weight: bold;
-}
-
-.center {
-  text-align: center;
-}
-
-.dropdown-menu { z-index: 9999; }
-
-/* Portfolio polish */
-.card {
-  border-radius: 14px;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  transition: 0.3s ease;
-}
-
-.btn {
-  border-radius: 10px;
-  transition: 0.3s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-h1, h2 {
-  letter-spacing: 0.5px;
-}
-
-.container {
-  max-width: 1100px;
-}
-
-/* Background + depth upgrade */
-body {
+  margin: 0;
+  padding-bottom: 70px;
   background: #f8f9fa;
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #212529;
 }
 
-.card {
-  background: #ffffff;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* Button polish */
-.btn-primary {
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  border: none;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #0056b3, #003f7f);
-}
-
-.btn-outline-dark:hover {
-  background-color: #212529;
-  color: #fff;
-}
-
-/* Project card hover glow */
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-}
-
-/* Section spacing polish */
+/* ===== Typography ===== */
 h1 {
+  color: #000;
+  font-weight: 700;
+  text-align: center;
   margin-bottom: 20px;
 }
 
 h2 {
-  margin-bottom: 15px;
+  color: #000;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h3, h4 {
+  color: #000;
+  font-weight: 600;
 }
 
 p {
+  font-size: 16px;
   line-height: 1.7;
+  color: #555;
 }
 
-.card ul {
-  padding-left: 20px;
+a {
+  color: #007bff;
+  text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Layout ===== */
+.container {
+  max-width: 1100px;
+}
+
+section {
+  margin-bottom: 80px;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: #fff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* ===== Buttons ===== */
+.btn {
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.btn-dark {
+  background: #212529;
+  border: none;
+}
+
+.btn-dark:hover {
+  background: #000;
+}
+
+.btn-outline-dark:hover {
+  background: #212529;
+  color: #fff;
+}
+
+/* ===== Navbar Fix ===== */
+.navbar {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ===== Footer ===== */
 footer {
   margin-top: 40px;
-}
-
-/* Simple list polish */
-.card h4 {
-  margin-top: 20px;
-  font-weight: 700;
-}
-
-.card ul li {
-  margin-bottom: 8px;
-}
-
-/* Dev log polish */
-.card h5 {
-  font-weight: bold;
-  color: #007bff;
-}
-
-.card p {
-  margin-bottom: 10px;
-}
-
-footer {
   font-size: 14px;
-  color: #666;
+  color: #777;
 }
 
-.project-shot {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border: 1px solid #ddd;
-}
-
-.project-shot {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border: 1px solid #ddd;
-}
-
-.screenshot-thumb {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.screenshot-thumb:hover {
-  transform: scale(1.03);
-}
-
-.custom-modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  padding-top: 40px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.custom-modal-content {
-  display: block;
-  margin: auto;
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 8px;
-}
-
-#modalCaption {
-  margin: 15px auto;
-  text-align: center;
-  color: white;
-  font-size: 20px;
-}
-
-.close-modal {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
+/* ===== Badges ===== */
 .badge {
-  font-size: 14px;
-  padding: 8px 10px;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+/* ===== Gallery (keep your assignment working) ===== */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.gallery img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
-/* ===== DARK MODE ===== */
+/* ===== Dark Mode ===== */
 body.dark-mode {
   background: #121212;
   color: #f1f1f1;
 }
 
-body.dark-mode p,
-body.dark-mode li,
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
 body.dark-mode h4,
-body.dark-mode h5 {
+body.dark-mode p {
   color: #f1f1f1;
 }
 
 body.dark-mode .card {
   background: #1e1e1e;
-  color: #f1f1f1;
   box-shadow: 0 6px 16px rgba(0,0,0,0.35);
 }
 
 body.dark-mode .navbar {
-  background-color: #000000 !important;
+  background-color: #000 !important;
 }
 
 body.dark-mode .btn-outline-dark {
@@ -369,14 +157,6 @@ body.dark-mode .btn-outline-dark:hover {
   color: #121212;
 }
 
-body.dark-mode footer {
-  color: #cccccc;
-}
-
 body.dark-mode a {
   color: #7db8ff;
-}
-
-body.dark-mode .badge-warning {
-  color: #212529;
 }
