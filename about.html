@@ -13,9 +13,9 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
-<div id="navbar"></div>
-
 <body>
+
+<div id="navbar"></div>
 
 <!-- CONTENT -->
 <div class="container mt-5 mb-5">
@@ -95,23 +95,24 @@ fetch("navbar.html")
     // reattach dark mode button AFTER navbar loads
     const toggleButton = document.getElementById("darkModeToggle");
 
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark-mode");
-      toggleButton.textContent = "Light Mode";
-    }
-
-    toggleButton.addEventListener("click", function () {
-      document.body.classList.toggle("dark-mode");
-
-      if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
+    if (toggleButton) {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
         toggleButton.textContent = "Light Mode";
-      } else {
-        localStorage.setItem("theme", "light");
-        toggleButton.textContent = "Dark Mode";
       }
-    });
 
+      toggleButton.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("theme", "dark");
+          toggleButton.textContent = "Light Mode";
+        } else {
+          localStorage.setItem("theme", "light");
+          toggleButton.textContent = "Dark Mode";
+        }
+      });
+    }
   });
 </script>
 

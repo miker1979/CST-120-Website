@@ -1,24 +1,49 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.html">Ghostline Tech</a>
+  <a class="navbar-brand font-weight-bold" href="index.html">Ghostline Tech</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto align-items-lg-center">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="gallery.html">Projects</a></li>
-      <li class="nav-item"><a class="nav-link" href="hobbies.html">Hobbies</a></li>
-      <li class="nav-item"><a class="nav-link" href="documents/Michael_Robinson_Resume.pdf" target="_blank">Resume</a></li>
-      <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="index.html" data-page="index">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="about.html" data-page="about">About</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="gallery.html" data-page="gallery">Projects</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="hobbies.html" data-page="hobbies">Hobbies</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="documents/Michael_Robinson_Resume.pdf" target="_blank">
+          Resume
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html" data-page="contact">Contact</a>
+      </li>
 
       <li class="nav-item ml-lg-3 mt-2 mt-lg-0">
-        <button id="darkModeToggle" class="btn btn-outline-light btn-sm" type="button">
+        <button id="darkModeToggle"
+                class="btn btn-outline-light btn-sm"
+                type="button"
+                aria-label="Toggle dark mode">
           Dark Mode
         </button>
       </li>
+
     </ul>
   </div>
 </nav>

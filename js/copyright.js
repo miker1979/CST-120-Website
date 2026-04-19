@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const year = new Date().getFullYear();
-  document.getElementById("copyright").innerHTML =
-    "&copy; " + year + " Mike Robinson. All rights reserved.";
+  const el = document.getElementById("copyright");
+
+  if (el) {
+    el.innerHTML = `&copy; ${year} Mike Robinson | Ghostline Logistics Tech LLC`;
+  }
 });

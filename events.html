@@ -1,105 +1,102 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Important Events | My Personal Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Important Events | Mike Robinson</title>
 
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.html">CST-120</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="hobbies.html">Hobbies</a></li>
-      <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-      <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
-      <li class="nav-item"><a class="nav-link" href="faith.html">Faith</a></li>
-      
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-          Topic 6 Activities
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="playjq1.html">jQuery Intro</a>
-          <a class="dropdown-item" href="playjq2.html">jQuery Selectors</a>
-          <a class="dropdown-item" href="playjq3.html">Dynamic Table</a>
-          <a class="dropdown-item" href="playbs.html">Bootstrap Demo</a>
-        </div>
-      </li>
-      
-      <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-    </ul>
+<div id="navbar"></div>
+
+<div class="container mt-4 mb-5">
+
+  <h1 class="text-center">Important Events</h1>
+
+  <p class="mt-4">
+    This page highlights important events and milestones that have shaped my personal and professional journey.
+    These experiences reflect growth, learning, and the path that led me into software development.
+  </p>
+
+  <h2 class="mt-5">Key Events and Milestones</h2>
+
+  <div class="table-responsive mt-3">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+          <th>Importance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026</td>
+          <td>Continuing my software development studies at Grand Canyon University</td>
+          <td><span class="badge badge-danger">High</span></td>
+        </tr>
+        <tr>
+          <td>2026</td>
+          <td>Building portfolio projects in web development and Java</td>
+          <td><span class="badge badge-danger">High</span></td>
+        </tr>
+        <tr>
+          <td>2025</td>
+          <td>Expanding my technical skills through hands-on coding and project work</td>
+          <td><span class="badge badge-warning">Medium</span></td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>Strengthening my long-term career transition into software development</td>
+          <td><span class="badge badge-danger">High</span></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</nav>
-
-<div class="container mt-4">
-
-    <h1 class="text-center">Important Events</h1>
-
-    <p class="mt-4">
-        This page highlights important events and milestones that have shaped my life.
-        These experiences represent personal growth, learning opportunities, and moments
-        that have influenced who I am today.
-    </p>
-
-    <h2 class="mt-5">Key Events and Milestones</h2>
-
-    <div class="table-responsive mt-3">
-        <table class="table table-bordered table-striped table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Date</th>
-                    <th>Event</th>
-                    <th>Importance</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>2026</td>
-                    <td>Beginning my studies at Grand Canyon University</td>
-                    <td><span class="badge badge-danger">High</span></td>
-                </tr>
-                <tr>
-                    <td>2026</td>
-                    <td>Developing an interest in software and web development</td>
-                    <td><span class="badge badge-danger">High</span></td>
-                </tr>
-                <tr>
-                    <td>2025</td>
-                    <td>Travel experiences that expanded my perspective</td>
-                    <td><span class="badge badge-warning">Medium</span></td>
-                </tr>
-                <tr>
-                    <td>2024</td>
-                    <td>Personal faith milestones that shaped my worldview</td>
-                    <td><span class="badge badge-danger">High</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <hr class="mt-5" />
-
-    <footer class="text-center pb-4">
-        <p>&copy; 2026 Mike Robinson | CST-120 Personal Website</p>
-    </footer>
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<footer class="text-center mt-5">
+  <div id="copyright"></div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="js/copyright.js"></script>
+
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+
+    const toggleButton = document.getElementById("darkModeToggle");
+
+    if (toggleButton) {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        toggleButton.textContent = "Light Mode";
+      }
+
+      toggleButton.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("theme", "dark");
+          toggleButton.textContent = "Light Mode";
+        } else {
+          localStorage.setItem("theme", "light");
+          toggleButton.textContent = "Dark Mode";
+        }
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
