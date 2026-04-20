@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ghostline Tech | Logistics Software</title>
 
+  <script>
+    if (location.protocol !== 'https:') {
+      location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
+
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
@@ -42,6 +48,7 @@
 
       <a href="https://github.com/miker1979/fleet-management-java/releases"
          target="_blank"
+         rel="noopener noreferrer"
          class="btn btn-success btn-lg mb-2">
         Download FleetTrack Pro
       </a>
@@ -191,6 +198,9 @@ fetch("navbar.html")
         }
       });
     }
+  })
+  .catch(error => {
+    console.error("Error loading navbar:", error);
   });
 </script>
 
