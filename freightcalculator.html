@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freight Rate Calculator | Ghostline Tech</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/calculator.css">
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<section class="calculator-hero">
+  <div class="container">
+    <div class="calculator-shell">
+      <p class="tool-label">Ghostline Tools</p>
+      <h1>Freight Rate Calculator</h1>
+      <p class="tool-subtitle">
+        Estimate revenue, cost, and profit per load with a cleaner, operations-focused workflow.
+      </p>
+
+      <div class="calculator card border-0 shadow-lg p-4">
+        <div class="form-group">
+          <label for="miles">Miles</label>
+          <input type="number" id="miles" class="form-control" placeholder="Enter total miles">
+        </div>
+
+        <div class="form-group">
+          <label for="rate">Rate per mile</label>
+          <input type="number" id="rate" class="form-control" placeholder="Enter rate per mile">
+        </div>
+
+        <div class="form-group">
+          <label for="fuel">Fuel cost</label>
+          <input type="number" id="fuel" class="form-control" placeholder="Enter fuel cost">
+        </div>
+
+        <div class="form-group">
+          <label for="expenses">Other expenses</label>
+          <input type="number" id="expenses" class="form-control" placeholder="Enter other expenses">
+        </div>
+
+        <button class="btn btn-dark btn-block mt-2" onclick="calculateFreight()">
+          Calculate Load
+        </button>
+
+        <div id="results" class="results-panel mt-4"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="text-center mt-5">
+  <div id="copyright"></div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="js/copyright.js"></script>
+<script src="js/calculator.js"></script>
+
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+
+    const toggleButton = document.getElementById("darkModeToggle");
+
+    if (toggleButton) {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        toggleButton.textContent = "Light Mode";
+      }
+
+      toggleButton.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("theme", "dark");
+          toggleButton.textContent = "Light Mode";
+        } else {
+          localStorage.setItem("theme", "light");
+          toggleButton.textContent = "Dark Mode";
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
