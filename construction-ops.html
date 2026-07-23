@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ghostline Construction Ops | Ghostline Tech</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    >
+
+    <!-- Ghostline Tech CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+    :root {
+        --construction-orange: #ff7900;
+        --construction-orange-dark: #d96500;
+        --construction-charcoal: #202629;
+        --construction-slate: #343c40;
+        --construction-light: #f4f5f5;
+    }
+
+    .construction-hero {
+        padding: 100px 20px;
+        background: linear-gradient(
+            135deg,
+            var(--construction-charcoal) 0%,
+            var(--construction-slate) 100%
+        );
+        border-bottom: 8px solid var(--construction-orange);
+        color: #ffffff;
+    }
+
+    .construction-hero h1,
+    .construction-hero h2 {
+        color: #ffffff !important;
+    }
+
+    .construction-hero .lead {
+        color: #f5f5f5 !important;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .construction-label {
+        color: var(--construction-orange) !important;
+        font-size: 0.9rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .construction-button {
+        background-color: var(--construction-orange);
+        border-color: var(--construction-orange);
+        color: #171717;
+        font-weight: bold;
+    }
+
+    .construction-button:hover {
+        background-color: var(--construction-orange-dark);
+        border-color: var(--construction-orange-dark);
+        color: #ffffff;
+    }
+
+    .construction-section {
+        padding: 70px 20px;
+    }
+
+    .construction-card {
+        height: 100%;
+        padding: 30px;
+        border: none;
+        border-top: 6px solid var(--construction-orange);
+        border-radius: 8px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .construction-card h3 {
+        color: var(--construction-charcoal);
+        font-weight: bold;
+    }
+
+    .construction-cta {
+        padding: 70px 20px;
+        background-color: var(--construction-charcoal);
+        border-top: 8px solid var(--construction-orange);
+        color: #ffffff;
+    }
+
+    .construction-cta p {
+        color: #f5f5f5 !important;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- Shared Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <header class="construction-hero text-center">
+        <div class="container">
+
+            <p class="construction-label">
+            A Ghostline Tech LLC Product
+            </p>
+
+            <h1 class="display-4 font-weight-bold">
+                Ghostline Construction Ops
+            </h1>
+
+            <h2 class="mt-3">
+                From the yard to the jobsite.
+            </h2>
+
+            <p class="lead mt-4">
+                Ghostline Construction Ops is an operations-management
+                platform for small construction companies, contractors,
+                and field-service teams.
+            </p>
+
+            <a href="#features"
+                class="btn construction-button btn-lg mt-3">
+                Explore Features
+            </a>
+
+        </div>
+    </header>
+
+    <!-- Product Overview -->
+    <main>
+
+        <section class="construction-section">
+            <div class="container text-center">
+
+                <h2 class="font-weight-bold">
+                    Crews, assets, and projects in one place.
+                </h2>
+
+                <p class="lead mt-3">
+                    Organize the people, equipment, vehicles, materials,
+                    maintenance records, and project locations that keep
+                    field operations moving.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- Feature Cards -->
+        <section id="features" class="construction-section bg-light">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card construction-card">
+                            <h3>Crews</h3>
+
+                            <p>
+                                Manage employees, foremen, drivers,
+                                assignments, responsibilities, and
+                                daily field activity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card construction-card">
+                            <h3>Assets</h3>
+
+                            <p>
+                                Track trucks, trailers, forklifts,
+                                gradalls, tools, inspections,
+                                maintenance, and availability.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card construction-card">
+                            <h3>Projects</h3>
+
+                            <p>
+                                Connect crews, equipment, materials,
+                                yards, and project sites through one
+                                organized operations system.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Supporting Message -->
+        <section class="construction-section">
+            <div class="container text-center">
+
+                <h2 class="font-weight-bold">
+                    Built for the field. Designed for control.
+                </h2>
+
+                <p class="lead mt-3">
+                    Ghostline Construction Ops is being designed to help
+                    smaller companies replace scattered spreadsheets,
+                    paper forms, and disconnected records with a practical
+                    system built around real field operations.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="construction-cta text-center">
+            <div class="container">
+
+                <h2 class="text-white">
+                    Keep people, equipment, and projects moving.
+                </h2>
+
+                <p class="lead mt-3">
+                    Ghostline Construction Ops is currently in development.
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <p class="mb-0">
+            &copy; <span id="current-year"></span>
+            Ghostline Tech. All rights reserved.
+        </p>
+    </footer>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
+
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
+    </script>
+
+    <!-- Load Shared Navigation -->
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-placeholder").innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Unable to load navigation:", error);
+            });
+
+        document.getElementById("current-year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
