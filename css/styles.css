@@ -174,3 +174,74 @@ body.dark-mode .btn-outline-dark:hover {
 body.dark-mode a {
   color: #7db8ff;
 }
+
+/* ==================================================
+   GAMING DIVISION
+   Temporary colors until final branding is selected
+   ================================================== */
+
+.games-page {
+  background-color: #f4efe7;
+  color: #2f3440;
+}
+
+.gaming-hero {
+  background:
+    linear-gradient(
+      135deg,
+      #6e4f66 0%,
+      #9b665b 55%,
+      #b9784a 100%
+    );
+  color: #ffffff;
+}
+
+.gaming-hero .division-label {
+  color: #f2dfc3;
+  letter-spacing: 3px;
+}
+
+.gaming-hero .studio-description {
+  color: #fff8ef;
+}
+
+.gaming-primary-button {
+  background-color: #fff8ef;
+  border-color: #fff8ef;
+  color: #4c394b;
+}
+
+.gaming-primary-button:hover {
+  background-color: #ead9c4;
+  border-color: #ead9c4;
+  color: #352735;
+}
+
+.gaming-secondary-button {
+  background-color: transparent;
+  border: 2px solid #fff8ef;
+  color: #ffffff;
+}
+
+.gaming-secondary-button:hover {
+  background-color: #fff8ef;
+  color: #4c394b;
+}
+
+.games-project-section {
+  background-color: #f4efe7;
+}
+
+.games-project-section .card {
+  background-color: #fffaf4;
+  border: 1px solid #ddcec0;
+}
+
+.games-project-section .badge {
+  background-color: #6e4f66;
+  color: #ffffff;
+}
+
+.games-project-section hr {
+  border-color: #ddcec0;
+}
