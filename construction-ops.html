@@ -234,13 +234,8 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4">
-        <p class="mb-0">
-            &copy; <span id="current-year"></span>
-            Ghostline Tech. All rights reserved.
-        </p>
-    </footer>
+    <!-- Shared Ghostline Tech footer -->
+    <div id="footer-placeholder"></div>
 
     <!-- Bootstrap Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
@@ -263,10 +258,37 @@
             .catch(error => {
                 console.error("Unable to load navigation:", error);
             });
-
-        document.getElementById("current-year").textContent =
-            new Date().getFullYear();
+            
     </script>
+
+    <script>
+    fetch("footer.html")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Footer file could not be loaded.");
+            }
+
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById(
+                "footer-placeholder"
+            ).innerHTML = data;
+
+            document.querySelectorAll(
+                ".current-year"
+            ).forEach(yearElement => {
+                yearElement.textContent =
+                    new Date().getFullYear();
+            });
+        })
+        .catch(error => {
+            console.error(
+                "Unable to load footer:",
+                error
+            );
+        });
+</script>
 
 </body>
 </html>

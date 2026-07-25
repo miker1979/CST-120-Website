@@ -10,7 +10,7 @@
 
   <meta
     name="description"
-    content="Ghostline Tech gaming division and games currently in development.">
+    content="Ghostline Interactive Studios games, playable prototypes, and projects currently in development.">
 
   <title>
     Ghostline Tech | Interactive Entertainment
@@ -25,6 +25,58 @@
   <link
     rel="stylesheet"
     href="css/styles.css">
+
+  <style>
+    .chess-project-image {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+    }
+
+    .playable-project-card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.16);
+    }
+
+    .prototype-badge {
+      display: inline-block;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+      border-radius: 4px;
+      background-color: #8a4b3f;
+      color: #ffffff;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .download-note {
+      font-size: 0.9rem;
+      color: #666666;
+    }
+
+    .game-feature-list {
+      padding-left: 20px;
+    }
+
+    .game-feature-list li {
+      margin-bottom: 7px;
+    }
+
+    .project-button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    @media (max-width: 767px) {
+      .project-button-group .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body class="games-page">
@@ -46,19 +98,20 @@
         </p>
 
         <h1 class="display-4 font-weight-bold text-white">
-  Ghostline Interactive Studios
-</h1>
+          Ghostline Interactive Studios
+        </h1>
 
-<h2 class="mt-3 text-white">
-  Where the Unknown Becomes Playable
-</h2>
+        <h2 class="mt-3 text-white">
+          Where the Unknown Becomes Playable
+        </h2>
 
         <p
           class="studio-description lead mx-auto mt-4"
           style="max-width: 850px;">
           Ghostline Interactive Studios develops original games focused on
           mystery, folklore, supernatural storytelling, exploration,
-          cooperative gameplay, and meaningful player choices.
+          cooperative gameplay, meaningful player choices, and practical
+          game-development projects.
         </p>
 
         <!-- Game-development focus areas -->
@@ -86,9 +139,9 @@
         <div class="mt-4">
 
           <a
-            href="#games-in-development"
+            href="#playable-projects"
             class="btn gaming-primary-button btn-lg mr-2 mb-2">
-            View Games in Development
+            View Games and Prototypes
           </a>
 
           <a
@@ -103,9 +156,9 @@
 
     </section>
 
-    <!-- Games currently in development -->
+    <!-- Playable games and prototypes -->
     <section
-      id="games-in-development"
+      id="playable-projects"
       class="games-project-section py-5">
 
       <div class="container">
@@ -115,7 +168,172 @@
           <p
             class="text-uppercase font-weight-bold text-muted mb-2"
             style="letter-spacing: 2px;">
-            Current Projects
+            Playable Release
+          </p>
+
+          <h2 class="font-weight-bold">
+            Ghostline Chess
+          </h2>
+
+          <p
+            class="lead text-muted mx-auto"
+            style="max-width: 800px;">
+            Ghostline Chess is the first publicly released playable game
+            developed under Ghostline Interactive Studios.
+          </p>
+
+        </div>
+
+        <div class="card playable-project-card">
+
+          <div class="card-body p-4 p-lg-5">
+
+            <div class="row align-items-center">
+
+              <!-- Chess screenshot -->
+              <div class="col-lg-6 mb-4 mb-lg-0">
+
+                <img
+                  src="images/ghostline-chess.png"
+                  alt="Ghostline Chess game board running on Windows"
+                  class="chess-project-image">
+
+              </div>
+
+              <!-- Chess project information -->
+              <div class="col-lg-6">
+
+                <span class="prototype-badge">
+                  Playable Windows Prototype
+                </span>
+
+                <h3 class="font-weight-bold">
+                  Ghostline Chess v1.0.0
+                </h3>
+
+                <p class="lead">
+                  A turn-based chess game developed in C# using Windows Forms
+                  and object-oriented programming.
+                </p>
+
+                <p>
+                  Ghostline Chess began as a programming side project and
+                  became the first complete playable game released by
+                  Ghostline Interactive Studios.
+                </p>
+
+                <h4 class="h5 font-weight-bold mt-4">
+                  Current Features
+                </h4>
+
+                <ul class="game-feature-list">
+
+                  <li>
+                    Complete 8×8 chessboard
+                  </li>
+
+                  <li>
+                    Local two-player turn-based gameplay
+                  </li>
+
+                  <li>
+                    Legal movement for all standard chess pieces
+                  </li>
+
+                  <li>
+                    Piece selection and highlighting
+                  </li>
+
+                  <li>
+                    Capturing and blocked-path validation
+                  </li>
+
+                  <li>
+                    Check, checkmate, and stalemate detection
+                  </li>
+
+                  <li>
+                    New Game board reset
+                  </li>
+
+                </ul>
+
+                <p class="mb-2">
+                  <strong>Platform:</strong>
+                  Windows 64-bit
+                </p>
+
+                <p class="mb-2">
+                  <strong>Technology:</strong>
+                  C#, .NET, and Windows Forms
+                </p>
+
+                <p class="mb-4">
+                  <strong>Status:</strong>
+                  Playable Prototype
+                </p>
+
+                <div class="project-button-group">
+
+                  <a
+                    href="https://github.com/miker1979/Ghostline-Chess/releases/download/v1.0.0/GhostlineChess-v1.0.0-win-x64.zip"
+                    class="btn gaming-primary-button"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Download for Windows
+                  </a>
+
+                  <a
+                    href="https://github.com/miker1979/Ghostline-Chess"
+                    class="btn btn-outline-dark"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    View Source on GitHub
+                  </a>
+
+                  <a
+                    href="https://github.com/miker1979/Ghostline-Chess/releases/tag/v1.0.0"
+                    class="btn btn-outline-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    View Release Notes
+                  </a>
+
+                </div>
+
+                <p class="download-note mt-3 mb-0">
+                  Download the ZIP file, extract it, and run
+                  <strong>GhostlineChess.exe</strong>. Visual Studio and a
+                  separate .NET installation are not required. Windows may
+                  display a SmartScreen warning because this prototype is
+                  currently unsigned.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Games currently in concept development -->
+    <section
+      id="games-in-development"
+      class="py-5">
+
+      <div class="container">
+
+        <div class="text-center mb-5">
+
+          <p
+            class="text-uppercase font-weight-bold text-muted mb-2"
+            style="letter-spacing: 2px;">
+            Concept Projects
           </p>
 
           <h2 class="font-weight-bold">
@@ -241,7 +459,7 @@
     </section>
 
     <!-- Studio approach -->
-    <section class="py-5">
+    <section class="games-project-section py-5">
 
       <div class="container">
 
@@ -255,8 +473,8 @@
             class="lead mx-auto"
             style="max-width: 800px;">
             The gaming division is being designed around systems that make
-            exploration, character decisions, environments, and story outcomes
-            work together.
+            exploration, character decisions, environments, gameplay rules,
+            and story outcomes work together.
           </p>
 
         </div>
@@ -312,12 +530,13 @@
               <div class="card-body p-4 text-center">
 
                 <h3 class="h4 font-weight-bold">
-                  Replayable Stories
+                  Practical Development
                 </h3>
 
                 <p class="mb-0">
-                  Different locations, discoveries, characters, and decisions
-                  can create new experiences during later playthroughs.
+                  Smaller playable projects help build programming,
+                  interface-design, game-logic, testing, and publishing
+                  experience for future studio releases.
                 </p>
 
               </div>
@@ -333,7 +552,7 @@
     </section>
 
     <!-- Temporary branding notice -->
-    <section class="games-project-section py-5 text-center">
+    <section class="py-5 text-center">
 
       <div class="container">
 
@@ -345,8 +564,9 @@
           class="lead mx-auto mt-3"
           style="max-width: 800px;">
           The final studio name, logo, and visual identity are still being
-          developed. This page will continue to evolve as the games move from
-          early concepts into design and production.
+          developed. This page will continue to evolve as projects move from
+          early concepts into playable prototypes, design, production, and
+          public releases.
         </p>
 
         <div class="mt-4">
@@ -371,14 +591,8 @@
 
   </main>
 
-  <!-- Website footer -->
-  <footer class="text-center py-4">
-
-    <p class="mb-0">
-      &copy; 2026 Ghostline Tech LLC
-    </p>
-
-  </footer>
+  <!-- Shared Ghostline Tech footer -->
+<div id="footer-placeholder"></div>
 
   <!-- Bootstrap scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -425,6 +639,35 @@
         console.error("Error loading navbar:", error);
       });
   </script>
+
+  <script>
+  fetch("footer.html")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Footer file could not be loaded.");
+      }
+
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById(
+        "footer-placeholder"
+      ).innerHTML = data;
+
+      document.querySelectorAll(
+        ".current-year"
+      ).forEach(yearElement => {
+        yearElement.textContent =
+          new Date().getFullYear();
+      });
+    })
+    .catch(error => {
+      console.error(
+        "Unable to load footer:",
+        error
+      );
+    });
+</script>
 
 </body>
 

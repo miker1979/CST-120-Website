@@ -255,3 +255,26 @@ body.dark-mode a {
 .gaming-hero h1 {
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
+
+/* Shared Ghostline Tech footer */
+.site-footer {
+    padding: 28px 20px;
+    background-color: #202629;
+    color: #ffffff !important;
+}
+
+.site-footer p,
+.site-footer small {
+    color: #ffffff !important;
+}
+
+.site-footer-copyright {
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.site-footer-trademarks {
+    display: block;
+    opacity: 0.85;
+    line-height: 1.6;
+}

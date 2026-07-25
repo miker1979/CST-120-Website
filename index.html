@@ -446,10 +446,8 @@
 
   </main>
 
-  <!-- Shared copyright footer -->
-  <footer class="text-center py-4">
-    <div id="copyright"></div>
-  </footer>
+  <!-- Shared Ghostline Tech footer -->
+  <div id="footer-placeholder"></div>
 
   <!-- Bootstrap scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -498,6 +496,35 @@
         console.error("Error loading navbar:", error);
       });
   </script>
+
+  <script>
+    fetch("footer.html")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Footer file could not be loaded.");
+            }
+
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById(
+                "footer-placeholder"
+            ).innerHTML = data;
+
+            document.querySelectorAll(
+                ".current-year"
+            ).forEach(yearElement => {
+                yearElement.textContent =
+                    new Date().getFullYear();
+            });
+        })
+        .catch(error => {
+            console.error(
+                "Unable to load footer:",
+                error
+            );
+        });
+</script>
 
 </body>
 

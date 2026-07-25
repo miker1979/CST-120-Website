@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Ghostline Tech software products for transportation, construction, logistics, and field operations.">
 
     <title>Ghostline Software | Ghostline Tech</title>
 
     <!-- Bootstrap CSS -->
     <link
         rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    >
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
     <!-- Ghostline Tech CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link
+        rel="stylesheet"
+        href="css/styles.css">
 
     <style>
         :root {
@@ -32,7 +37,7 @@
             --light-background: #f4f6f6;
         }
 
-        /* Software hero section */
+        /* Software hero */
         .software-hero {
             padding: 100px 20px;
 
@@ -66,7 +71,7 @@
             margin-right: auto;
         }
 
-        /* Standard sections */
+        /* Page sections */
         .software-section {
             padding: 70px 20px;
         }
@@ -75,8 +80,10 @@
             margin-bottom: 45px;
         }
 
-        /* Feature and product cards */
+        /* Product cards */
         .software-card {
+            display: flex;
+            flex-direction: column;
             height: 100%;
             padding: 30px;
 
@@ -92,12 +99,10 @@
             font-weight: bold;
         }
 
-        .software-card p {
-            margin-bottom: 0;
-        }
-
         .product-status {
             display: inline-block;
+            align-self: flex-start;
+
             margin-bottom: 15px;
             padding: 5px 10px;
 
@@ -112,7 +117,7 @@
             text-transform: uppercase;
         }
 
-        /* Featured product section */
+        /* Featured product */
         .featured-product {
             padding: 45px;
 
@@ -159,7 +164,7 @@
             color: #ffffff;
         }
 
-        /* Final call-to-action section */
+        /* Final call-to-action */
         .software-cta {
             padding: 70px 20px;
             background-color: var(--light-background);
@@ -171,6 +176,29 @@
             flex-wrap: wrap;
             gap: 12px;
             margin-top: 28px;
+        }
+
+        /* Website footer */
+        .site-footer {
+            padding: 28px 20px;
+            background-color: var(--charcoal);
+            color: #ffffff !important;
+        }
+
+        .site-footer p,
+        .site-footer small {
+            color: #ffffff !important;
+        }
+
+        .site-footer-copyright {
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .site-footer-trademarks {
+            display: block;
+            opacity: 0.85;
+            line-height: 1.6;
         }
 
         /* Mobile adjustments */
@@ -196,26 +224,29 @@
 
 <body>
 
-    <!-- Shared Navigation -->
-    <div id="navbar-placeholder"></div>
+    <!-- Shared navigation -->
+    <header>
+        <div id="navbar-placeholder"></div>
+    </header>
 
-    <!-- Hero Section -->
-    <header class="software-hero text-center">
+    <!-- Hero -->
+    <section class="software-hero text-center">
+
         <div class="container">
 
             <p class="software-label">
-                Ghostline Tech LLC
+                A Division of Ghostline Tech LLC
             </p>
 
-            <h1 class="display-4 font-weight-bold text-white">
+            <h1 class="display-4 font-weight-bold">
                 Ghostline Software
             </h1>
 
-            <h2 class="mt-3 text-white">
+            <h2 class="mt-3">
                 Practical Technology for Real Operations
             </h2>
 
-            <p class="lead mt-4 software-description text-white">
+            <p class="lead mt-4 software-description">
                 Ghostline Tech develops practical software solutions for
                 transportation, construction, logistics, and field-service
                 operations.
@@ -223,21 +254,23 @@
 
             <a
                 href="#products"
-                class="btn btn-light btn-lg mt-3"
-            >
+                class="btn btn-light btn-lg mt-3">
                 Explore Software Products
             </a>
 
         </div>
-    </header>
+
+    </section>
 
     <main>
 
-        <!-- Overview Section -->
+        <!-- Overview -->
         <section class="software-section">
+
             <div class="container">
 
                 <div class="text-center software-section-heading">
+
                     <h2 class="font-weight-bold">
                         Software Built Around Real Work
                     </h2>
@@ -247,58 +280,80 @@
                         operations, improve visibility, and replace scattered
                         paperwork and spreadsheets.
                     </p>
+
                 </div>
 
                 <div class="row">
 
                     <div class="col-md-4 mb-4">
+
                         <div class="card software-card">
-                            <h3>Operational Visibility</h3>
+
+                            <h3>
+                                Operational Visibility
+                            </h3>
 
                             <p>
                                 See important information about people,
                                 vehicles, equipment, freight, and daily
                                 activity in one organized system.
                             </p>
+
                         </div>
+
                     </div>
 
                     <div class="col-md-4 mb-4">
+
                         <div class="card software-card">
-                            <h3>Practical Workflows</h3>
+
+                            <h3>
+                                Practical Workflows
+                            </h3>
 
                             <p>
                                 Software features are designed around the
                                 actual steps employees, dispatchers, managers,
                                 and field crews perform every day.
                             </p>
+
                         </div>
+
                     </div>
 
                     <div class="col-md-4 mb-4">
+
                         <div class="card software-card">
-                            <h3>Cleaner Information</h3>
+
+                            <h3>
+                                Cleaner Information
+                            </h3>
 
                             <p>
                                 Keep records consistent, searchable, and easier
                                 to understand than disconnected paper forms,
-                                text messages, and spreadsheets.
+                                messages, and spreadsheets.
                             </p>
+
                         </div>
+
                     </div>
 
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Software Products -->
+        <!-- Products -->
         <section
             id="products"
-            class="software-section bg-light"
-        >
+            class="software-section bg-light">
+
             <div class="container">
 
                 <div class="text-center software-section-heading">
+
                     <h2 class="font-weight-bold">
                         Ghostline Software Products
                     </h2>
@@ -308,19 +363,23 @@
                         while remaining part of the larger Ghostline Tech
                         software family.
                     </p>
+
                 </div>
 
                 <div class="row">
 
                     <!-- Construction Ops -->
                     <div class="col-lg-4 mb-4">
+
                         <div class="card software-card">
 
                             <span class="product-status">
                                 In Development
                             </span>
 
-                            <h3>Ghostline Construction Ops</h3>
+                            <h3>
+                                Ghostline Construction Ops
+                            </h3>
 
                             <p class="mb-4">
                                 An operations-management platform for small
@@ -336,23 +395,26 @@
 
                             <a
                                 href="construction-ops.html"
-                                class="btn construction-ops-button mt-auto"
-                            >
+                                class="btn construction-ops-button mt-auto">
                                 Explore Construction Ops
                             </a>
 
                         </div>
+
                     </div>
 
                     <!-- Load Board -->
                     <div class="col-lg-4 mb-4">
+
                         <div class="card software-card">
 
                             <span class="product-status">
                                 In Development
                             </span>
 
-                            <h3>Ghostline Load Board</h3>
+                            <h3>
+                                Ghostline Load Board
+                            </h3>
 
                             <p class="mb-4">
                                 A freight marketplace designed to connect
@@ -366,25 +428,29 @@
                                 profitable opportunities.
                             </p>
 
-                            <a
-                                href="#"
+                            <button
+                                type="button"
                                 class="btn software-primary-button mt-auto"
-                            >
+                                disabled>
                                 Load Board Information
-                            </a>
+                            </button>
 
                         </div>
+
                     </div>
 
                     <!-- Broker Operations -->
                     <div class="col-lg-4 mb-4">
+
                         <div class="card software-card">
 
                             <span class="product-status">
                                 Planned
                             </span>
 
-                            <h3>Ghostline Broker Operations</h3>
+                            <h3>
+                                Ghostline Broker Operations
+                            </h3>
 
                             <p class="mb-4">
                                 A private brokerage-management platform for
@@ -401,20 +467,23 @@
                             <button
                                 type="button"
                                 class="btn btn-outline-secondary mt-auto"
-                                disabled
-                            >
+                                disabled>
                                 Planned Product
                             </button>
 
                         </div>
+
                     </div>
 
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Featured Product -->
+        <!-- Featured development project -->
         <section class="software-section">
+
             <div class="container">
 
                 <div class="featured-product">
@@ -446,22 +515,28 @@
                     </p>
 
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Development Principles -->
+        <!-- Development principles -->
         <section class="software-section bg-light">
+
             <div class="container">
 
                 <div class="text-center software-section-heading">
+
                     <h2 class="font-weight-bold">
                         Development Principles
                     </h2>
+
                 </div>
 
                 <div class="row">
 
                     <div class="col-md-4 mb-4 text-center">
+
                         <h3 class="h4 font-weight-bold">
                             Built for the User
                         </h3>
@@ -470,9 +545,11 @@
                             Screens and workflows should match how employees
                             actually perform their jobs.
                         </p>
+
                     </div>
 
                     <div class="col-md-4 mb-4 text-center">
+
                         <h3 class="h4 font-weight-bold">
                             Clear and Organized
                         </h3>
@@ -481,9 +558,11 @@
                             Important information should be easy to find,
                             understand, update, and review.
                         </p>
+
                     </div>
 
                     <div class="col-md-4 mb-4 text-center">
+
                         <h3 class="h4 font-weight-bold">
                             Practical Growth
                         </h3>
@@ -492,14 +571,18 @@
                             Products can begin with essential functions and
                             expand as real operational needs are identified.
                         </p>
+
                     </div>
 
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Call to Action -->
+        <!-- Call to action -->
         <section class="software-cta text-center">
+
             <div class="container">
 
                 <h2 class="font-weight-bold">
@@ -516,48 +599,40 @@
 
                     <a
                         href="index.html"
-                        class="btn btn-dark"
-                    >
+                        class="btn btn-dark">
                         Return to Ghostline Tech
                     </a>
 
                     <a
                         href="games.html"
-                        class="btn btn-outline-dark"
-                    >
+                        class="btn btn-outline-dark">
                         Explore the Gaming Division
                     </a>
 
                     <a
                         href="construction-ops.html"
-                        class="btn construction-ops-button"
-                    >
+                        class="btn construction-ops-button">
                         Explore Construction Ops
                     </a>
 
                     <a
                         href="contact.html"
-                        class="btn btn-outline-dark"
-                    >
+                        class="btn btn-outline-dark">
                         Contact Ghostline Tech
                     </a>
 
                 </div>
+
             </div>
+
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4">
-        <p class="mb-0">
-            &copy;
-            <span id="current-year"></span>
-            Ghostline Tech LLC. All rights reserved.
-        </p>
-    </footer>
+    <!-- Shared Ghostline Tech footer -->
+    <div id="footer-placeholder"></div>
 
-    <!-- Bootstrap Scripts -->
+    <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 
     <script
@@ -568,26 +643,111 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
     </script>
 
-    <!-- Shared Navigation and Copyright Year -->
+    <!-- Shared navigation, dark mode, and current year -->
     <script>
         fetch("navbar.html")
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Navigation file could not be loaded.");
+                    throw new Error(
+                        "Navigation file could not be loaded."
+                    );
                 }
 
                 return response.text();
             })
             .then(data => {
-                document.getElementById("navbar-placeholder").innerHTML = data;
+                document.getElementById(
+                    "navbar-placeholder"
+                ).innerHTML = data;
+
+                const toggleButton =
+                    document.getElementById(
+                        "darkModeToggle"
+                    );
+
+                if (toggleButton) {
+                    if (
+                        localStorage.getItem("theme") ===
+                        "dark"
+                    ) {
+                        document.body.classList.add(
+                            "dark-mode"
+                        );
+
+                        toggleButton.textContent =
+                            "Light Mode";
+                    }
+
+                    toggleButton.addEventListener(
+                        "click",
+                        function () {
+                            document.body.classList.toggle(
+                                "dark-mode"
+                            );
+
+                            if (
+                                document.body.classList.contains(
+                                    "dark-mode"
+                                )
+                            ) {
+                                localStorage.setItem(
+                                    "theme",
+                                    "dark"
+                                );
+
+                                toggleButton.textContent =
+                                    "Light Mode";
+                            } else {
+                                localStorage.setItem(
+                                    "theme",
+                                    "light"
+                                );
+
+                                toggleButton.textContent =
+                                    "Dark Mode";
+                            }
+                        }
+                    );
+                }
             })
             .catch(error => {
-                console.error("Unable to load navigation:", error);
+                console.error(
+                    "Unable to load navigation:",
+                    error
+                );
             });
-
-        document.getElementById("current-year").textContent =
-            new Date().getFullYear();
+            
     </script>
 
+    <script>
+    fetch("footer.html")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Footer file could not be loaded.");
+            }
+
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById(
+                "footer-placeholder"
+            ).innerHTML = data;
+
+            document.querySelectorAll(
+                ".current-year"
+            ).forEach(yearElement => {
+                yearElement.textContent =
+                    new Date().getFullYear();
+            });
+        })
+        .catch(error => {
+            console.error(
+                "Unable to load footer:",
+                error
+            );
+        });
+</script>
+
 </body>
+
 </html>
