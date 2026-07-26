@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery | My Personal Website</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark ghostline-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="images/company_logo.png" alt="" class="nav-logo mr-2">
+            <span>
+                <span class="brand-primary">GHOSTLINE TECH</span>
+                <span class="brand-secondary">GHOSTLINE TECHNOLOGY LLC</span>
+            </span>
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#mainNavigation"
+            aria-controls="mainNavigation"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavigation">
+            <ul class="navbar-nav ml-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="software.html">Software</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="haunted-echoes.html">Haunted Echoes Studios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="labs.html" aria-current="page">Labs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="company.html">Company</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                <li class="nav-item ml-lg-2">
+                    <button
+                        id="darkModeToggle"
+                        class="btn btn-sm btn-outline-info theme-button"
+                        type="button"
+                        aria-pressed="false">
+                        Dark Mode
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4 text-center">
+
+  <h1>Photo Gallery</h1>
+
+  <div class="row mt-3">
+
+    <div class="col-md-3 col-sm-6 mb-3">
+      <img src="images/gcu_logo.png" class="img-fluid rounded shadow-sm" alt="GCU Logo">
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-3">
+      <img src="images/gcu_logo.png" class="img-fluid rounded shadow-sm" alt="GCU Logo">
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-3">
+      <img src="images/gcu_logo.png" class="img-fluid rounded shadow-sm" alt="GCU Logo">
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-3">
+      <img src="images/gcu_logo.png" class="img-fluid rounded shadow-sm" alt="GCU Logo">
+    </div>
+
+  </div>
+
+  <hr />
+  <footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <img
+                    src="images/company_logo.png"
+                    alt="Ghostline Technology LLC"
+                    class="footer-logo">
+
+                <p>
+                    Practical software, original interactive entertainment,
+                    and a disciplined path from prototype to product.
+                </p>
+            </div>
+
+            <div class="col-6 col-lg-2 mb-4">
+                <h2 class="footer-heading">Divisions</h2>
+                <a href="software.html">Ghostline Software</a>
+                <a href="haunted-echoes.html">Haunted Echoes Studios</a>
+                <a href="labs.html">Ghostline Labs</a>
+            </div>
+
+            <div class="col-6 col-lg-2 mb-4">
+                <h2 class="footer-heading">Company</h2>
+                <a href="company.html">About</a>
+                <a href="company.html#founder">Founder</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="col-lg-3">
+                <h2 class="footer-heading">Products &amp; Projects</h2>
+                <a href="construction-ops.html">Construction Ops</a>
+                <a href="load-board.html">Load Board</a>
+                <a href="broker-operations.html">Broker Operations</a>
+                <a href="ghostline-chess.html">Ghostline Chess</a>
+                <a href="arizona-paranormal.html">Arizona Paranormal Project</a>
+                <a href="boston-ripper.html">The Boston Ripper</a>
+            </div>
+        </div>
+
+        <hr class="footer-rule">
+
+        <div class="d-md-flex justify-content-between">
+            <span>
+                &copy; <span id="currentYear" class="current-year"></span>
+                Ghostline Technology LLC.
+            </span>
+            <span>All rights reserved.</span>
+        </div>
+
+        <p class="small text-center mt-3 mb-0">
+            Ghostline Tech&trade;, Ghostline Software&trade;,
+            Ghostline Construction Ops&trade;, Ghostline Load Board&trade;,
+            Ghostline Broker Operations&trade;, Haunted Echoes Studios&trade;,
+            and Ghostline Chess&trade; are trademarks of Ghostline Technology LLC.
+        </p>
+    </div>
+</footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="js/copyright.js"></script>
+
+<script src="js/theme.js"></script>
+
+</body>
+</html>

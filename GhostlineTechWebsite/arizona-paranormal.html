@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="An untitled one-to-four-player paranormal mystery-horror game concept from Haunted Echoes Studios, set in a haunted Arizona mining town where investigators explore four locations before dawn.">
+
+    <title>
+        Arizona Paranormal Project | Haunted Echoes Studios
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <link
+        rel="stylesheet"
+        href="css/styles.css">
+
+    <style>
+
+        /* =================================================
+           ARIZONA PARANORMAL COLOR SYSTEM
+           ================================================= */
+
+        .arizona-page {
+            --az-midnight: #111827;
+            --az-midnight-deep: #070b14;
+            --az-night-blue: #17233a;
+
+            --az-sand: #d19a43;
+            --az-sand-dark: #9a651e;
+            --az-sand-light: #f3c978;
+            --az-sand-soft: rgba(209, 154, 67, 0.14);
+
+            --az-cyan: #0891b2;
+            --az-cyan-dark: #0e7490;
+            --az-cyan-light: #67e8f9;
+            --az-cyan-soft: rgba(8, 145, 178, 0.12);
+
+            --az-violet: #7c3aed;
+            --az-violet-dark: #5b21b6;
+            --az-violet-light: #c4b5fd;
+            --az-violet-soft: rgba(124, 58, 237, 0.11);
+
+            --az-danger: #b91c1c;
+            --az-danger-light: #fca5a5;
+            --az-danger-soft: rgba(185, 28, 28, 0.1);
+
+            --az-text: #172033;
+            --az-muted: #4b5d70;
+            --az-border: #cbd5e1;
+            --az-background: #f4f7fa;
+            --az-panel: #ffffff;
+            --az-panel-alt: #edf2f7;
+        }
+
+        body.arizona-page.light-mode {
+            background-color: var(--az-background) !important;
+            color: var(--az-text) !important;
+        }
+
+        body.arizona-page.light-mode main {
+            background-color: var(--az-background) !important;
+        }
+
+        body.arizona-page.light-mode .az-section {
+            background-color: #ffffff;
+            color: var(--az-text);
+        }
+
+        body.arizona-page.light-mode .az-section-alt {
+            background-color: var(--az-panel-alt);
+            color: var(--az-text);
+        }
+
+        body.arizona-page.light-mode h1,
+        body.arizona-page.light-mode h2,
+        body.arizona-page.light-mode h3,
+        body.arizona-page.light-mode h4,
+        body.arizona-page.light-mode h5 {
+            color: var(--az-text);
+        }
+
+        body.arizona-page.light-mode .lead,
+        body.arizona-page.light-mode .text-muted-custom {
+            color: var(--az-muted) !important;
+        }
+
+        /* =================================================
+           HERO
+           ================================================= */
+
+        .az-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 100px 20px;
+            background:
+                radial-gradient(
+                    circle at 78% 18%,
+                    rgba(103, 232, 249, 0.18),
+                    transparent 22%
+                ),
+                radial-gradient(
+                    circle at 20% 84%,
+                    rgba(209, 154, 67, 0.18),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #070b14 0%,
+                    #0c1630 48%,
+                    #1b1833 100%
+                );
+            color: #ffffff;
+        }
+
+        .az-hero::before {
+            position: absolute;
+            right: -110px;
+            bottom: -160px;
+            width: 520px;
+            height: 320px;
+            border-radius: 50% 50% 0 0;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(209, 154, 67, 0.32),
+                    rgba(154, 101, 30, 0.1)
+                );
+            content: "";
+            transform: rotate(-7deg);
+        }
+
+        .az-hero::after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 95px;
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent,
+                    rgba(0, 0, 0, 0.3)
+                );
+            content: "";
+        }
+
+        .az-hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .az-hero .section-label {
+            color: var(--az-cyan-light);
+        }
+
+        .az-hero-title {
+            max-width: 780px;
+            margin-bottom: 1.25rem;
+            font-size: clamp(2.8rem, 6vw, 5.4rem);
+            font-weight: 800;
+            line-height: 0.98;
+        }
+
+        .az-hero-main {
+            display: block;
+            color: #ffffff !important;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+        }
+
+        .az-hero-accent {
+            display: block;
+            color: var(--az-sand-light) !important;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        }
+
+        .az-hero .lead {
+            max-width: 750px;
+            color: #d9e5f2 !important;
+            font-size: 1.2rem;
+            line-height: 1.75;
+        }
+
+        .az-hero-description {
+            max-width: 760px;
+            color: #b9c7d8;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .az-tag {
+            display: inline-block;
+            margin: 0 0.4rem 0.5rem 0;
+            padding: 0.45rem 0.75rem;
+            border: 1px solid rgba(243, 201, 120, 0.38);
+            border-radius: 999px;
+            background-color: rgba(209, 154, 67, 0.12);
+            color: var(--az-sand-light);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+
+        /* =================================================
+           BUTTONS
+           ================================================= */
+
+        .btn-arizona {
+            border-color: var(--az-sand);
+            background-color: var(--az-sand);
+            color: #111827 !important;
+            font-weight: 800;
+        }
+
+        .btn-arizona:hover,
+        .btn-arizona:focus {
+            border-color: var(--az-sand-light);
+            background-color: var(--az-sand-light);
+            color: #111827 !important;
+        }
+
+        .btn-arizona-outline {
+            border: 1px solid var(--az-cyan-light);
+            background-color: transparent;
+            color: var(--az-cyan-light) !important;
+            font-weight: 700;
+        }
+
+        .btn-arizona-outline:hover,
+        .btn-arizona-outline:focus {
+            background-color: var(--az-cyan-light);
+            color: #07111d !important;
+        }
+
+        .btn-arizona-dark-outline {
+            border: 1px solid var(--az-sand-dark);
+            background-color: transparent;
+            color: var(--az-sand-dark) !important;
+            font-weight: 700;
+        }
+
+        .btn-arizona-dark-outline:hover,
+        .btn-arizona-dark-outline:focus {
+            background-color: var(--az-sand-dark);
+            color: #ffffff !important;
+        }
+
+        /* =================================================
+           GAMEPLAY SHOWCASE
+           ================================================= */
+
+        .az-gameplay-showcase {
+            overflow: hidden;
+            margin: 0;
+            border: 1px solid rgba(103, 232, 249, 0.28);
+            border-top: 6px solid var(--az-sand);
+            border-radius: 20px;
+            background-color: var(--az-midnight-deep);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+        }
+
+        .az-gameplay-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            background:
+                linear-gradient(
+                    135deg,
+                    #070b14,
+                    #17233a
+                );
+        }
+
+        .az-gameplay-header strong {
+            display: block;
+            color: #ffffff !important;
+            font-size: 1rem;
+        }
+
+        .az-gameplay-label {
+            display: block;
+            margin-bottom: 0.2rem;
+            color: var(--az-cyan-light);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08rem;
+            text-transform: uppercase;
+        }
+
+        .az-gameplay-status {
+            flex-shrink: 0;
+            padding: 0.4rem 0.7rem;
+            border: 1px solid rgba(243, 201, 120, 0.28);
+            border-radius: 999px;
+            background-color: rgba(209, 154, 67, 0.12);
+            color: var(--az-sand-light);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+
+        .az-gameplay-showcase a {
+            display: block;
+            overflow: hidden;
+            background-color: #000000;
+        }
+
+        .az-gameplay-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition:
+                transform 0.35s ease,
+                filter 0.35s ease;
+        }
+
+        .az-gameplay-showcase a:hover .az-gameplay-image,
+        .az-gameplay-showcase a:focus .az-gameplay-image {
+            filter: brightness(1.06);
+            transform: scale(1.015);
+        }
+
+        .az-gameplay-caption {
+            margin: 0;
+            padding: 1rem 1.25rem;
+            background-color: #0b1220;
+            color: #bdcad9;
+            font-size: 0.86rem;
+            line-height: 1.65;
+        }
+
+        /* =================================================
+           GENERAL SECTIONS
+           ================================================= */
+
+        .az-section,
+        .az-section-alt {
+            padding: 85px 20px;
+        }
+
+        .az-section-lead {
+            max-width: 900px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .az-accent-text {
+            color: var(--az-sand-dark);
+        }
+
+        .az-card {
+            height: 100%;
+            padding: 1.75rem;
+            border: 1px solid var(--az-border);
+            border-top: 4px solid var(--az-sand);
+            border-radius: 14px;
+            background-color: #ffffff;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .az-card-cyan {
+            border-top-color: var(--az-cyan);
+        }
+
+        .az-card-violet {
+            border-top-color: var(--az-violet);
+        }
+
+        .az-card h2,
+        .az-card h3,
+        .az-card h4 {
+            color: var(--az-text) !important;
+        }
+
+        .az-card p,
+        .az-card li {
+            color: var(--az-muted) !important;
+        }
+
+        .az-code {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 58px;
+            min-height: 38px;
+            margin-bottom: 1rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            background-color: var(--az-sand-soft);
+            color: var(--az-sand-dark);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.05rem;
+        }
+
+        .az-code-cyan {
+            background-color: var(--az-cyan-soft);
+            color: var(--az-cyan-dark);
+        }
+
+        .az-code-violet {
+            background-color: var(--az-violet-soft);
+            color: var(--az-violet-dark);
+        }
+
+        .az-feature-list {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .az-feature-list li {
+            margin-bottom: 0.7rem;
+            line-height: 1.65;
+        }
+
+        .az-feature-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* =================================================
+           PREMISE PANEL
+           ================================================= */
+
+        .premise-panel {
+            padding: 2.2rem;
+            border: 1px solid var(--az-border);
+            border-left: 6px solid var(--az-sand);
+            border-radius: 16px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #fffaf0
+                );
+            box-shadow: 0 16px 38px rgba(15, 23, 42, 0.09);
+        }
+
+        .premise-panel h2,
+        .premise-panel h3 {
+            color: var(--az-text) !important;
+        }
+
+        .premise-panel p {
+            color: var(--az-muted) !important;
+        }
+
+        /* =================================================
+           MAP REFERENCE
+           ================================================= */
+
+        .map-reference-card {
+            overflow: hidden;
+            border: 1px solid var(--az-border);
+            border-top: 5px solid var(--az-sand);
+            border-radius: 18px;
+            background-color: #ffffff;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
+        }
+
+        .map-reference-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            background-color: #efe4c6;
+        }
+
+        .map-reference-caption {
+            padding: 1rem 1.25rem 1.25rem;
+            color: var(--az-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .map-facts-list {
+            margin: 0;
+            padding-left: 1.15rem;
+        }
+
+        .map-facts-list li {
+            margin-bottom: 0.8rem;
+            color: var(--az-muted);
+            line-height: 1.65;
+        }
+
+        /* =================================================
+           LOCATION CARDS
+           ================================================= */
+
+        .location-card {
+            position: relative;
+            height: 100%;
+            min-height: 270px;
+            overflow: hidden;
+            padding: 1.65rem;
+            border: 1px solid var(--az-border);
+            border-radius: 14px;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.07);
+        }
+
+        .location-card::after {
+            position: absolute;
+            top: -55px;
+            right: -55px;
+            width: 135px;
+            height: 135px;
+            border-radius: 50%;
+            background-color: var(--az-sand-soft);
+            content: "";
+        }
+
+        .location-card h3 {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 0.75rem;
+            color: var(--az-text) !important;
+        }
+
+        .location-card p {
+            position: relative;
+            z-index: 2;
+            color: var(--az-muted) !important;
+            line-height: 1.65;
+        }
+
+        .location-number {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 1.1rem;
+            border-radius: 50%;
+            background-color: var(--az-midnight);
+            color: var(--az-sand-light);
+            font-weight: 800;
+        }
+
+        .location-risk {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            margin-top: 0.6rem;
+            padding: 0.35rem 0.6rem;
+            border-radius: 999px;
+            background-color: rgba(185, 28, 28, 0.1);
+            color: var(--az-danger);
+            font-size: 0.71rem;
+            font-weight: 800;
+            letter-spacing: 0.04rem;
+            text-transform: uppercase;
+        }
+
+        /* =================================================
+           CHOOSE FOUR STRUCTURE
+           ================================================= */
+
+        .choice-panel {
+            padding: 2rem;
+            border: 1px solid var(--az-border);
+            border-top: 5px solid var(--az-cyan);
+            border-radius: 18px;
+            background-color: #ffffff;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
+        }
+
+        .choice-route {
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .choice-route::before {
+            position: absolute;
+            top: 22px;
+            right: 8%;
+            left: 8%;
+            height: 4px;
+            border-radius: 999px;
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--az-cyan),
+                    var(--az-violet)
+                );
+            content: "";
+        }
+
+        .choice-stage {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .choice-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.75rem;
+            border: 4px solid #ffffff;
+            border-radius: 50%;
+            background-color: var(--az-midnight);
+            color: var(--az-cyan-light);
+            box-shadow: 0 0 0 2px var(--az-cyan);
+            font-weight: 800;
+        }
+
+        .choice-stage h3 {
+            font-size: 1rem;
+        }
+
+        .choice-stage p {
+            color: var(--az-muted);
+            font-size: 0.88rem;
+        }
+
+        /* =================================================
+           TIMER PANEL
+           ================================================= */
+
+        .dawn-panel {
+            overflow: hidden;
+            border: 1px solid rgba(185, 28, 28, 0.32);
+            border-radius: 18px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #070b14,
+                    #20121a
+                );
+            box-shadow: 0 22px 52px rgba(15, 23, 42, 0.25);
+            color: #ffffff;
+        }
+
+        .dawn-panel-content {
+            padding: 2rem;
+        }
+
+        .dawn-panel h2,
+        .dawn-panel h3 {
+            color: #ffffff !important;
+        }
+
+        .dawn-panel p,
+        .dawn-panel li {
+            color: #d6dee9 !important;
+        }
+
+        .dawn-clock {
+            margin-bottom: 1.25rem;
+            color: var(--az-danger-light);
+            font-family: Consolas, "Courier New", monospace;
+            font-size: clamp(2.5rem, 7vw, 4.8rem);
+            font-weight: 800;
+            letter-spacing: 0.08rem;
+            line-height: 1;
+        }
+
+        .dawn-warning {
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            padding: 0.4rem 0.7rem;
+            border-radius: 999px;
+            background-color: rgba(185, 28, 28, 0.2);
+            color: var(--az-danger-light);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+
+        /* =================================================
+           SUPERNATURAL SYSTEMS
+           ================================================= */
+
+        .system-panel {
+            height: 100%;
+            padding: 1.7rem;
+            border: 1px solid var(--az-border);
+            border-radius: 14px;
+            background-color: #ffffff;
+        }
+
+        .system-panel h3 {
+            color: var(--az-text) !important;
+        }
+
+        .system-panel p,
+        .system-panel li {
+            color: var(--az-muted) !important;
+        }
+
+        .system-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            margin-bottom: 1rem;
+            border-radius: 14px;
+            background-color: var(--az-violet-soft);
+            color: var(--az-violet-dark);
+            font-size: 1.45rem;
+            font-weight: 800;
+        }
+
+        /* =================================================
+           ENDINGS PANEL
+           ================================================= */
+
+        .ending-path {
+            height: 100%;
+            padding: 1.6rem;
+            border: 1px solid var(--az-border);
+            border-left: 5px solid var(--az-violet);
+            border-radius: 12px;
+            background-color: #ffffff;
+        }
+
+        .ending-path h3 {
+            color: var(--az-text) !important;
+        }
+
+        .ending-path p {
+            color: var(--az-muted) !important;
+        }
+
+        /* =================================================
+           STUDIO PANEL
+           ================================================= */
+
+        .studio-panel {
+            padding: 2.2rem;
+            border: 1px solid var(--az-border);
+            border-top: 5px solid var(--az-violet);
+            border-radius: 18px;
+            background-color: #ffffff;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
+        }
+
+        .studio-logo {
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        /* =================================================
+           DARK MODE
+           ================================================= */
+
+        body.arizona-page.dark-mode {
+            background-color: #08111f !important;
+            color: #e8eef6 !important;
+        }
+
+        body.arizona-page.dark-mode main {
+            background-color: #08111f !important;
+        }
+
+        body.arizona-page.dark-mode .az-section {
+            background-color: #0f172a;
+            color: #e8eef6;
+        }
+
+        body.arizona-page.dark-mode .az-section-alt {
+            background-color: #111e30;
+            color: #e8eef6;
+        }
+
+        body.arizona-page.dark-mode h1,
+        body.arizona-page.dark-mode h2,
+        body.arizona-page.dark-mode h3,
+        body.arizona-page.dark-mode h4,
+        body.arizona-page.dark-mode h5 {
+            color: #f8fafc !important;
+        }
+
+        body.arizona-page.dark-mode .lead,
+        body.arizona-page.dark-mode .text-muted-custom {
+            color: #bdcad9 !important;
+        }
+
+        body.arizona-page.dark-mode .az-accent-text,
+        body.arizona-page.dark-mode .az-code,
+        body.arizona-page.dark-mode .btn-arizona-dark-outline {
+            color: var(--az-sand-light) !important;
+        }
+
+        body.arizona-page.dark-mode .az-code-cyan {
+            color: var(--az-cyan-light) !important;
+        }
+
+        body.arizona-page.dark-mode .az-code-violet,
+        body.arizona-page.dark-mode .system-icon {
+            color: var(--az-violet-light) !important;
+        }
+
+        body.arizona-page.dark-mode .az-card,
+        body.arizona-page.dark-mode .location-card,
+        body.arizona-page.dark-mode .choice-panel,
+        body.arizona-page.dark-mode .system-panel,
+        body.arizona-page.dark-mode .ending-path,
+        body.arizona-page.dark-mode .studio-panel,
+        body.arizona-page.dark-mode .premise-panel,
+        body.arizona-page.dark-mode .map-reference-card {
+            border-color: #405166;
+            background-color: #172235;
+        }
+
+        body.arizona-page.dark-mode .premise-panel {
+            background:
+                linear-gradient(
+                    135deg,
+                    #172235,
+                    #211d19
+                );
+        }
+
+        body.arizona-page.dark-mode .az-card h2,
+        body.arizona-page.dark-mode .az-card h3,
+        body.arizona-page.dark-mode .az-card h4,
+        body.arizona-page.dark-mode .location-card h3,
+        body.arizona-page.dark-mode .premise-panel h2,
+        body.arizona-page.dark-mode .premise-panel h3,
+        body.arizona-page.dark-mode .system-panel h3,
+        body.arizona-page.dark-mode .ending-path h3,
+        body.arizona-page.dark-mode .studio-panel h2,
+        body.arizona-page.dark-mode .studio-panel h3,
+        body.arizona-page.dark-mode .map-reference-card h3 {
+            color: #f8fafc !important;
+        }
+
+        body.arizona-page.dark-mode .az-card p,
+        body.arizona-page.dark-mode .az-card li,
+        body.arizona-page.dark-mode .location-card p,
+        body.arizona-page.dark-mode .premise-panel p,
+        body.arizona-page.dark-mode .system-panel p,
+        body.arizona-page.dark-mode .system-panel li,
+        body.arizona-page.dark-mode .ending-path p,
+        body.arizona-page.dark-mode .studio-panel p,
+        body.arizona-page.dark-mode .choice-stage p,
+        body.arizona-page.dark-mode .map-reference-caption,
+        body.arizona-page.dark-mode .map-facts-list li {
+            color: #bdcad9 !important;
+        }
+
+        body.arizona-page.dark-mode .choice-number {
+            border-color: #111e30;
+        }
+
+        body.arizona-page.dark-mode .az-gameplay-showcase {
+            border-color: #405166;
+            border-top-color: var(--az-sand-light);
+        }
+
+        /* =================================================
+           MOBILE
+           ================================================= */
+
+        @media (max-width: 991.98px) {
+            .choice-route::before {
+                display: none;
+            }
+
+            .choice-stage {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+
+            .az-hero,
+            .az-section,
+            .az-section-alt {
+                padding: 60px 15px;
+            }
+
+            .az-card,
+            .premise-panel,
+            .choice-panel,
+            .studio-panel,
+            .dawn-panel-content {
+                padding: 1.4rem;
+            }
+
+            .az-gameplay-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .az-gameplay-status {
+                align-self: flex-start;
+            }
+
+            .az-gameplay-caption {
+                padding: 1rem;
+            }
+        }
+
+    </style>
+</head>
+
+<body class="light-mode arizona-page">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ghostline-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="images/company_logo.png" alt="" class="nav-logo mr-2">
+            <span>
+                <span class="brand-primary">GHOSTLINE TECH</span>
+                <span class="brand-secondary">GHOSTLINE TECHNOLOGY LLC</span>
+            </span>
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#mainNavigation"
+            aria-controls="mainNavigation"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavigation">
+            <ul class="navbar-nav ml-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="software.html">Software</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="haunted-echoes.html" aria-current="page">Haunted Echoes Studios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="labs.html">Labs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="company.html">Company</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                <li class="nav-item ml-lg-2">
+                    <button
+                        id="darkModeToggle"
+                        class="btn btn-sm btn-outline-info theme-button"
+                        type="button"
+                        aria-pressed="false">
+                        Dark Mode
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="az-hero">
+
+            <div class="container az-hero-content">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+
+                        <p class="section-label">
+                            A Haunted Echoes Studios Concept
+                        </p>
+
+                        <h1 class="az-hero-title">
+                            <span class="az-hero-main">
+                                Untitled Arizona
+                            </span>
+                            <span class="az-hero-accent">
+                                Paranormal Project
+                            </span>
+                        </h1>
+
+                        <p class="lead">
+                            A cooperative mystery-horror experience set in a
+                            haunted Arizona mining town where every
+                            investigation changes what waits in the dark.
+                        </p>
+
+                        <p class="az-hero-description">
+                            Players join a nighttime ghost tour, investigate a
+                            selection of abandoned and historic locations,
+                            uncover conflicting stories, assemble pieces of a
+                            mysterious talisman, and attempt to survive until
+                            dawn.
+                        </p>
+
+                        <div class="mt-4">
+                            <a href="#project-overview" class="btn btn-arizona btn-lg mr-2 mb-2">
+                                Explore the Concept
+                            </a>
+
+                            <a href="#investigation-locations" class="btn btn-arizona-outline btn-lg mb-2">
+                                View the Locations
+                            </a>
+                        </div>
+
+                        <div class="mt-3">
+                            <span class="az-tag">Concept Development</span>
+                            <span class="az-tag">Mystery Horror</span>
+                            <span class="az-tag">One to Four Players</span>
+                            <span class="az-tag">Unreal Engine</span>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <figure class="az-gameplay-showcase">
+
+                            <div class="az-gameplay-header">
+
+                                <div>
+                                    <span class="az-gameplay-label">
+                                        Gameplay Concept
+                                    </span>
+
+                                    <strong>
+                                        Historic Hotel Investigation
+                                    </strong>
+                                </div>
+
+                                <span class="az-gameplay-status">
+                                    Pre-Production
+                                </span>
+
+                            </div>
+
+                            <a
+                                href="images/jerome-hotel-gameplay.png"
+                                target="_blank"
+                                rel="noopener noreferrer">
+
+                                <img
+                                    src="images/jerome-hotel-gameplay.png"
+                                    alt="First-person paranormal investigation gameplay concept outside the Jerome Grand Hotel at night"
+                                    class="az-gameplay-image">
+
+                            </a>
+
+                            <figcaption class="az-gameplay-caption">
+                                Concept gameplay visualization showing a nighttime
+                                investigation objective outside the historic hotel.
+                                Interface elements demonstrate flashlight use,
+                                photography, equipment power, and location-based
+                                objectives.
+                            </figcaption>
+
+                        </figure>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PROJECT OVERVIEW -->
+        <section id="project-overview" class="az-section">
+
+            <div class="container">
+
+                <div class="text-center mb-5">
+
+                    <p class="section-label">
+                        Project Overview
+                    </p>
+
+                    <h2 class="section-title">
+                        A paranormal investigation shaped by
+                        <span class="az-accent-text">
+                            choices, time, and trust.
+                        </span>
+                    </h2>
+
+                    <p class="lead az-section-lead">
+                        The project combines atmospheric exploration,
+                        cooperative decision-making, folklore, puzzles,
+                        randomized clues, supernatural threats, and multiple
+                        endings.
+                    </p>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="az-card">
+                            <span class="az-code">EXPLORE</span>
+                            <h3>Investigate the Town</h3>
+                            <p class="mb-0">
+                                Search abandoned buildings, historical sites,
+                                hidden passages, records, artifacts, and
+                                supernatural evidence.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="az-card az-card-cyan">
+                            <span class="az-code az-code-cyan">DECIDE</span>
+                            <h3>Choose What to Believe</h3>
+                            <p class="mb-0">
+                                Conflicting accounts force players to decide
+                                which stories, witnesses, clues, and warnings
+                                can be trusted.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="az-card az-card-violet">
+                            <span class="az-code az-code-violet">SURVIVE</span>
+                            <h3>Reach Dawn</h3>
+                            <p class="mb-0">
+                                Players race against the night while possession,
+                                deception, isolation, and supernatural enemies
+                                change the investigation.
+                            </p>
+                        </article>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- STORY OPENING -->
+        <section class="az-section-alt">
+
+            <div class="container">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+
+                        <p class="section-label">
+                            The Opening
+                        </p>
+
+                        <h2 class="section-title">
+                            The investigation begins with a
+                            <span class="az-accent-text">
+                                ghost tour.
+                            </span>
+                        </h2>
+
+                        <p class="lead">
+                            A visiting professor arrives in an isolated Arizona
+                            town for a conference and joins a nighttime ghost
+                            tour with the other players.
+                        </p>
+
+                        <p class="text-muted-custom">
+                            What begins as local folklore quickly becomes a
+                            genuine supernatural emergency. The tour guide
+                            appears to know more about the town than they are
+                            willing to reveal, and early decisions quietly
+                            influence later allies, enemies, locations, and
+                            endings.
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="premise-panel">
+
+                            <span class="az-code">STORY</span>
+
+                            <h3>
+                                A Town Built on Conflicting Histories
+                            </h3>
+
+                            <p>
+                                Records have been altered. Witnesses disagree.
+                                Some spirits appear helpful, while others imitate
+                                familiar voices to separate players from the
+                                group.
+                            </p>
+
+                            <p>
+                                Each investigation reveals only part of the
+                                truth. The story that players assemble determines
+                                which supernatural force ultimately confronts
+                                them.
+                            </p>
+
+                            <p class="mb-0">
+                                The goal is not simply to identify a ghost. It
+                                is to determine what happened, who caused it,
+                                and whether the town can still be saved.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- HISTORICAL MAP SECTION -->
+        <section class="az-section">
+
+            <div class="container">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+
+                        <p class="section-label">
+                            Historical Reference
+                        </p>
+
+                        <h2 class="section-title">
+                            Inspired by the
+                            <span class="az-accent-text">
+                                real geography of Jerome, Arizona.
+                            </span>
+                        </h2>
+
+                        <p class="lead">
+                            The town setting draws inspiration from Jerome’s
+                            mountainous layout, mining-era character, and
+                            isolated hillside atmosphere.
+                        </p>
+
+                        <ul class="map-facts-list">
+                            <li>
+                                The steep terrain helps create narrow routes,
+                                elevation changes, and limited visibility.
+                            </li>
+                            <li>
+                                Historic buildings and old mining infrastructure
+                                reinforce the game’s layered backstory.
+                            </li>
+                            <li>
+                                The setting supports a believable mix of hotels,
+                                museums, churches, abandoned structures, and
+                                hidden access points.
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="map-reference-card">
+
+                            <img
+                                src="images/jerome-antique-map.png"
+                                alt="Antique historical map of Jerome, Arizona and surrounding region"
+                                class="map-reference-image">
+
+                            <div class="map-reference-caption">
+                                Antique reference map of Jerome, Arizona used as
+                                visual inspiration for the project’s setting and
+                                historical atmosphere.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- INVESTIGATION LOCATIONS -->
+        <section id="investigation-locations" class="az-section-alt">
+
+            <div class="container">
+
+                <div class="text-center mb-5">
+
+                    <p class="section-label">
+                        Investigation Locations
+                    </p>
+
+                    <h2 class="section-title">
+                        Eight locations exist, but only
+                        <span class="az-accent-text">
+                            four can be investigated.
+                        </span>
+                    </h2>
+
+                    <p class="lead az-section-lead">
+                        Every location contains a different piece of the town’s
+                        history. Choosing one location means leaving another
+                        unexplored until a future playthrough.
+                    </p>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="location-card">
+                            <span class="location-number">01</span>
+                            <h3>Historic Hotel</h3>
+                            <p>
+                                Guest ledgers, locked rooms, service corridors,
+                                and accounts of visitors who were never seen
+                                leaving.
+                            </p>
+                            <span class="location-risk">Identity Distortion</span>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="location-card">
+                            <span class="location-number">02</span>
+                            <h3>Sealed Mine</h3>
+                            <p>
+                                Collapsed tunnels, abandoned equipment, hidden
+                                chambers, and evidence that the official mining
+                                disaster report may be false.
+                            </p>
+                            <span class="location-risk">Isolation</span>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="location-card">
+                            <span class="location-number">03</span>
+                            <h3>Town Library</h3>
+                            <p>
+                                Newspaper archives, missing books, coded notes,
+                                altered maps, and records that contradict the
+                                museum’s version of events.
+                            </p>
+                            <span class="location-risk">False Records</span>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="location-card">
+                            <span class="location-number">04</span>
+                            <h3>Desert Restaurant</h3>
+                            <p>
+                                A once-popular gathering place where local
+                                rumors, family histories, and unfinished
+                                conversations still echo after closing.
+                            </p>
+                            <span class="location-risk">Voice Mimicry</span>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="location-card">
+                            <span class="location-number">05</span>
+                            <h3>Abandoned School</h3>
+                            <p>
+                                Class photographs, sealed offices, missing
+                                student records, and a recurring bell that rings
+                                with no power connected.
+                            </p>
+                            <span class="location-risk">Group Separation</span>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="location-card">
+                            <span class="location-number">06</span>
+                            <h3>Old Hospital</h3>
+                            <p>
+                                Medical files, abandoned treatment rooms, hidden
+                                experiments, and patients who may never have
+                                existed officially.
+                            </p>
+                            <span class="location-risk">Possession</span>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="location-card">
+                            <span class="location-number">07</span>
+                            <h3>Hillside Church</h3>
+                            <p>
+                                Confessions, ceremonial objects, underground
+                                chambers, and evidence of an attempted ritual
+                                that was never completed.
+                            </p>
+                            <span class="location-risk">Spiritual Deception</span>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="location-card">
+                            <span class="location-number">08</span>
+                            <h3>Mining Museum</h3>
+                            <p>
+                                Preserved artifacts, public exhibits, private
+                                collections, and a carefully constructed version
+                                of the town’s past.
+                            </p>
+                            <span class="location-risk">Cursed Artifacts</span>
+                        </article>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CHOOSE FOUR / TIMER -->
+        <section class="az-section">
+
+            <div class="container">
+
+                <div class="row align-items-stretch">
+
+                    <div class="col-lg-7 mb-5 mb-lg-0">
+
+                        <div class="choice-panel h-100">
+
+                            <p class="section-label">
+                                Investigation Structure
+                            </p>
+
+                            <h2 class="section-title">
+                                Choose four locations before the
+                                <span class="az-accent-text">
+                                    final confrontation.
+                                </span>
+                            </h2>
+
+                            <p class="text-muted-custom">
+                                The team cannot uncover everything in one night.
+                                Players must decide which leads matter most and
+                                whether to remain together or split into smaller
+                                investigation groups.
+                            </p>
+
+                            <div class="row choice-route">
+
+                                <div class="col-lg-3 choice-stage">
+                                    <span class="choice-number">1</span>
+                                    <h3>First Location</h3>
+                                    <p>Establish the initial theory.</p>
+                                </div>
+
+                                <div class="col-lg-3 choice-stage">
+                                    <span class="choice-number">2</span>
+                                    <h3>Second Location</h3>
+                                    <p>Confirm or contradict the evidence.</p>
+                                </div>
+
+                                <div class="col-lg-3 choice-stage">
+                                    <span class="choice-number">3</span>
+                                    <h3>Third Location</h3>
+                                    <p>Reveal the deeper supernatural threat.</p>
+                                </div>
+
+                                <div class="col-lg-3 choice-stage">
+                                    <span class="choice-number">4</span>
+                                    <h3>Final Location</h3>
+                                    <p>Complete the talisman and prepare.</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-5">
+
+                        <div class="dawn-panel h-100">
+
+                            <div class="dawn-panel-content">
+
+                                <span class="dawn-warning">
+                                    Time Is Limited
+                                </span>
+
+                                <div class="dawn-clock">
+                                    04:17
+                                </div>
+
+                                <h2>
+                                    Survive Until Dawn
+                                </h2>
+
+                                <p>
+                                    The night advances whether the team is ready
+                                    or not. Delays, wrong turns, injuries,
+                                    possession, and missing players consume
+                                    valuable time.
+                                </p>
+
+                                <ul class="az-feature-list">
+                                    <li>Investigation time affects available evidence</li>
+                                    <li>Some events occur only during certain hours</li>
+                                    <li>Unresolved threats become more dangerous near dawn</li>
+                                    <li>The team may reach the finale without every required answer</li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SUPERNATURAL SYSTEMS -->
+        <section class="az-section-alt">
+
+            <div class="container">
+
+                <div class="text-center mb-5">
+
+                    <p class="section-label">
+                        Supernatural Systems
+                    </p>
+
+                    <h2 class="section-title">
+                        The threat changes according to
+                        <span class="az-accent-text">
+                            player behavior.
+                        </span>
+                    </h2>
+
+                    <p class="lead az-section-lead">
+                        Paranormal encounters are designed to create doubt
+                        without relying only on scripted jump scares.
+                    </p>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6 mb-4">
+                        <article class="system-panel">
+                            <span class="system-icon">T</span>
+                            <h3>Talisman Pieces</h3>
+                            <p>
+                                Each chosen location may reveal a talisman
+                                fragment, ritual component, or piece of
+                                knowledge required for the final encounter.
+                            </p>
+                            <p class="mb-0">
+                                The completed talisman may behave differently
+                                depending on which pieces were recovered and
+                                how the team interpreted them.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <article class="system-panel">
+                            <span class="system-icon">?</span>
+                            <h3>Randomized Clues</h3>
+                            <p>
+                                Evidence, witness accounts, room access, and
+                                supernatural activity can change between
+                                playthroughs.
+                            </p>
+                            <p class="mb-0">
+                                Players must build conclusions from the current
+                                investigation rather than memorizing one fixed
+                                solution.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <article class="system-panel">
+                            <span class="system-icon">P</span>
+                            <h3>Possession</h3>
+                            <p>
+                                A player may become influenced or possessed
+                                without the rest of the group immediately
+                                knowing.
+                            </p>
+                            <p class="mb-0">
+                                Possession can change available actions,
+                                information, dialogue, objectives, and the
+                                possessed player’s personal ending.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <article class="system-panel">
+                            <span class="system-icon">V</span>
+                            <h3>Voice Mimicry</h3>
+                            <p>
+                                Supernatural entities can imitate teammates,
+                                witnesses, tour participants, or trusted
+                                characters.
+                            </p>
+                            <p class="mb-0">
+                                Players may hear familiar voices from the wrong
+                                room, receive false instructions, or follow an
+                                imitation away from the group.
+                            </p>
+                        </article>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SINGLE PLAYER AND CO-OP -->
+        <section class="az-section">
+
+            <div class="container">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-5 mb-5 mb-lg-0">
+
+                        <p class="section-label">
+                            Player Structure
+                        </p>
+
+                        <h2 class="section-title">
+                            Designed for solo investigation and
+                            <span class="az-accent-text">
+                                four-player cooperation.
+                            </span>
+                        </h2>
+
+                        <p class="lead">
+                            The core mystery is planned to support one player
+                            or a cooperative team of up to four investigators.
+                        </p>
+
+                        <p class="text-muted-custom">
+                            A four-player limit creates a more focused team structure,
+                            reduces multiplayer complexity, and makes possession,
+                            private clues, voice mimicry, and split-location
+                            investigations easier to balance.
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-7">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-4">
+                                <article class="az-card">
+                                    <span class="az-code">SOLO</span>
+                                    <h3>Single Player</h3>
+                                    <ul class="az-feature-list">
+                                        <li>Focused narrative investigation</li>
+                                        <li>Direct control over location choices</li>
+                                        <li>NPC relationships affect survival</li>
+                                        <li>Personal decisions shape the ending</li>
+                                    </ul>
+                                </article>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <article class="az-card az-card-cyan">
+                                    <span class="az-code az-code-cyan">CO-OP</span>
+                                    <h3>Up to Four Players</h3>
+                                    <ul class="az-feature-list">
+                                        <li>Focused four-investigator team</li>
+                                        <li>Two-person split-team investigations</li>
+                                        <li>Shared and private evidence</li>
+                                        <li>Possession and identity uncertainty</li>
+                                        <li>Individual and group outcomes</li>
+                                    </ul>
+                                </article>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ENDINGS -->
+        <section class="az-section-alt">
+
+            <div class="container">
+
+                <div class="text-center mb-5">
+
+                    <p class="section-label">
+                        Outcomes and Replayability
+                    </p>
+
+                    <h2 class="section-title">
+                        The ending reflects what the players
+                        <span class="az-accent-text">
+                            discovered and ignored.
+                        </span>
+                    </h2>
+
+                    <p class="lead az-section-lead">
+                        No single investigation reveals the entire story.
+                        Location choices, recovered clues, surviving characters,
+                        trust decisions, and possession outcomes all contribute
+                        to the finale.
+                    </p>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="ending-path">
+                            <h3>Individual Endings</h3>
+                            <p class="mb-0">
+                                Each player may receive a different outcome
+                                based on personal decisions, supernatural
+                                exposure, hidden objectives, and survival.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="ending-path">
+                            <h3>Group Ending</h3>
+                            <p class="mb-0">
+                                The team receives a shared ending based on the
+                                final theory, completed talisman, surviving
+                                allies, and the entity confronted.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="ending-path">
+                            <h3>Changing Final Enemy</h3>
+                            <p class="mb-0">
+                                The final supernatural enemy can change
+                                according to the locations explored and the
+                                conclusions reached during the night.
+                            </p>
+                        </article>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- DESIGN PHILOSOPHY -->
+        <section class="az-section">
+
+            <div class="container">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+
+                        <p class="section-label">
+                            Design Philosophy
+                        </p>
+
+                        <h2 class="section-title">
+                            Atmosphere over constant
+                            <span class="az-accent-text">
+                                jump scares.
+                            </span>
+                        </h2>
+
+                        <p class="lead">
+                            The project is intended to build fear through
+                            uncertainty, isolation, conflicting evidence,
+                            environmental storytelling, and the possibility
+                            that a trusted voice is not real.
+                        </p>
+
+                        <p class="text-muted-custom">
+                            Major creative influences include mystery-driven
+                            exploration, psychological horror, supernatural
+                            photography, cinematic adventure games, and
+                            cooperative survival experiences.
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="az-card az-card-violet">
+                            <span class="az-code az-code-violet">PILLARS</span>
+                            <h3>Creative Priorities</h3>
+                            <ul class="az-feature-list">
+                                <li>Exploration with narrative purpose</li>
+                                <li>Puzzles connected to folklore and history</li>
+                                <li>Suspense created through uncertainty</li>
+                                <li>Meaningful player and group choices</li>
+                                <li>Multiple valid interpretations of evidence</li>
+                                <li>Replay value through changing locations and outcomes</li>
+                                <li>Horror that supports the story rather than replacing it</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CURRENT STATUS -->
+        <section class="az-section-alt">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="az-card">
+                            <span class="az-code">STATUS</span>
+                            <h3>Concept Development</h3>
+                            <p class="mb-0">
+                                The project is currently in concept development
+                                and pre-production planning. Features shown on
+                                this page represent the intended direction and
+                                may evolve during prototyping.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="az-card az-card-cyan">
+                            <span class="az-code az-code-cyan">ENGINE</span>
+                            <h3>Unreal Engine Direction</h3>
+                            <p class="mb-0">
+                                The planned technical direction uses Unreal
+                                Engine for atmospheric environments,
+                                multiplayer systems, cinematic storytelling,
+                                and supernatural gameplay.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="az-card az-card-violet">
+                            <span class="az-code az-code-violet">NEXT</span>
+                            <h3>Prototype Goals</h3>
+                            <p class="mb-0">
+                                Early prototypes will focus on the historic hotel,
+                                four-player cooperative architecture, clue
+                                randomization, photography mechanics, environmental
+                                tension, voice mimicry, and a limited possession
+                                system.
+                            </p>
+                        </article>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- STUDIO PANEL -->
+        <section class="az-section">
+
+            <div class="container">
+
+                <div class="studio-panel">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-5 mb-5 mb-lg-0">
+
+                            <img
+                                src="images/haunted_echoes_studios.png"
+                                alt="Haunted Echoes Studios logo"
+                                class="studio-logo">
+
+                        </div>
+
+                        <div class="col-lg-7">
+
+                            <p class="section-label">
+                                Haunted Echoes Studios
+                            </p>
+
+                            <h2 class="section-title">
+                                Where the unknown becomes
+                                <span class="az-accent-text">
+                                    playable.
+                                </span>
+                            </h2>
+
+                            <p class="lead">
+                                Haunted Echoes Studios develops original
+                                interactive projects involving mystery,
+                                folklore, horror, history, simulation, and
+                                meaningful player choice.
+                            </p>
+
+                            <p class="text-muted-custom">
+                                The Arizona Paranormal Project represents the
+                                studio’s larger creative direction: atmospheric
+                                worlds, layered mysteries, cooperative tension,
+                                and stories that change according to how players
+                                investigate them.
+                            </p>
+
+                            <a href="haunted-echoes.html" class="btn btn-arizona mr-2 mb-2">
+                                Visit Haunted Echoes Studios
+                            </a>
+
+                            <a href="ghostline-chess.html" class="btn btn-arizona-dark-outline mb-2">
+                                View Ghostline Chess
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <img
+                    src="images/company_logo.png"
+                    alt="Ghostline Technology LLC"
+                    class="footer-logo">
+
+                <p>
+                    Practical software, original interactive entertainment,
+                    and a disciplined path from prototype to product.
+                </p>
+            </div>
+
+            <div class="col-6 col-lg-2 mb-4">
+                <h2 class="footer-heading">Divisions</h2>
+                <a href="software.html">Ghostline Software</a>
+                <a href="haunted-echoes.html">Haunted Echoes Studios</a>
+                <a href="labs.html">Ghostline Labs</a>
+            </div>
+
+            <div class="col-6 col-lg-2 mb-4">
+                <h2 class="footer-heading">Company</h2>
+                <a href="company.html">About</a>
+                <a href="company.html#founder">Founder</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="col-lg-3">
+                <h2 class="footer-heading">Products &amp; Projects</h2>
+                <a href="construction-ops.html">Construction Ops</a>
+                <a href="load-board.html">Load Board</a>
+                <a href="broker-operations.html">Broker Operations</a>
+                <a href="ghostline-chess.html">Ghostline Chess</a>
+                <a href="arizona-paranormal.html">Arizona Paranormal Project</a>
+                <a href="boston-ripper.html">The Boston Ripper</a>
+            </div>
+        </div>
+
+        <hr class="footer-rule">
+
+        <div class="d-md-flex justify-content-between">
+            <span>
+                &copy; <span id="currentYear" class="current-year"></span>
+                Ghostline Technology LLC.
+            </span>
+            <span>All rights reserved.</span>
+        </div>
+
+        <p class="small text-center mt-3 mb-0">
+            Ghostline Tech&trade;, Ghostline Software&trade;,
+            Ghostline Construction Ops&trade;, Ghostline Load Board&trade;,
+            Ghostline Broker Operations&trade;, Haunted Echoes Studios&trade;,
+            and Ghostline Chess&trade; are trademarks of Ghostline Technology LLC.
+        </p>
+    </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        const currentYear = document.getElementById("currentYear");
+
+        if (currentYear) {
+            currentYear.textContent = new Date().getFullYear();
+        }
+
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        const themeStorageKey = "ghostlineTheme";
+
+        function applyGhostlineTheme(theme) {
+            const useDarkMode = theme === "dark";
+
+            document.body.classList.toggle("dark-mode", useDarkMode);
+            document.body.classList.toggle("light-mode", !useDarkMode);
+
+            if (darkModeToggle) {
+                darkModeToggle.textContent = useDarkMode ? "Light Mode" : "Dark Mode";
+                darkModeToggle.setAttribute("aria-pressed", String(useDarkMode));
+            }
+        }
+
+        localStorage.removeItem("theme");
+
+        const savedTheme = localStorage.getItem(themeStorageKey);
+        const startingTheme = savedTheme === "dark" ? "dark" : "light";
+
+        applyGhostlineTheme(startingTheme);
+
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener("click", function () {
+                const darkModeIsActive = document.body.classList.contains("dark-mode");
+                const newTheme = darkModeIsActive ? "light" : "dark";
+
+                localStorage.setItem(themeStorageKey, newTheme);
+                applyGhostlineTheme(newTheme);
+            });
+        }
+
+        document.querySelectorAll(".navbar-nav .nav-link").forEach(function (navigationLink) {
+            navigationLink.addEventListener("click", function () {
+                const navigationMenu = document.getElementById("mainNavigation");
+
+                if (navigationMenu && navigationMenu.classList.contains("show")) {
+                    $(".navbar-collapse").collapse("hide");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

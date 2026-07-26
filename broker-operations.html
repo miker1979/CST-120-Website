@@ -10,10 +10,10 @@
 
     <meta
         name="description"
-        content="Ghostline Construction Ops is an operations-management platform for construction companies, contractors, barrier operations, and field-service teams.">
+        content="Ghostline Broker Operations is a private freight-brokerage management platform for customers, carriers, loads, documents, payments, revenue, and margins.">
 
     <title>
-        Ghostline Construction Ops | Ghostline Technology LLC
+        Ghostline Broker Operations | Ghostline Technology LLC
     </title>
 
     <!-- Bootstrap 4 -->
@@ -26,42 +26,60 @@
         rel="stylesheet"
         href="css/styles.css">
 
-    <!-- Construction Ops page accents -->
+    <!-- Broker Operations page accents -->
     <style>
 
         /* =================================================
-           CONSTRUCTION OPS ACCENT COLORS
+           BROKER OPERATIONS ACCENT COLORS
            ================================================= */
 
-        .construction-page {
-            --construction-orange: #f97316;
-            --construction-orange-dark: #c2410c;
-            --construction-orange-soft: rgba(249, 115, 22, 0.12);
+        .broker-page {
+            --broker-green: #15803d;
+            --broker-green-dark: #166534;
+            --broker-green-soft: rgba(21, 128, 61, 0.12);
+            --broker-gold: #d4a72c;
+            --broker-gold-dark: #a16207;
+            --broker-gold-soft: rgba(212, 167, 44, 0.14);
+            --broker-graphite: #1f2933;
         }
 
-        .construction-accent-text {
-            color: var(--construction-orange);
+        .broker-accent-text {
+            color: var(--broker-green);
         }
 
-        .construction-tag {
+        .broker-gold-text {
+            color: var(--broker-gold-dark);
+        }
+
+        .broker-tag {
             display: inline-block;
             margin: 0 0.4rem 0.5rem 0;
             padding: 0.45rem 0.75rem;
-            border: 1px solid rgba(249, 115, 22, 0.38);
+            border: 1px solid rgba(21, 128, 61, 0.35);
             border-radius: 999px;
-            background-color: var(--construction-orange-soft);
-            color: var(--construction-orange-dark);
+            background-color: var(--broker-green-soft);
+            color: var(--broker-green-dark);
             font-size: 0.76rem;
             font-weight: 700;
             letter-spacing: 0.05rem;
             text-transform: uppercase;
         }
 
-        .construction-card {
-            border-top: 4px solid var(--construction-orange);
+        .broker-tag-gold {
+            border-color: rgba(212, 167, 44, 0.42);
+            background-color: var(--broker-gold-soft);
+            color: var(--broker-gold-dark);
         }
 
-        .construction-code {
+        .broker-card {
+            border-top: 4px solid var(--broker-green);
+        }
+
+        .broker-card-gold {
+            border-top-color: var(--broker-gold);
+        }
+
+        .broker-code {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -70,65 +88,130 @@
             margin-bottom: 1rem;
             padding: 0.4rem 0.7rem;
             border-radius: 6px;
-            background-color: var(--construction-orange-soft);
-            color: var(--construction-orange-dark);
+            background-color: var(--broker-green-soft);
+            color: var(--broker-green-dark);
             font-size: 0.8rem;
             font-weight: 800;
             letter-spacing: 0.05rem;
         }
 
-        .btn-construction {
-            border-color: var(--construction-orange);
-            background-color: var(--construction-orange);
-            color: #171717;
+        .broker-code-gold {
+            background-color: var(--broker-gold-soft);
+            color: var(--broker-gold-dark);
+        }
+
+        .btn-broker {
+            border-color: var(--broker-green);
+            background-color: var(--broker-green);
+            color: #ffffff;
             font-weight: 700;
         }
 
-        .btn-construction:hover,
-        .btn-construction:focus {
-            border-color: var(--construction-orange-dark);
-            background-color: var(--construction-orange-dark);
+        .btn-broker:hover,
+        .btn-broker:focus {
+            border-color: var(--broker-green-dark);
+            background-color: var(--broker-green-dark);
             color: #ffffff;
         }
 
-        .btn-construction-outline {
-            border: 1px solid var(--construction-orange);
+        .btn-broker-outline {
+            border: 1px solid var(--broker-green);
             background-color: transparent;
-            color: var(--construction-orange-dark);
+            color: var(--broker-green-dark);
             font-weight: 700;
         }
 
-        .btn-construction-outline:hover,
-        .btn-construction-outline:focus {
-            background-color: var(--construction-orange);
-            color: #171717;
+        .btn-broker-outline:hover,
+        .btn-broker-outline:focus {
+            background-color: var(--broker-green);
+            color: #ffffff;
         }
 
-        .construction-divider {
-            width: 80px;
-            height: 4px;
-            margin: 1.25rem 0;
-            border: 0;
-            border-radius: 999px;
-            background-color: var(--construction-orange);
+
+        /* =================================================
+           BROKER DASHBOARD PANEL
+           ================================================= */
+
+        .broker-dashboard {
+            overflow: hidden;
+            border: 1px solid rgba(21, 128, 61, 0.28);
+            border-radius: 18px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(31, 41, 51, 0.98),
+                    rgba(15, 23, 42, 0.98)
+                );
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.24);
         }
 
-        .construction-page:not(.light-mode)
-        .construction-tag,
-        .construction-page:not(.light-mode)
-        .construction-code {
-            color: #fdba74;
+        .broker-dashboard-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         }
 
-        .construction-page:not(.light-mode)
-        .btn-construction-outline {
-            color: #fdba74;
+        .broker-dashboard-header h2,
+        .broker-dashboard-header p {
+            color: #ffffff;
+        }
+
+        .broker-dashboard-body {
+            padding: 1.5rem;
+        }
+
+        .broker-stat {
+            height: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.07);
+            color: #e5e7eb;
+        }
+
+        .broker-stat strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #facc15;
+            font-size: 1.1rem;
+        }
+
+        .broker-load-row {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-left: 4px solid var(--broker-green);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.06);
+            color: #e5e7eb;
+        }
+
+        .broker-load-row strong {
+            color: #ffffff;
+        }
+
+        .broker-page:not(.light-mode)
+        .broker-accent-text,
+        .broker-page:not(.light-mode)
+        .broker-tag,
+        .broker-page:not(.light-mode)
+        .broker-code,
+        .broker-page:not(.light-mode)
+        .btn-broker-outline {
+            color: #86efac;
+        }
+
+        .broker-page:not(.light-mode)
+        .broker-gold-text,
+        .broker-page:not(.light-mode)
+        .broker-tag-gold,
+        .broker-page:not(.light-mode)
+        .broker-code-gold {
+            color: #fde68a;
         }
 
     </style>
 </head>
 
-<body class="light-mode construction-page">
+<body class="light-mode broker-page">
 
     <!-- =====================================================
          NAVIGATION
@@ -257,7 +340,6 @@
 
                     </li>
 
-                    <!-- Theme button -->
                     <li class="nav-item ml-lg-2">
 
                         <button
@@ -302,25 +384,27 @@
 
                         <h1 class="hero-title">
 
-                            Ghostline Construction
+                            Ghostline Broker
 
-                            <span class="construction-accent-text">
-                                Ops
+                            <span class="broker-accent-text">
+                                Operations
                             </span>
 
                         </h1>
 
                         <p class="lead mt-4 mb-3">
-                            From the yard to the jobsite.
+
+                            Coordinate the load. Protect the relationship.
+                            Understand the margin.
+
                         </p>
 
                         <p class="text-muted-custom mb-4">
 
-                            An operations-management platform for construction
-                            companies, contractors, barrier operations, and
-                            field-service teams that need clearer control over
-                            crews, equipment, jobs, dispatch, maintenance, and
-                            materials.
+                            A private freight-brokerage management platform for
+                            organizing customers, shipping locations, carriers,
+                            loads, documents, payments, communication, revenue,
+                            and gross margins.
 
                         </p>
 
@@ -328,7 +412,7 @@
 
                             <a
                                 href="#core-modules"
-                                class="btn btn-construction btn-lg mr-2 mb-2">
+                                class="btn btn-broker btn-lg mr-2 mb-2">
 
                                 Explore Core Modules
 
@@ -336,7 +420,7 @@
 
                             <a
                                 href="#development-status"
-                                class="btn btn-construction-outline btn-lg mb-2">
+                                class="btn btn-broker-outline btn-lg mb-2">
 
                                 View Development Status
 
@@ -346,94 +430,134 @@
 
                         <div>
 
-                            <span class="construction-tag">
-                                Active Development
+                            <span class="broker-tag">
+                                Planned Product
                             </span>
 
-                            <span class="construction-tag">
-                                Field Operations
+                            <span class="broker-tag">
+                                Load Coordination
                             </span>
 
-                            <span class="construction-tag">
-                                Fleet Management
+                            <span class="broker-tag">
+                                Carrier Management
                             </span>
 
-                            <span class="construction-tag">
-                                Dispatch
+                            <span class="broker-tag broker-tag-gold">
+                                Revenue Visibility
                             </span>
 
                         </div>
 
                     </div>
 
-                    <!-- Product hierarchy -->
+                    <!-- Broker dashboard concept -->
                     <div class="col-lg-5 hero-image-container">
 
-                        <div class="ghostline-card construction-card">
+                        <div class="broker-dashboard">
 
-                            <span class="construction-code">
-                                OPS
-                            </span>
+                            <div class="broker-dashboard-header">
 
-                            <p class="section-label">
-                                Product Hierarchy
-                            </p>
+                                <span class="broker-tag broker-tag-gold">
+                                    Brokerage Dashboard
+                                </span>
 
-                            <h2>
-                                Construction Operations
-                            </h2>
+                                <h2 class="mt-3 mb-1">
+                                    Active Operations
+                                </h2>
 
-                            <ul class="product-list">
+                                <p class="mb-0">
+                                    Example internal workspace
+                                </p>
 
-                                <li>
+                            </div>
+
+                            <div class="broker-dashboard-body">
+
+                                <div class="row">
+
+                                    <div class="col-6 mb-3">
+
+                                        <div class="broker-stat">
+
+                                            <strong>
+                                                Active Loads
+                                            </strong>
+
+                                            Current freight activity
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-6 mb-3">
+
+                                        <div class="broker-stat">
+
+                                            <strong>
+                                                Carrier Status
+                                            </strong>
+
+                                            Qualification visibility
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-6 mb-3">
+
+                                        <div class="broker-stat">
+
+                                            <strong>
+                                                Receivables
+                                            </strong>
+
+                                            Customer payment tracking
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-6 mb-3">
+
+                                        <div class="broker-stat">
+
+                                            <strong>
+                                                Gross Margin
+                                            </strong>
+
+                                            Revenue minus carrier cost
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="broker-load-row">
 
                                     <strong>
-                                        Parent Company
+                                        Phoenix, AZ → Dallas, TX
                                     </strong>
 
                                     <br>
 
-                                    Ghostline Technology LLC
+                                    Pickup confirmed · Carrier assigned
 
-                                </li>
+                                </div>
 
-                                <li>
+                                <div class="broker-load-row">
 
                                     <strong>
-                                        Commercial Division
+                                        Tucson, AZ → Denver, CO
                                     </strong>
 
                                     <br>
 
-                                    Ghostline Software
+                                    Carrier search in progress
 
-                                </li>
+                                </div>
 
-                                <li>
-
-                                    <strong>
-                                        Product
-                                    </strong>
-
-                                    <br>
-
-                                    Ghostline Construction Ops
-
-                                </li>
-
-                                <li>
-
-                                    <strong>
-                                        Prototype Foundation
-                                    </strong>
-
-                                    <br>
-
-                                    FleetTrack Pro
-
-                                </li>
-
-                            </ul>
+                            </div>
 
                         </div>
 
@@ -462,10 +586,10 @@
 
                     <h2 class="section-title">
 
-                        Crews, assets, and projects in
+                        Keep every load connected from customer request to
 
-                        <span class="construction-accent-text">
-                            one system.
+                        <span class="broker-accent-text">
+                            final payment.
                         </span>
 
                     </h2>
@@ -474,10 +598,10 @@
                         class="lead mx-auto"
                         style="max-width: 900px;">
 
-                        Ghostline Construction Ops is designed to replace
-                        scattered spreadsheets, text messages, paper forms,
-                        notebooks, and disconnected records with one practical
-                        operational workspace.
+                        Ghostline Broker Operations is intended to give freight
+                        brokers one organized system for managing the people,
+                        documents, financial details, appointments, and
+                        communication connected to each load.
 
                     </p>
 
@@ -485,24 +609,23 @@
 
                 <div class="row">
 
-                    <!-- Field teams -->
+                    <!-- Relationships -->
                     <div class="col-md-4 mb-4">
 
-                        <article class="ghostline-card construction-card">
+                        <article class="ghostline-card broker-card">
 
-                            <span class="construction-code">
-                                FIELD
+                            <span class="broker-code">
+                                REL
                             </span>
 
                             <h3>
-                                Built for Field Teams
+                                Manage Relationships
                             </h3>
 
                             <p class="text-muted-custom mb-0">
 
-                                Support the employees, foremen, drivers,
-                                mechanics, operators, and managers responsible
-                                for keeping daily work moving.
+                                Preserve accurate customer, shipper, receiver,
+                                carrier, driver, and contact information.
 
                             </p>
 
@@ -510,25 +633,24 @@
 
                     </div>
 
-                    <!-- Real operations -->
+                    <!-- Coordination -->
                     <div class="col-md-4 mb-4">
 
-                        <article class="ghostline-card construction-card">
+                        <article class="ghostline-card broker-card">
 
-                            <span class="construction-code">
-                                REAL
+                            <span class="broker-code">
+                                OPS
                             </span>
 
                             <h3>
-                                Based on Real Operations
+                                Coordinate Operations
                             </h3>
 
                             <p class="text-muted-custom mb-0">
 
-                                Workflows are shaped by practical
-                                transportation, construction, dispatch,
-                                maintenance, and equipment-management
-                                experience.
+                                Track the complete load from the original
+                                customer request through pickup, transit,
+                                delivery, documentation, and closure.
 
                             </p>
 
@@ -536,24 +658,24 @@
 
                     </div>
 
-                    <!-- Controlled growth -->
+                    <!-- Financial visibility -->
                     <div class="col-md-4 mb-4">
 
-                        <article class="ghostline-card construction-card">
+                        <article class="ghostline-card broker-card broker-card-gold">
 
-                            <span class="construction-code">
-                                SCALE
+                            <span class="broker-code broker-code-gold">
+                                FIN
                             </span>
 
                             <h3>
-                                Designed to Grow
+                                Understand the Numbers
                             </h3>
 
                             <p class="text-muted-custom mb-0">
 
-                                Begin with essential operational tools and add
-                                capabilities as actual company requirements are
-                                identified and tested.
+                                Connect customer revenue, carrier cost,
+                                additional charges, invoice status, and gross
+                                margin to the correct load.
 
                             </p>
 
@@ -569,7 +691,7 @@
 
 
         <!-- =================================================
-             WHO THE PRODUCT IS FOR
+             INTENDED USERS
              ================================================= -->
 
         <section class="section-padding section-dark">
@@ -586,20 +708,20 @@
 
                         <h2 class="section-title">
 
-                            Built for companies that manage work beyond the
+                            Built for the internal side of freight
 
-                            <span class="construction-accent-text">
-                                office.
+                            <span class="broker-accent-text">
+                                brokerage.
                             </span>
 
                         </h2>
 
                         <p class="lead">
 
-                            The product is intended for organizations that must
-                            coordinate employees, vehicles, equipment,
-                            materials, locations, maintenance, and changing
-                            daily assignments.
+                            The system is designed for people responsible for
+                            securing freight, coordinating transportation,
+                            managing relationships, protecting documents, and
+                            tracking financial results.
 
                         </p>
 
@@ -607,7 +729,7 @@
 
                     <div class="col-lg-6">
 
-                        <div class="ghostline-card construction-card">
+                        <div class="ghostline-card broker-card">
 
                             <div class="row">
 
@@ -616,19 +738,19 @@
                                     <ul class="product-list mb-sm-0">
 
                                         <li>
-                                            Small construction companies
+                                            Freight brokers
                                         </li>
 
                                         <li>
-                                            Highway and barrier contractors
+                                            Brokerage owners
                                         </li>
 
                                         <li>
-                                            Field-service organizations
+                                            Account managers
                                         </li>
 
                                         <li>
-                                            Equipment operators
+                                            Carrier representatives
                                         </li>
 
                                     </ul>
@@ -640,19 +762,19 @@
                                     <ul class="product-list mb-0">
 
                                         <li>
-                                            Fleet and dispatch teams
+                                            Load coordinators
                                         </li>
 
                                         <li>
-                                            Maintenance departments
+                                            Document specialists
                                         </li>
 
                                         <li>
-                                            Specialty contractors
+                                            Billing personnel
                                         </li>
 
                                         <li>
-                                            Growing operational companies
+                                            Operations managers
                                         </li>
 
                                     </ul>
@@ -687,14 +809,14 @@
                     <div class="col-lg-7">
 
                         <p class="section-label">
-                            Core Operational Modules
+                            Core Brokerage Modules
                         </p>
 
                         <h2 class="section-title">
 
-                            The essential parts of field operations,
+                            The relationships, freight, documents, and money
 
-                            <span class="construction-accent-text">
+                            <span class="broker-accent-text">
                                 connected.
                             </span>
 
@@ -706,9 +828,9 @@
 
                         <p class="lead mb-0">
 
-                            Each module supports a specific responsibility
-                            while sharing information with the rest of the
-                            operations system.
+                            Each module supports a specific brokerage
+                            responsibility while remaining connected to the
+                            complete load record.
 
                         </p>
 
@@ -718,43 +840,43 @@
 
                 <div class="row">
 
-                    <!-- Employees and crews -->
+                    <!-- Customers -->
                     <div class="col-lg-4 col-md-6 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-code">
-                                CREW
+                            <span class="broker-code">
+                                CUST
                             </span>
 
                             <h3>
-                                Employees and Crews
+                                Customers and Locations
                             </h3>
 
                             <p class="text-muted-custom">
 
-                                Maintain employee records and organize the
-                                people available for field assignments.
+                                Organize the businesses purchasing
+                                transportation services and their operational
+                                locations.
 
                             </p>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    Employees and roles
+                                    Customer profiles
                                 </li>
 
                                 <li>
-                                    Foremen and crew assignments
+                                    Billing contacts
                                 </li>
 
                                 <li>
-                                    Drivers and operators
+                                    Shipper and receiver locations
                                 </li>
 
                                 <li>
-                                    Availability and responsibility
+                                    Appointment instructions
                                 </li>
 
                             </ul>
@@ -763,43 +885,42 @@
 
                     </div>
 
-                    <!-- Fleet and equipment -->
+                    <!-- Carriers -->
                     <div class="col-lg-4 col-md-6 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-code">
-                                FLEET
+                            <span class="broker-code">
+                                CARR
                             </span>
 
                             <h3>
-                                Fleet and Equipment
+                                Carriers and Drivers
                             </h3>
 
                             <p class="text-muted-custom">
 
-                                Track the vehicles and equipment needed to
-                                complete work safely and efficiently.
+                                Maintain the transportation providers available
+                                to cover customer freight.
 
                             </p>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    Trucks and work vehicles
+                                    Carrier profiles
                                 </li>
 
                                 <li>
-                                    Trailers
+                                    Equipment types
                                 </li>
 
                                 <li>
-                                    Forklifts and gradalls
+                                    Driver contacts
                                 </li>
 
                                 <li>
-                                    Status and availability
+                                    Service areas
                                 </li>
 
                             </ul>
@@ -808,43 +929,42 @@
 
                     </div>
 
-                    <!-- Jobs and tasks -->
+                    <!-- Loads -->
                     <div class="col-lg-4 col-md-6 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-code">
-                                JOB
+                            <span class="broker-code">
+                                LOAD
                             </span>
 
                             <h3>
-                                Jobs and Tasks
+                                Load Coordination
                             </h3>
 
                             <p class="text-muted-custom">
 
-                                Organize projects, locations, contractors,
-                                dates, work requirements, and task activity.
+                                Preserve the complete operational record for
+                                each freight movement.
 
                             </p>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    Job and project records
+                                    Origin and destination
                                 </li>
 
                                 <li>
-                                    Contractors and locations
+                                    Pickup and delivery appointments
                                 </li>
 
                                 <li>
-                                    Start and finish dates
+                                    Commodity and weight
                                 </li>
 
                                 <li>
-                                    Work types and quantities
+                                    Status and assigned carrier
                                 </li>
 
                             </ul>
@@ -853,43 +973,42 @@
 
                     </div>
 
-                    <!-- Dispatch -->
+                    <!-- Documents -->
                     <div class="col-lg-4 col-md-6 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-code">
-                                DSP
+                            <span class="broker-code">
+                                DOC
                             </span>
 
                             <h3>
-                                Dispatch and Assignments
+                                Documents and Compliance
                             </h3>
 
                             <p class="text-muted-custom">
 
-                                Connect employees, vehicles, equipment,
-                                materials, and tasks before work begins.
+                                Keep operational and qualification documents
+                                connected to the correct carrier or load.
 
                             </p>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    Driver and vehicle assignments
+                                    Rate confirmations
                                 </li>
 
                                 <li>
-                                    Crew selection
+                                    Carrier packets
                                 </li>
 
                                 <li>
-                                    Equipment placement
+                                    Insurance records
                                 </li>
 
                                 <li>
-                                    Daily dispatch planning
+                                    Bills of lading and delivery documents
                                 </li>
 
                             </ul>
@@ -898,44 +1017,42 @@
 
                     </div>
 
-                    <!-- Maintenance -->
+                    <!-- Communication -->
                     <div class="col-lg-4 col-md-6 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-code">
-                                MAINT
+                            <span class="broker-code">
+                                COM
                             </span>
 
                             <h3>
-                                Maintenance and Inspections
+                                Communication History
                             </h3>
 
                             <p class="text-muted-custom">
 
-                                Preserve equipment history and identify
-                                mechanical concerns before they become larger
-                                operational problems.
+                                Record important conversations, updates,
+                                delays, changes, and follow-up actions.
 
                             </p>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    DVIR inspections
+                                    Customer notes
                                 </li>
 
                                 <li>
-                                    Mechanical write-ups
+                                    Carrier communication
                                 </li>
 
                                 <li>
-                                    Service history
+                                    Appointment updates
                                 </li>
 
                                 <li>
-                                    Repair and availability status
+                                    Issue and resolution history
                                 </li>
 
                             </ul>
@@ -944,44 +1061,43 @@
 
                     </div>
 
-                    <!-- Materials -->
+                    <!-- Financials -->
                     <div class="col-lg-4 col-md-6 mb-4">
 
                         <article
-                            class="ghostline-card construction-card h-100">
+                            class="ghostline-card broker-card broker-card-gold h-100">
 
-                            <span class="construction-code">
-                                MAT
+                            <span class="broker-code broker-code-gold">
+                                MARGIN
                             </span>
 
                             <h3>
-                                Materials and Stockpiles
+                                Payments and Margins
                             </h3>
 
                             <p class="text-muted-custom">
 
-                                Track where materials are stored, what is
-                                assigned to each job, and what remains
-                                available.
+                                Understand the financial result associated with
+                                each completed load.
 
                             </p>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    Yard and stockpile locations
+                                    Customer revenue
                                 </li>
 
                                 <li>
-                                    Barrier and material counts
+                                    Carrier cost
                                 </li>
 
                                 <li>
-                                    Job allocations
+                                    Additional charges
                                 </li>
 
                                 <li>
-                                    Remaining inventory
+                                    Gross margin
                                 </li>
 
                             </ul>
@@ -998,7 +1114,7 @@
 
 
         <!-- =================================================
-             OPERATIONAL WORKFLOW
+             BROKERAGE WORKFLOW
              ================================================= -->
 
         <section class="section-padding section-dark">
@@ -1011,24 +1127,24 @@
                     <div class="col-lg-5 mb-5 mb-lg-0">
 
                         <p class="section-label">
-                            Daily Operations
+                            Brokerage Workflow
                         </p>
 
                         <h2 class="section-title">
 
-                            Follow the work from planning to
+                            Follow the load from request to
 
-                            <span class="construction-accent-text">
-                                completion.
+                            <span class="broker-accent-text">
+                                settlement.
                             </span>
 
                         </h2>
 
                         <p class="lead">
 
-                            The system is designed to preserve the connection
-                            between the original job, the dispatched resources,
-                            the field activity, and the final results.
+                            Every operational event, document, cost, and
+                            payment should remain connected to the original
+                            customer load.
 
                         </p>
 
@@ -1037,7 +1153,7 @@
                     <!-- Workflow steps -->
                     <div class="col-lg-7">
 
-                        <div class="ghostline-card construction-card">
+                        <div class="ghostline-card broker-card">
 
                             <div class="process-step">
 
@@ -1048,14 +1164,14 @@
                                 <div>
 
                                     <h3 class="h5">
-                                        Create the Job
+                                        Create the Customer Load
                                     </h3>
 
                                     <p class="text-muted-custom mb-0">
 
-                                        Record the contractor, project,
-                                        location, dates, work requirements, and
-                                        expected quantities.
+                                        Record the customer, locations,
+                                        appointments, commodity, equipment,
+                                        customer rate, and requirements.
 
                                     </p>
 
@@ -1072,14 +1188,14 @@
                                 <div>
 
                                     <h3 class="h5">
-                                        Build the Dispatch
+                                        Qualify and Assign a Carrier
                                     </h3>
 
                                     <p class="text-muted-custom mb-0">
 
-                                        Assign crews, drivers, trucks,
-                                        trailers, forklifts, materials, and
-                                        supporting equipment.
+                                        Review equipment, availability,
+                                        qualification documents, service area,
+                                        and carrier cost.
 
                                     </p>
 
@@ -1096,14 +1212,14 @@
                                 <div>
 
                                     <h3 class="h5">
-                                        Complete the Field Work
+                                        Monitor Pickup and Delivery
                                     </h3>
 
                                     <p class="text-muted-custom mb-0">
 
-                                        Track actual start and finish times,
-                                        labor, quantities, equipment use, and
-                                        operational notes.
+                                        Track appointments, check calls,
+                                        delays, changes, documentation, and
+                                        final delivery.
 
                                     </p>
 
@@ -1120,14 +1236,14 @@
                                 <div>
 
                                     <h3 class="h5">
-                                        Review the Results
+                                        Close and Settle the Load
                                     </h3>
 
                                     <p class="text-muted-custom mb-0">
 
-                                        Update job progress, material totals,
-                                        equipment status, maintenance needs,
-                                        and final task summaries.
+                                        Confirm documents, customer billing,
+                                        carrier payment, additional charges,
+                                        and gross margin.
 
                                     </p>
 
@@ -1147,7 +1263,7 @@
 
 
         <!-- =================================================
-             FIELD OPERATIONS DETAIL
+             RELATIONSHIP MANAGEMENT
              ================================================= -->
 
         <section class="section-padding">
@@ -1157,69 +1273,70 @@
                 <div class="text-center mb-5">
 
                     <p class="section-label">
-                        Operational Visibility
+                        Relationship Management
                     </p>
 
                     <h2 class="section-title">
 
-                        Know what is assigned, where it is going, and what
+                        Freight brokerage depends on reliable
 
-                        <span class="construction-accent-text">
-                            happened.
+                        <span class="broker-accent-text">
+                            relationships.
                         </span>
 
                     </h2>
+
+                    <p
+                        class="lead mx-auto"
+                        style="max-width: 850px;">
+
+                        Customer and carrier records should provide useful
+                        operational history, not simply names and telephone
+                        numbers.
+
+                    </p>
 
                 </div>
 
                 <div class="row">
 
-                    <!-- Dispatch and job management -->
+                    <!-- Customer relationships -->
                     <div class="col-lg-6 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-tag">
-                                Dispatch and Jobs
+                            <span class="broker-tag">
+                                Customer Relationships
                             </span>
 
                             <h3 class="mt-3">
-                                Coordinate the Day
+                                Understand the Customer Account
                             </h3>
-
-                            <p class="text-muted-custom">
-
-                                Dispatch should show more than a name and
-                                vehicle. It should establish the complete
-                                operational plan for the assignment.
-
-                            </p>
 
                             <ul class="product-list">
 
                                 <li>
-                                    Select the foreman and crew
+                                    Primary and alternate contacts
                                 </li>
 
                                 <li>
-                                    Assign drivers to vehicles
+                                    Shipping and receiving locations
                                 </li>
 
                                 <li>
-                                    Attach trailers and equipment
+                                    Common lanes and equipment needs
                                 </li>
 
                                 <li>
-                                    Select material and stockpile sources
+                                    Appointment and facility instructions
                                 </li>
 
                                 <li>
-                                    Prevent duplicate equipment assignments
+                                    Load and revenue history
                                 </li>
 
                                 <li>
-                                    Review upcoming daily and weekly work
+                                    Communication and issue notes
                                 </li>
 
                             </ul>
@@ -1228,52 +1345,43 @@
 
                     </div>
 
-                    <!-- Field reporting -->
+                    <!-- Carrier relationships -->
                     <div class="col-lg-6 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-tag">
-                                Field Reporting
+                            <span class="broker-tag">
+                                Carrier Relationships
                             </span>
 
                             <h3 class="mt-3">
-                                Record What Actually Happened
+                                Understand the Carrier Network
                             </h3>
-
-                            <p class="text-muted-custom">
-
-                                Task summaries preserve the field results and
-                                help managers understand job progress,
-                                production, labor, and equipment use.
-
-                            </p>
 
                             <ul class="product-list">
 
                                 <li>
-                                    Actual start and finish time
+                                    Authority and qualification information
                                 </li>
 
                                 <li>
-                                    Work quantities completed
+                                    Insurance status
                                 </li>
 
                                 <li>
-                                    Barrier and material counts
+                                    Equipment and operating areas
                                 </li>
 
                                 <li>
-                                    Employee hours and crew size
+                                    Driver and dispatcher contacts
                                 </li>
 
                                 <li>
-                                    Equipment and operator information
+                                    Load and performance history
                                 </li>
 
                                 <li>
-                                    Notes, issues, and follow-up needs
+                                    Communication and service notes
                                 </li>
 
                             </ul>
@@ -1290,7 +1398,7 @@
 
 
         <!-- =================================================
-             ASSET AND MATERIAL CONTROL
+             FINANCIAL VISIBILITY
              ================================================= -->
 
         <section class="section-padding section-dark">
@@ -1302,15 +1410,15 @@
                     <div class="col-lg-7">
 
                         <p class="section-label">
-                            Asset and Material Control
+                            Financial Visibility
                         </p>
 
                         <h2 class="section-title">
 
-                            Keep equipment ready and materials
+                            Revenue is only part of the
 
-                            <span class="construction-accent-text">
-                                accountable.
+                            <span class="broker-gold-text">
+                                result.
                             </span>
 
                         </h2>
@@ -1321,9 +1429,9 @@
 
                         <p class="lead mb-0">
 
-                            Operational planning depends on knowing which
-                            resources are available, assigned, under repair, or
-                            located at another yard or jobsite.
+                            The system should make it easier to understand what
+                            the customer owes, what the carrier is paid, and
+                            what remains after direct load costs.
 
                         </p>
 
@@ -1333,25 +1441,25 @@
 
                 <div class="row">
 
-                    <!-- Fleet readiness -->
+                    <!-- Revenue -->
                     <div class="col-lg-4 mb-4">
 
                         <article
-                            class="ghostline-card construction-card h-100">
+                            class="ghostline-card broker-card broker-card-gold h-100">
 
-                            <span class="construction-code">
-                                READY
+                            <span class="broker-code broker-code-gold">
+                                REV
                             </span>
 
                             <h3>
-                                Fleet Readiness
+                                Customer Revenue
                             </h3>
 
                             <p class="text-muted-custom mb-0">
 
-                                See which trucks, trailers, forklifts, and
-                                machines are available, dispatched, assigned,
-                                out of service, or waiting for repair.
+                                Track the agreed customer rate, accessorial
+                                charges, corrections, invoice amount, and
+                                payment status.
 
                             </p>
 
@@ -1359,25 +1467,25 @@
 
                     </div>
 
-                    <!-- Maintenance history -->
+                    <!-- Cost -->
                     <div class="col-lg-4 mb-4">
 
                         <article
-                            class="ghostline-card construction-card h-100">
+                            class="ghostline-card broker-card broker-card-gold h-100">
 
-                            <span class="construction-code">
-                                HIST
+                            <span class="broker-code broker-code-gold">
+                                COST
                             </span>
 
                             <h3>
-                                Maintenance History
+                                Carrier Cost
                             </h3>
 
                             <p class="text-muted-custom mb-0">
 
-                                Connect inspections, write-ups, repairs,
-                                recurring services, mileage, and maintenance
-                                decisions to the correct asset.
+                                Record the carrier agreement, detention, layover,
+                                unloading, additional charges, and payment
+                                status.
 
                             </p>
 
@@ -1385,25 +1493,25 @@
 
                     </div>
 
-                    <!-- Material accountability -->
+                    <!-- Margin -->
                     <div class="col-lg-4 mb-4">
 
                         <article
-                            class="ghostline-card construction-card h-100">
+                            class="ghostline-card broker-card broker-card-gold h-100">
 
-                            <span class="construction-code">
-                                STOCK
+                            <span class="broker-code broker-code-gold">
+                                GM
                             </span>
 
                             <h3>
-                                Material Accountability
+                                Gross Margin
                             </h3>
 
                             <p class="text-muted-custom mb-0">
 
-                                Subtract materials when dispatched, track
-                                quantities assigned to jobs, and update
-                                remaining stock after field work is completed.
+                                Compare customer revenue against carrier and
+                                direct load costs to understand the financial
+                                result.
 
                             </p>
 
@@ -1419,7 +1527,7 @@
 
 
         <!-- =================================================
-             FLEETTRACK FOUNDATION
+             LOAD BOARD CONNECTION
              ================================================= -->
 
         <section class="section-padding">
@@ -1428,98 +1536,120 @@
 
                 <div class="row align-items-center">
 
-                    <!-- Prototype information -->
+                    <!-- Product relationship -->
                     <div class="col-lg-7 mb-4 mb-lg-0">
 
                         <p class="section-label">
-                            Prototype Foundation
+                            Related Ghostline Product
                         </p>
 
                         <h2 class="section-title">
 
-                            Built from lessons learned through FleetTrack
+                            Broker Operations and the Ghostline
 
-                            <span class="construction-accent-text">
-                                Pro.
+                            <span class="broker-accent-text">
+                                Load Board
                             </span>
 
                         </h2>
 
                         <p class="lead">
 
-                            FleetTrack Pro is a Java desktop prototype used to
-                            explore the operational relationships between
-                            companies, employees, vehicles, equipment, jobs,
-                            maintenance, dispatch, and materials.
+                            The two products serve different purposes but may
+                            eventually support a connected freight workflow.
 
                         </p>
 
                         <p class="text-muted-custom">
 
-                            The prototype provides a working environment for
-                            testing workflows before the strongest ideas are
-                            refined into a focused commercial construction
-                            operations product.
+                            Ghostline Load Board is intended to support freight
+                            discovery, posting, carrier matching, lane
+                            comparisons, and operating-cost awareness.
+
+                        </p>
+
+                        <p class="text-muted-custom">
+
+                            Ghostline Broker Operations is intended to manage
+                            the private internal work that occurs after a
+                            customer load enters the brokerage system.
 
                         </p>
 
                         <a
-                            href="https://github.com/miker1979/fleet-management-java/releases"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-construction mt-3">
+                            href="load-board.html"
+                            class="btn btn-broker-outline mt-3">
 
-                            View FleetTrack Pro Releases
+                            Explore Ghostline Load Board
 
                         </a>
 
                     </div>
 
-                    <!-- Prototype lessons -->
+                    <!-- Comparison -->
                     <div class="col-lg-5">
 
-                        <div class="ghostline-card construction-card">
+                        <div class="ghostline-card broker-card">
 
-                            <span class="construction-tag">
-                                Prototype Lessons
+                            <span class="broker-tag">
+                                Product Relationship
                             </span>
 
                             <h3 class="mt-3">
-                                Systems Already Explored
+                                Separate Tools, Connected Purpose
                             </h3>
 
                             <ul class="product-list">
 
                                 <li>
-                                    Employee and driver records
+
+                                    <strong>
+                                        Load Board
+                                    </strong>
+
+                                    <br>
+
+                                    Public or network freight discovery and
+                                    matching
+
                                 </li>
 
                                 <li>
-                                    Fleet and equipment management
+
+                                    <strong>
+                                        Broker Operations
+                                    </strong>
+
+                                    <br>
+
+                                    Private brokerage coordination and records
+
                                 </li>
 
                                 <li>
-                                    Job and task organization
+
+                                    <strong>
+                                        Shared Information
+                                    </strong>
+
+                                    <br>
+
+                                    Loads, locations, equipment, carriers, and
+                                    appointments
+
                                 </li>
 
                                 <li>
-                                    Dispatch workflows
-                                </li>
 
-                                <li>
-                                    Inspections and write-ups
-                                </li>
+                                    <strong>
+                                        Possible Future Integration
+                                    </strong>
 
-                                <li>
-                                    Maintenance records
-                                </li>
+                                    <br>
 
-                                <li>
-                                    Stockpile tracking
-                                </li>
+                                    Move selected load information between the
+                                    marketplace and internal operations
 
-                                <li>
-                                    Local company data storage
                                 </li>
 
                             </ul>
@@ -1553,10 +1683,10 @@
 
                     <h2 class="section-title">
 
-                        Building the operational core
+                        Defining the brokerage workflow before building the
 
-                        <span class="construction-accent-text">
-                            first.
+                        <span class="broker-accent-text">
+                            platform.
                         </span>
 
                     </h2>
@@ -1565,10 +1695,10 @@
                         class="lead mx-auto"
                         style="max-width: 850px;">
 
-                        Ghostline Construction Ops is currently in active
-                        development. The priority is creating reliable core
-                        workflows before expanding into larger optional
-                        systems.
+                        Ghostline Broker Operations is currently a planned
+                        product. The first stage is documenting the information,
+                        relationships, decisions, and financial records required
+                        throughout the life of a load.
 
                     </p>
 
@@ -1579,37 +1709,36 @@
                     <!-- Current -->
                     <div class="col-lg-4 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-tag">
+                            <span class="broker-tag">
                                 Current Focus
                             </span>
 
                             <h3 class="mt-3">
-                                Operational Foundation
+                                Workflow Research
                             </h3>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    Company data
+                                    Customer requirements
                                 </li>
 
                                 <li>
-                                    Employees and roles
+                                    Carrier qualification
                                 </li>
 
                                 <li>
-                                    Vehicles and equipment
+                                    Load lifecycle
                                 </li>
 
                                 <li>
-                                    Jobs and tasks
+                                    Required documents
                                 </li>
 
                                 <li>
-                                    Dispatch relationships
+                                    Revenue and cost structure
                                 </li>
 
                             </ul>
@@ -1618,40 +1747,39 @@
 
                     </div>
 
-                    <!-- Next -->
+                    <!-- Prototype -->
                     <div class="col-lg-4 mb-4">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <article class="ghostline-card broker-card h-100">
 
-                            <span class="construction-tag">
-                                Next Stage
+                            <span class="broker-tag">
+                                Prototype Stage
                             </span>
 
                             <h3 class="mt-3">
-                                Field and Maintenance Tools
+                                Core Brokerage Records
                             </h3>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    Task summaries
+                                    Customers and locations
                                 </li>
 
                                 <li>
-                                    Job statistics
+                                    Carriers and contacts
                                 </li>
 
                                 <li>
-                                    DVIR inspections
+                                    Loads and appointments
                                 </li>
 
                                 <li>
-                                    Mechanical write-ups
+                                    Notes and statuses
                                 </li>
 
                                 <li>
-                                    Maintenance scheduling
+                                    Revenue and carrier cost
                                 </li>
 
                             </ul>
@@ -1664,36 +1792,36 @@
                     <div class="col-lg-4 mb-4">
 
                         <article
-                            class="ghostline-card construction-card h-100">
+                            class="ghostline-card broker-card broker-card-gold h-100">
 
-                            <span class="construction-tag">
+                            <span class="broker-tag broker-tag-gold">
                                 Future Growth
                             </span>
 
                             <h3 class="mt-3">
-                                Expanded Company Operations
+                                Expanded Brokerage Tools
                             </h3>
 
                             <ul class="product-list mb-0">
 
                                 <li>
-                                    Employee portal
+                                    Document storage
                                 </li>
 
                                 <li>
-                                    Calendar and time off
+                                    Billing and payment tracking
                                 </li>
 
                                 <li>
-                                    Advanced reporting
+                                    Performance reporting
                                 </li>
 
                                 <li>
-                                    Notifications
+                                    Notifications and follow-up
                                 </li>
 
                                 <li>
-                                    Multi-location support
+                                    Load Board integration
                                 </li>
 
                             </ul>
@@ -1710,105 +1838,111 @@
 
 
         <!-- =================================================
-             PRODUCT PRINCIPLES
+             PRODUCT STRUCTURE
              ================================================= -->
 
         <section class="section-padding">
 
             <div class="container">
 
-                <div class="text-center mb-5">
+                <div class="row align-items-center">
 
-                    <p class="section-label">
-                        Product Principles
-                    </p>
+                    <div class="col-lg-6 mb-5 mb-lg-0">
 
-                    <h2 class="section-title">
+                        <p class="section-label">
+                            Product Organization
+                        </p>
 
-                        Built for the field. Designed for
+                        <h2 class="section-title">
 
-                        <span class="construction-accent-text">
-                            control.
-                        </span>
+                            A private operations platform within Ghostline
 
-                    </h2>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-4 mb-4">
-
-                        <article
-                            class="ghostline-card construction-card h-100">
-
-                            <span class="construction-code">
-                                CLEAR
+                            <span class="broker-accent-text">
+                                Software.
                             </span>
 
-                            <h3>
-                                Clear Information
-                            </h3>
+                        </h2>
 
-                            <p class="text-muted-custom mb-0">
+                        <p class="lead">
 
-                                Employees should be able to locate the
-                                information they need without searching through
-                                several disconnected systems.
+                            Ghostline Broker Operations is planned as a
+                            commercial product beneath the Ghostline Software
+                            division.
 
-                            </p>
-
-                        </article>
+                        </p>
 
                     </div>
 
-                    <div class="col-md-4 mb-4">
+                    <div class="col-lg-6">
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                        <div class="ghostline-card broker-card">
 
-                            <span class="construction-code">
-                                WORK
-                            </span>
+                            <ul class="product-list">
 
-                            <h3>
-                                Practical Workflows
-                            </h3>
+                                <li>
 
-                            <p class="text-muted-custom mb-0">
+                                    <strong>
+                                        Parent Company
+                                    </strong>
 
-                                Forms and screens should follow the way the work
-                                is actually planned, assigned, performed, and
-                                reviewed.
+                                    <br>
 
-                            </p>
+                                    Ghostline Technology LLC
 
-                        </article>
+                                </li>
 
-                    </div>
+                                <li>
 
-                    <div class="col-md-4 mb-4">
+                                    <strong>
+                                        Commercial Division
+                                    </strong>
 
-                        <article
-                            class="ghostline-card construction-card h-100">
+                                    <br>
 
-                            <span class="construction-code">
-                                GROW
-                            </span>
+                                    Ghostline Software
 
-                            <h3>
-                                Controlled Expansion
-                            </h3>
+                                </li>
 
-                            <p class="text-muted-custom mb-0">
+                                <li>
 
-                                Add features because they solve a verified
-                                operational need, not simply because they are
-                                technically possible.
+                                    <strong>
+                                        Planned Product
+                                    </strong>
 
-                            </p>
+                                    <br>
 
-                        </article>
+                                    Ghostline Broker Operations
+
+                                </li>
+
+                                <li>
+
+                                    <strong>
+                                        Related Product
+                                    </strong>
+
+                                    <br>
+
+                                    Ghostline Load Board
+
+                                </li>
+
+                                <li>
+
+                                    <strong>
+                                        Incubation Support
+                                    </strong>
+
+                                    <br>
+
+                                    Early research and prototypes may be
+                                    developed through Ghostline Labs
+
+                                </li>
+
+                            </ul>
+
+                        </div>
 
                     </div>
 
@@ -1830,20 +1964,22 @@
                 <div class="contact-panel text-center">
 
                     <p class="section-label">
-                        Ghostline Construction Ops
+                        Ghostline Broker Operations
                     </p>
 
                     <h2 class="section-title">
-                        Keep people, equipment, materials, and projects moving
+                        Keep the customer, carrier, load, documents, and margin
+                        connected
                     </h2>
 
                     <p
                         class="lead mx-auto"
                         style="max-width: 850px;">
 
-                        Ghostline Construction Ops is being developed as a
-                        practical operations platform for companies that need
-                        better visibility from the yard to the jobsite.
+                        Ghostline Broker Operations is being planned as a
+                        practical internal platform for freight brokerage
+                        coordination, relationship management, documentation,
+                        and financial visibility.
 
                     </p>
 
@@ -1858,18 +1994,16 @@
                         </a>
 
                         <a
-                            href="https://github.com/miker1979/fleet-management-java/releases"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-construction mr-2 mb-2">
+                            href="load-board.html"
+                            class="btn btn-broker-outline mr-2 mb-2">
 
-                            View FleetTrack Pro
+                            Explore Ghostline Load Board
 
                         </a>
 
                         <a
                             href="index.html#contact"
-                            class="btn btn-ghostline-outline mb-2">
+                            class="btn btn-broker mb-2">
 
                             Contact Ghostline Tech
 
@@ -1960,7 +2094,7 @@
                 <div class="col-lg-3">
 
                     <h2 class="footer-heading">
-                        Construction Ops
+                        Broker Operations
                     </h2>
 
                     <a href="#core-modules">
@@ -1971,13 +2105,8 @@
                         Development Status
                     </a>
 
-                    <a
-                        href="https://github.com/miker1979/fleet-management-java/releases"
-                        target="_blank"
-                        rel="noopener noreferrer">
-
-                        FleetTrack Pro
-
+                    <a href="load-board.html">
+                        Ghostline Load Board
                     </a>
 
                 </div>
@@ -1986,7 +2115,6 @@
 
             <hr class="footer-rule">
 
-            <!-- Copyright -->
             <div class="d-md-flex justify-content-between">
 
                 <span>
@@ -2005,12 +2133,13 @@
 
             </div>
 
-            <!-- Trademark notice -->
             <p class="small text-center mt-3 mb-0">
 
                 Ghostline Tech&trade;,
                 Ghostline Software&trade;,
                 Ghostline Construction Ops&trade;,
+                Ghostline Load Board&trade;,
+                Ghostline Broker Operations&trade;,
                 Haunted Echoes Studios&trade;, and
                 Ghostline Chess&trade;
                 are trademarks of Ghostline Technology LLC.
@@ -2026,15 +2155,12 @@
          JAVASCRIPT
          ===================================================== -->
 
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <!-- Popper -->
     <script
         src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
     </script>
 
-    <!-- Bootstrap -->
     <script
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
     </script>
@@ -2058,9 +2184,6 @@
 
         /* =================================================
            WEBSITE THEME
-
-           Light Mode is the default.
-           The visitor's selection is remembered.
            ================================================= */
 
         const darkModeToggle =

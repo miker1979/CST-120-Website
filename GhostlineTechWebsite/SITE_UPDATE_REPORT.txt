@@ -1,0 +1,21 @@
+Ghostline Technology Website - Sitewide Integration Update
+
+Completed:
+- Standardized navigation on the main site and shared navbar fragment.
+- Standardized the full rich footer on main pages and the shared footer fragment.
+- Connected Construction Ops, Load Board, and Broker Operations from the homepage.
+- Connected Ghostline Chess, the Arizona Paranormal Project, and The Boston Ripper.
+- Replaced Colonial Settlement references with The Boston Ripper concept.
+- Added the calculator and FleetTrack development log to the Labs archive.
+- Updated older section-anchor links to dedicated Company, Contact, and Labs pages.
+- Updated the contact-form thank-you redirect to ghostlinetech.com.
+- Unified the saved theme key across current and legacy pages.
+- Fixed or disabled dead local links found during validation.
+- Excluded the .git directory from this deploy-ready package.
+
+Important image paths verified:
+- images/ghostline-chess.png
+- images/jerome-hotel-gameplay.png
+- images/jerome-antique-map.png
+- images/boston-ripper-cover.png
+- images/boston-ripper-gameplay.png
