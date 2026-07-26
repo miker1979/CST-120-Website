@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!toggleButton) return;
 
   // Apply saved theme on load
-  if (localStorage.getItem("theme") === "dark") {
+  if (localStorage.getItem("ghostlineTheme") === "dark") {
     document.body.classList.add("dark-mode");
     toggleButton.textContent = "Light Mode";
   }
@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.toggle("dark-mode");
 
     if (document.body.classList.contains("dark-mode")) {
-      localStorage.setItem("theme", "dark");
+      localStorage.setItem("ghostlineTheme", "dark");
       toggleButton.textContent = "Light Mode";
     } else {
-      localStorage.setItem("theme", "light");
+      localStorage.setItem("ghostlineTheme", "light");
       toggleButton.textContent = "Dark Mode";
     }
   });

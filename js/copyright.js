@@ -1,8 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   const year = new Date().getFullYear();
-  const el = document.getElementById("copyright");
 
-  if (el) {
-    el.innerHTML = `&copy; ${year} Mike Robinson | Ghostline Logistics Tech LLC`;
+  document.querySelectorAll(".current-year").forEach(function (yearElement) {
+    yearElement.textContent = year;
+  });
+
+  const copyrightElement = document.getElementById("copyright");
+
+  if (copyrightElement) {
+    copyrightElement.innerHTML =
+      `&copy; ${year} Ghostline Technology LLC. All rights reserved.`;
   }
 });
