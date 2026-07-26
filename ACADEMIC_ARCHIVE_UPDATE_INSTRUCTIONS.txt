@@ -1,0 +1,43 @@
+GHOSTLINE ACADEMIC ARCHIVE UPDATE
+=================================
+
+This update contains only two website files:
+
+1. academic-archive.html  (new page)
+2. labs.html              (updated to link to the new archive)
+
+INSTALLATION
+------------
+1. Open your current GHOSTLINETECHWEBSITE folder in File Explorer or VS Code.
+2. Copy academic-archive.html directly into the website root beside index.html.
+3. Copy labs.html into the same website root and choose Replace when prompted.
+4. Do not replace your css, images, js, .git, or the whole website folder.
+5. Confirm this structure:
+
+   GHOSTLINETECHWEBSITE/
+   ├── index.html
+   ├── labs.html
+   ├── academic-archive.html
+   ├── css/
+   ├── images/
+   └── js/
+
+6. Open academic-archive.html with Live Server and test the Academic Archive button on labs.html.
+7. Commit and push these two HTML changes to GitHub.
+
+REQUIRED EXISTING FILES
+-----------------------
+The new page uses files already present in the website:
+
+- css/styles.css
+- images/company_logo.png
+- images/gcu_logo.png
+- calculator.html
+- fleettrack-development-log.html
+- ghostline-chess.html
+- portfolio.html
+- gallery.html
+- tando.html
+- early web practice pages
+
+No images, CSS files, or JavaScript files need to be moved.

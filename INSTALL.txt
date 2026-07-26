@@ -1,0 +1,22 @@
+GHOSTLINE FINAL DEVRY ARCHIVE UPDATE
+
+This is a merge update, not a replacement website.
+
+1. Unzip this package.
+2. Copy academic-archive.html into the root of your website beside index.html.
+3. Copy labs.html into the same root and choose Replace.
+4. Copy the images folder into the website root and choose Merge.
+5. Do not replace your full website folder, css folder, js folder, or .git folder.
+6. In VS Code, confirm these paths exist:
+
+   academic-archive.html
+   labs.html
+   images/academic/devry-ceis101-home-automation.jpg
+   images/academic/devry-ceis106-linux-admin.jpg
+   images/academic/devry-ceis110-weather-analytics.jpg
+   images/academic/devry-ceis150-stock-tracker.jpg
+   images/academic/devry-ceis209-video-manager.jpg
+   images/academic/devry-ceis209-payroll-system.jpg
+
+7. Open academic-archive.html with Live Server and press Ctrl+F5.
+8. Commit and push the changed files to GitHub.
