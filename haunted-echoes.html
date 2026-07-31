@@ -25,9 +25,303 @@
     <link
         rel="stylesheet"
         href="css/styles.css">
+
+    <style>
+        /* Full-screen Haunted Echoes studio intro */
+        body.intro-active {
+            overflow: hidden;
+        }
+
+        body.intro-active > nav,
+        body.intro-active > main,
+        body.intro-active > footer {
+            visibility: hidden;
+        }
+
+        .studio-intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000000;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 700ms ease, visibility 700ms ease;
+        }
+
+        .studio-intro-overlay.is-exiting {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .studio-intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #000000;
+        }
+
+        .studio-intro-controls {
+            position: absolute;
+            right: 24px;
+            bottom: 22px;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .studio-intro-button {
+            padding: 10px 16px;
+            border: 1px solid rgba(54, 217, 220, 0.8);
+            border-radius: 999px;
+            background: rgba(2, 7, 18, 0.82);
+            color: #ffffff;
+            font-weight: 700;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+        }
+
+        .studio-intro-button:hover,
+        .studio-intro-button:focus {
+            background: rgba(54, 217, 220, 0.22);
+            color: #ffffff;
+        }
+
+        .studio-intro-start {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 3;
+            transform: translate(-50%, -50%);
+            display: none;
+            min-width: 180px;
+            padding: 14px 24px;
+            border: 1px solid rgba(54, 217, 220, 0.95);
+            border-radius: 999px;
+            background: rgba(2, 7, 18, 0.92);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .studio-intro-start.is-visible {
+            display: block;
+        }
+
+        .studio-intro-status {
+            position: absolute;
+            left: 50%;
+            bottom: 76px;
+            z-index: 2;
+            width: min(90%, 620px);
+            transform: translateX(-50%);
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 2px 12px #000000;
+        }
+
+        @media (max-width: 767.98px) {
+            .studio-intro-video {
+                object-fit: contain;
+            }
+
+            .studio-intro-controls {
+                right: 12px;
+                bottom: 12px;
+                left: 12px;
+                justify-content: center;
+            }
+
+            .studio-intro-status {
+                bottom: 72px;
+            }
+        }
+
+        /* Unity engine badge */
+        .unity-engine-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            width: fit-content;
+            max-width: 100%;
+            padding: 12px 18px;
+            background-color: #ffffff;
+            border: 1px solid rgba(54, 217, 220, 0.45);
+            border-radius: 12px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+        }
+
+        .unity-engine-logo {
+            width: 112px;
+            max-width: 38vw;
+            height: 46px;
+            object-fit: contain;
+        }
+
+        .unity-engine-copy {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .unity-engine-label {
+            color: #50687a;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .unity-engine-name {
+            color: #111827;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+
+
+        /* Equal full-width game advertisements */
+        .development-game-card {
+            min-height: 100%;
+        }
+
+        .development-game-copy {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .development-game-summary {
+            min-height: 150px;
+        }
+
+        .development-game-list {
+            min-height: 250px;
+        }
+
+        .development-game-visual {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .development-game-visual-half {
+            width: 100%;
+            height: 205px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @media (max-width: 991.98px) {
+            .development-game-summary,
+            .development-game-list {
+                min-height: 0;
+            }
+
+            .development-game-visual,
+            .development-game-visual-half {
+                height: auto;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .unity-engine-badge {
+                gap: 12px;
+                padding: 11px 14px;
+            }
+
+            .unity-engine-logo {
+                width: 92px;
+                height: 40px;
+            }
+        }
+    </style>
 </head>
 
-<body class="light-mode">
+<body class="light-mode intro-active">
+
+    <!-- =====================================================
+         FULL-SCREEN STUDIO INTRO
+         ===================================================== -->
+
+    <div
+        id="studioIntroOverlay"
+        class="studio-intro-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Haunted Echoes Studios animated introduction">
+
+        <video
+            id="studioIntroVideo"
+            class="studio-intro-video"
+            autoplay
+            muted
+            playsinline
+            preload="auto"
+            poster="images/haunted_echoes_studios.png"
+            aria-label="Animated Haunted Echoes Studios logo with a spectral figure, cyan signal waves, and supernatural fog.">
+
+            <source
+                src="haunted-echoes-studio-intro.mp4"
+                type="video/mp4">
+
+            Your browser does not support embedded video.
+        </video>
+
+        <button
+            id="introStartButton"
+            class="studio-intro-start"
+            type="button">
+            Play Studio Intro
+        </button>
+
+        <p
+            id="introStatus"
+            class="studio-intro-status small mb-0"
+            role="status"
+            aria-live="polite">
+        </p>
+
+        <div class="studio-intro-controls">
+            <button
+                id="introSoundButton"
+                class="studio-intro-button"
+                type="button"
+                aria-pressed="false">
+                Turn Sound On
+            </button>
+
+            <button
+                id="introSkipButton"
+                class="studio-intro-button"
+                type="button">
+                Skip Intro
+            </button>
+        </div>
+    </div>
+
+    <noscript>
+        <style>
+            .studio-intro-overlay {
+                display: none !important;
+            }
+
+            body.intro-active > nav,
+            body.intro-active > main,
+            body.intro-active > footer {
+                visibility: visible !important;
+            }
+        </style>
+    </noscript>
+
 
     <!-- =====================================================
          NAVIGATION
@@ -535,79 +829,251 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 mb-4">
-                        <article class="ghostline-card d-flex flex-column h-100">
-                            <img
-                                src="images/jerome-hotel-gameplay.png"
-                                alt="Historic hotel investigation gameplay concept"
-                                class="img-fluid rounded mb-4">
+                    <!-- Arizona Paranormal Project -->
+                    <div class="col-12 mb-4">
+                        <article class="ghostline-card development-game-card">
+                            <div class="row align-items-stretch">
+                                <div class="col-lg-7 mb-4 mb-lg-0">
+                                    <div class="development-game-copy">
+                                        <span class="product-tag align-self-start">Pre-Production Concept</span>
+                                        <h3 class="mt-3">Untitled Arizona Paranormal Project</h3>
 
-                            <span class="product-tag">Pre-Production Concept</span>
-                            <h3 class="mt-3">Untitled Arizona Paranormal Project</h3>
+                                        <div class="development-game-summary">
+                                            <p class="lead">
+                                                A cooperative mystery-horror experience set in a
+                                                haunted Arizona mining town. Each playthrough selects
+                                                locations from a larger pool, rearranges evidence,
+                                                and changes supernatural encounters.
+                                            </p>
 
-                            <p class="text-muted-custom">
-                                A cooperative mystery-horror experience set in a
-                                haunted Arizona mining town. Players choose four
-                                locations, gather randomized evidence, and try to
-                                survive until dawn.
-                            </p>
+                                            <p class="text-muted-custom">
+                                                The team must gather enough proof to reconstruct the
+                                                haunting while possession, voice mimicry, limited
+                                                backtracking, and randomized clue placement make every
+                                                investigation feel different.
+                                            </p>
+                                        </div>
 
-                            <h4 class="mt-3">Current Concept</h4>
-                            <ul class="product-list mb-4">
-                                <li>One-to-four-player investigation</li>
-                                <li>Eight possible locations with four selected</li>
-                                <li>Randomized clues and supernatural events</li>
-                                <li>Possession and voice-mimic systems</li>
-                                <li>Player-specific and group endings</li>
-                            </ul>
+                                        <h4 class="mt-3">Current Concept</h4>
+                                        <ul class="product-list mb-4 development-game-list">
+                                            <li>One-to-four-player cooperative investigation</li>
+                                            <li>Eight possible locations with four selected per run</li>
+                                            <li>Randomized clues, evidence locations, and supernatural events</li>
+                                            <li>Possession, EVP markers, and voice-mimic systems</li>
+                                            <li>Locations cannot be revisited unless the story allows it</li>
+                                            <li>AI-directed encounters that react to player performance</li>
+                                            <li>Player-specific, group, and sacrifice endings</li>
+                                        </ul>
 
-                            <div class="mb-4">
-                                <span class="product-tag">1–4 Players</span>
-                                <span class="product-tag">Mystery Horror</span>
-                                <span class="product-tag">Unreal Engine</span>
+                                        <div class="mb-3">
+                                            <span class="product-tag">1–4 Players</span>
+                                            <span class="product-tag">Mystery Horror</span>
+                                            <span class="product-tag">AI Director</span>
+                                            <span class="product-tag">Unity</span>
+                                        </div>
+
+                                        <a href="arizona-paranormal.html" class="btn btn-ghostline mt-auto align-self-start">
+                                            View Arizona Project
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <img
+                                        src="images/jerome-hotel-gameplay.png"
+                                        alt="Historic hotel investigation gameplay concept"
+                                        class="img-fluid rounded development-game-visual"
+                                        loading="lazy">
+
+                                    <p class="text-muted-custom small mt-3">
+                                        Concept gameplay visualization of the haunted hotel
+                                        investigation and evidence-driven survival experience.
+                                    </p>
+
+                                    <div
+                                        class="unity-engine-badge"
+                                        aria-label="Planned development engine: Unity">
+                                        <img
+                                            src="images/unity_logo.png"
+                                            alt="Unity game engine logo"
+                                            class="unity-engine-logo">
+
+                                        <span class="unity-engine-copy">
+                                            <span class="unity-engine-label">Development Engine</span>
+                                            <span class="unity-engine-name">Unity</span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-
-                            <a href="arizona-paranormal.html" class="btn btn-ghostline mt-auto">
-                                View Arizona Project
-                            </a>
                         </article>
                     </div>
 
-                    <div class="col-lg-6 mb-4">
-                        <article class="ghostline-card d-flex flex-column h-100">
-                            <img
-                                src="images/boston-ripper-cover.png"
-                                alt="The Boston Ripper Blood Before Liberty concept cover"
-                                class="img-fluid rounded mb-4">
+                    <!-- The Boston Ripper -->
+                    <div class="col-12 mb-4">
+                        <article class="ghostline-card development-game-card">
+                            <div class="row align-items-stretch">
+                                <div class="col-lg-7 mb-4 mb-lg-0">
+                                    <div class="development-game-copy">
+                                        <span class="product-tag align-self-start">Historical Horror Concept</span>
+                                        <h3 class="mt-3">The Boston Ripper: Blood Before Liberty</h3>
 
-                            <span class="product-tag">Historical Horror Concept</span>
-                            <h3 class="mt-3">The Boston Ripper: Blood Before Liberty</h3>
+                                        <div class="development-game-summary">
+                                            <p class="lead">
+                                                A grounded murder-mystery horror game set in Boston
+                                                during 1774–1775, as the city moves toward revolution
+                                                and a ritual killer exploits the growing unrest.
+                                            </p>
 
-                            <p class="text-muted-custom">
-                                A grounded murder-mystery horror game set in
-                                Boston during 1774–1775. The player investigates
-                                ritualized killings while British authority and
-                                colonial rebellion push the city toward violence.
-                            </p>
+                                            <p class="text-muted-custom">
+                                                Players investigate crime scenes manually, question
+                                                suspects, build an evidence board, and decide which
+                                                clues can be trusted before political pressure forces
+                                                the case toward an ending.
+                                            </p>
+                                        </div>
 
-                            <h4 class="mt-3">Current Concept</h4>
-                            <ul class="product-list mb-4">
-                                <li>Open-city historical investigation</li>
-                                <li>Customizable investigator background</li>
-                                <li>Manual evidence board and uncertain clues</li>
-                                <li>Partially randomized killer identity</li>
-                                <li>Political pressure and multiple endings</li>
-                            </ul>
+                                        <h4 class="mt-3">Current Concept</h4>
+                                        <ul class="product-list mb-4 development-game-list">
+                                            <li>Open-city historical investigation across colonial Boston</li>
+                                            <li>Customizable investigator name and personal background</li>
+                                            <li>Manual crime-scene searches and evidence-board connections</li>
+                                            <li>Partially randomized killer identity and suspect behavior</li>
+                                            <li>Conflicting testimony, uncertain clues, and false leads</li>
+                                            <li>British authority and colonial unrest affect the investigation</li>
+                                            <li>Multiple political, personal, and case-resolution endings</li>
+                                        </ul>
 
-                            <div class="mb-4">
-                                <span class="product-tag">Single Player</span>
-                                <span class="product-tag">Historical Mystery</span>
-                                <span class="product-tag">Grounded Horror</span>
+                                        <div class="mb-3">
+                                            <span class="product-tag">Single Player</span>
+                                            <span class="product-tag">Historical Mystery</span>
+                                            <span class="product-tag">Grounded Horror</span>
+                                            <span class="product-tag">Unity</span>
+                                        </div>
+
+                                        <a href="boston-ripper.html" class="btn btn-ghostline mt-auto align-self-start">
+                                            View The Boston Ripper
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <img
+                                        src="images/boston-ripper-cover.png"
+                                        alt="The Boston Ripper Blood Before Liberty concept cover"
+                                        class="img-fluid rounded development-game-visual"
+                                        loading="lazy">
+
+                                    <p class="text-muted-custom small mt-3">
+                                        Concept cover art for the colonial Boston investigation,
+                                        combining historical unrest with grounded murder mystery.
+                                    </p>
+
+                                    <div
+                                        class="unity-engine-badge"
+                                        aria-label="Planned development engine: Unity">
+                                        <img
+                                            src="images/unity_logo.png"
+                                            alt="Unity game engine logo"
+                                            class="unity-engine-logo">
+
+                                        <span class="unity-engine-copy">
+                                            <span class="unity-engine-label">Development Engine</span>
+                                            <span class="unity-engine-name">Unity</span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
+                        </article>
+                    </div>
 
-                            <a href="boston-ripper.html" class="btn btn-ghostline mt-auto">
-                                View The Boston Ripper
-                            </a>
+                    <!-- Whiteout Protocol -->
+                    <div class="col-12 mb-4">
+                        <article class="ghostline-card development-game-card">
+                            <div class="row align-items-stretch">
+                                <div class="col-lg-7 mb-4 mb-lg-0">
+                                    <div class="development-game-copy">
+                                        <span class="product-tag align-self-start">The Crypt Concept</span>
+                                        <h3 class="mt-3">Whiteout Protocol</h3>
+
+                                        <div class="development-game-summary">
+                                            <p class="lead">
+                                                Six investigators arrive at a frozen research base
+                                                to discover what happened to the previous crew.
+                                                Everyone begins human, but the game AI eventually
+                                                creates a hidden infection event somewhere inside the base.
+                                            </p>
+
+                                            <p class="text-muted-custom">
+                                                The infected player slowly loses control through subtle
+                                                camera turns, unexplained controller vibration, strange
+                                                impulses, and involuntary actions before the organism
+                                                fully emerges.
+                                            </p>
+                                        </div>
+
+                                        <h4 class="mt-3">Current Concept</h4>
+                                        <ul class="product-list mb-4 development-game-list">
+                                            <li>Six-player cooperative and asymmetric multiplayer</li>
+                                            <li>Soldier, doctor, mechanic, and specialist classes</li>
+                                            <li>AI-directed infection placed during exploration</li>
+                                            <li>Investigation into the missing previous crew</li>
+                                            <li>Dynamic day/night cycle, snowstorms, and blizzards</li>
+                                            <li>Sub-zero survival, heat, visibility, and equipment systems</li>
+                                            <li>The creature grows stronger as players are eliminated</li>
+                                        </ul>
+
+                                        <div class="mb-3">
+                                            <span class="product-tag">6 Players</span>
+                                            <span class="product-tag">Sci-Fi Horror</span>
+                                            <span class="product-tag">AI Director</span>
+                                            <span class="product-tag">Unity</span>
+                                        </div>
+
+                                        <a href="labs.html" class="btn btn-ghostline mt-auto align-self-start">
+                                            View The Crypt
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <img
+                                                src="images/whiteout-protocol-cover.jpg"
+                                                alt="Whiteout Protocol six-player frozen-planet survival horror concept cover"
+                                                class="img-fluid rounded development-game-visual-half"
+                                                loading="lazy">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <img
+                                                src="images/whiteout-protocol-gameplay.jpg"
+                                                alt="Whiteout Protocol gameplay concept showing a frozen research base during a blizzard"
+                                                class="img-fluid rounded development-game-visual-half"
+                                                loading="lazy">
+                                        </div>
+                                    </div>
+
+                                    <p class="text-muted-custom small mt-3">
+                                        Cover and gameplay concepts showing the six-player crew,
+                                        extreme cold, limited visibility, and the abandoned base.
+                                    </p>
+
+                                    <div
+                                        class="unity-engine-badge"
+                                        aria-label="Planned development engine: Unity">
+                                        <img
+                                            src="images/unity_logo.png"
+                                            alt="Unity game engine logo"
+                                            class="unity-engine-logo">
+
+                                        <span class="unity-engine-copy">
+                                            <span class="unity-engine-label">Development Engine</span>
+                                            <span class="unity-engine-name">Unity</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </article>
                     </div>
                 </div>
@@ -1173,6 +1639,125 @@
     </script>
 
     <script>
+
+        /* =================================================
+           FULL-SCREEN HAUNTED ECHOES INTRO
+           ================================================= */
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const overlay = document.getElementById("studioIntroOverlay");
+            const introVideo = document.getElementById("studioIntroVideo");
+            const startButton = document.getElementById("introStartButton");
+            const soundButton = document.getElementById("introSoundButton");
+            const skipButton = document.getElementById("introSkipButton");
+            const status = document.getElementById("introStatus");
+
+            if (!overlay || !introVideo) {
+                document.body.classList.remove("intro-active");
+                return;
+            }
+
+            let introClosed = false;
+
+            function closeIntro() {
+                if (introClosed) {
+                    return;
+                }
+
+                introClosed = true;
+                document.body.classList.remove("intro-active");
+                overlay.classList.add("is-exiting");
+
+                window.setTimeout(function () {
+                    introVideo.pause();
+                    overlay.hidden = true;
+                }, 750);
+            }
+
+            function showManualPlay() {
+                if (startButton) {
+                    startButton.classList.add("is-visible");
+                }
+
+                if (status) {
+                    status.textContent =
+                        "Your browser paused autoplay. Press Play Intro or Skip Intro.";
+                }
+            }
+
+            function hideManualPlay() {
+                if (startButton) {
+                    startButton.classList.remove("is-visible");
+                }
+
+                if (status) {
+                    status.textContent = "";
+                }
+            }
+
+            function startIntro() {
+                introVideo.muted = true;
+                const playAttempt = introVideo.play();
+
+                if (playAttempt !== undefined) {
+                    playAttempt
+                        .then(hideManualPlay)
+                        .catch(showManualPlay);
+                }
+            }
+
+            introVideo.addEventListener("ended", closeIntro);
+
+            introVideo.addEventListener("error", function () {
+                if (status) {
+                    status.textContent =
+                        "The intro video could not be loaded. Opening the website...";
+                }
+
+                window.setTimeout(closeIntro, 1400);
+            });
+
+            if (startButton) {
+                startButton.addEventListener("click", function () {
+                    startIntro();
+                });
+            }
+
+            if (soundButton) {
+                soundButton.addEventListener("click", function () {
+                    introVideo.muted = !introVideo.muted;
+                    soundButton.textContent = introVideo.muted
+                        ? "Turn Sound On"
+                        : "Sound On";
+                    soundButton.setAttribute(
+                        "aria-pressed",
+                        String(!introVideo.muted)
+                    );
+
+                    if (introVideo.paused) {
+                        introVideo.play().catch(showManualPlay);
+                    }
+                });
+            }
+
+            if (skipButton) {
+                skipButton.addEventListener("click", closeIntro);
+            }
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    closeIntro();
+                }
+            });
+
+            startIntro();
+
+            window.setTimeout(function () {
+                if (introVideo.paused && !introClosed) {
+                    showManualPlay();
+                }
+            }, 1200);
+        });
 
         /* =================================================
            CURRENT COPYRIGHT YEAR
