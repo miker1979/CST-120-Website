@@ -263,7 +263,6 @@
             id="studioIntroVideo"
             class="studio-intro-video"
             autoplay
-            muted
             playsinline
             preload="auto"
             poster="images/haunted_echoes_studios.png"
@@ -295,8 +294,8 @@
                 id="introSoundButton"
                 class="studio-intro-button"
                 type="button"
-                aria-pressed="false">
-                Turn Sound On
+                aria-pressed="true">
+                Turn Sound Off
             </button>
 
             <button
@@ -1682,7 +1681,7 @@
 
                 if (status) {
                     status.textContent =
-                        "Your browser paused autoplay. Press Play Intro or Skip Intro.";
+                        "Your browser requires a click before playing audio. Press Play Studio Intro or Skip Intro.";
                 }
             }
 
@@ -1697,7 +1696,14 @@
             }
 
             function startIntro() {
-                introVideo.muted = true;
+                introVideo.muted = false;
+                introVideo.volume = 1;
+
+                if (soundButton) {
+                    soundButton.textContent = "Turn Sound Off";
+                    soundButton.setAttribute("aria-pressed", "true");
+                }
+
                 const playAttempt = introVideo.play();
 
                 if (playAttempt !== undefined) {
@@ -1729,7 +1735,7 @@
                     introVideo.muted = !introVideo.muted;
                     soundButton.textContent = introVideo.muted
                         ? "Turn Sound On"
-                        : "Sound On";
+                        : "Turn Sound Off";
                     soundButton.setAttribute(
                         "aria-pressed",
                         String(!introVideo.muted)
