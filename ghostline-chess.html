@@ -10,7 +10,7 @@
 
     <meta
         name="description"
-        content="Ghostline Chess is a playable desktop chess project from Haunted Echoes Studios, featuring local two-player gameplay, move validation, game-state tracking, and a Windows release.">
+        content="Ghostline Chess is a gothic desktop chess game from Haunted Echoes Studios featuring the Pale Court, Shadow Court, Ghostline Tome, Graveyard, complete rules, FEN tools, and custom horror artwork.">
 
     <title>
         Ghostline Chess | Haunted Echoes Studios
@@ -33,15 +33,15 @@
            ================================================= */
 
         .chess-page {
-            --chess-violet: #7c3aed;
-            --chess-violet-dark: #5b21b6;
-            --chess-violet-light: #c4b5fd;
-            --chess-violet-soft: rgba(124, 58, 237, 0.12);
+            --chess-violet: #b78324;
+            --chess-violet-dark: #76500f;
+            --chess-violet-light: #f1cf73;
+            --chess-violet-soft: rgba(183, 131, 36, 0.14);
 
-            --chess-cyan: #0891b2;
-            --chess-cyan-dark: #0e7490;
-            --chess-cyan-light: #67e8f9;
-            --chess-cyan-soft: rgba(8, 145, 178, 0.12);
+            --chess-cyan: #7a1021;
+            --chess-cyan-dark: #4b0712;
+            --chess-cyan-light: #e16b7c;
+            --chess-cyan-soft: rgba(122, 16, 33, 0.13);
 
             --chess-text: #172033;
             --chess-muted: #4b5d70;
@@ -70,8 +70,8 @@
                 linear-gradient(
                     135deg,
                     #ffffff 0%,
-                    #f4f0ff 52%,
-                    #edfafa 100%
+                    #fff8e9 52%,
+                    #f8e8eb 100%
                 );
         }
 
@@ -212,6 +212,37 @@
             display: block;
             width: 100%;
             height: auto;
+        }
+
+        .chess-gallery-image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 10px;
+            background-color: #09070b;
+        }
+
+        .chess-gallery-card {
+            height: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(183, 131, 36, 0.32);
+            border-radius: 14px;
+            background-color: #100c12;
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.18);
+        }
+
+        .chess-gallery-card h3 {
+            margin-top: 1rem;
+            color: #f1cf73 !important;
+            font-size: 1.05rem;
+        }
+
+        .chess-gallery-card p {
+            margin-bottom: 0;
+            color: #d8d0d5 !important;
+            font-size: 0.9rem;
         }
 
         .chess-showcase-footer {
@@ -600,28 +631,29 @@
 
                         <p class="lead mt-4">
 
-                            A playable desktop chess project built around
-                            traditional board-game rules, local competition,
-                            move validation, and clear game-state feedback.
+                            The Pale Court and Shadow Court battle across a
+                            gothic board where every move is recorded in the
+                            Ghostline Tome and every fallen piece enters the
+                            Graveyard.
 
                         </p>
 
                         <p class="chess-muted">
 
-                            Ghostline Chess represents a complete release from
-                            Haunted Echoes Studios and demonstrates the process
-                            of moving a game from programming project to
-                            downloadable Windows application.
+                            The newest development milestone combines a
+                            validated chess engine, complete special-move and
+                            draw rules, FEN tools, custom horror artwork, and a
+                            stronger visual identity for Haunted Echoes Studios.
 
                         </p>
 
                         <div class="mt-4">
 
                             <a
-                                href="https://github.com/miker1979/Ghostline-Chess/releases/download/v1.0.0/GhostlineChess-v1.0.0-win-x64.zip"
+                                href="https://github.com/miker1979/Ghostline-Chess"
                                 class="btn btn-chess btn-lg mr-2 mb-2">
 
-                                Download Version 1.0.0
+                                View Updated Source
 
                             </a>
 
@@ -638,7 +670,7 @@
                         <div class="mt-3">
 
                             <span class="chess-tag">
-                                Playable Release
+                                Engine Milestone Complete
                             </span>
 
                             <span class="chess-tag">
@@ -650,7 +682,7 @@
                             </span>
 
                             <span class="chess-tag">
-                                Version 1.0.0
+                                C# and .NET 10
                             </span>
 
                         </div>
@@ -668,7 +700,7 @@
                                 </strong>
 
                                 <span class="chess-showcase-status">
-                                    Playable
+                                    Current Build
                                 </span>
 
                             </div>
@@ -680,15 +712,15 @@
 
                                 <img
                                     src="images/ghostline-chess.png"
-                                    alt="Ghostline Chess gameplay interface"
+                                    alt="Ghostline Chess gothic board with the Pale Court, Shadow Court, Tome, and Graveyard"
                                     class="chess-screenshot">
 
                             </a>
 
                             <figcaption class="chess-showcase-footer">
 
-                                Current gameplay interface. Select the image to
-                                view the full-size screenshot.
+                                The updated gothic gameplay interface. Select
+                                the image to view the full-size screenshot.
 
                             </figcaption>
 
@@ -721,18 +753,19 @@
 
                     <h2 class="section-title">
 
-                        Traditional chess presented through a focused
+                        Complete chess rules presented through a
 
                         <span class="chess-accent-text">
-                            desktop interface.
+                            haunted desktop experience.
                         </span>
 
                     </h2>
 
                     <p class="lead chess-section-lead">
 
-                        Ghostline Chess provides a local board-game experience
-                        for two players using the same computer.
+                        Custom court artwork, spectral move indicators, themed
+                        status messages, and full game-state tracking give the
+                        traditional match a distinct Haunted Echoes identity.
 
                     </p>
 
@@ -754,8 +787,8 @@
 
                             <p class="mb-0">
 
-                                Two players take turns using one computer and
-                                compete through a complete traditional chess
+                                The Pale Court and Shadow Court take turns on
+                                one computer through a complete local chess
                                 match.
 
                             </p>
@@ -778,9 +811,9 @@
 
                             <p class="mb-0">
 
-                                The application controls legal piece movement
-                                and prevents moves that do not follow the
-                                supported game rules.
+                                The engine validates king safety, castling,
+                                en passant, promotion, check, checkmate, and
+                                every standard piece movement rule.
 
                             </p>
 
@@ -802,9 +835,9 @@
 
                             <p class="mb-0">
 
-                                The interface tracks player turns, board state,
-                                piece locations, and important match
-                                conditions.
+                                The Ghostline Tome records algebraic notation,
+                                the Graveyard tracks captures, and FEN tools
+                                preserve or restore board positions.
 
                             </p>
 
@@ -837,19 +870,19 @@
 
                         <h2 class="section-title">
 
-                            A complete playable project with a defined
+                            A tested chess engine with a complete
 
                             <span class="chess-accent-text">
-                                game loop.
+                                ruleset.
                             </span>
 
                         </h2>
 
                         <p class="lead">
 
-                            The project combines board representation, player
-                            input, piece behavior, turn control, and match
-                            feedback into one working desktop application.
+                            The current source has completed its main engine
+                            validation pass and is ready for the next milestone
+                            of sound, animation, and atmospheric effects.
 
                         </p>
 
@@ -862,39 +895,39 @@
                             <ul class="chess-feature-list">
 
                                 <li>
-                                    Standard eight-by-eight chessboard layout
+                                    Custom Pale Court and Shadow Court pieces
                                 </li>
 
                                 <li>
-                                    Alternating local player turns
+                                    Ghostline Tome with algebraic move history
                                 </li>
 
                                 <li>
-                                    Piece selection and destination input
+                                    Graveyard with captured-piece tracking
                                 </li>
 
                                 <li>
-                                    Movement rules for each chess piece
+                                    Check, checkmate, and crimson king warning
                                 </li>
 
                                 <li>
-                                    Move validation before board updates
+                                    Kingside and queenside castling validation
                                 </li>
 
                                 <li>
-                                    Piece capture and board-state changes
+                                    En passant and all four promotion choices
                                 </li>
 
                                 <li>
-                                    Visual feedback through the game interface
+                                    FEN import, export, validation, and counters
                                 </li>
 
                                 <li>
-                                    Packaged Windows x64 release
+                                    Stalemate and insufficient-material draws
                                 </li>
 
                                 <li>
-                                    Public source-code repository
+                                    Threefold-repetition and fifty-move draws
                                 </li>
 
                             </ul>
@@ -907,6 +940,59 @@
 
             </div>
 
+        </section>
+
+
+        <!-- =================================================
+             CURRENT SCREENSHOTS
+             ================================================= -->
+
+        <section class="chess-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <p class="section-label">Current Development Screenshots</p>
+                    <h2 class="section-title">
+                        The rules are complete.
+                        <span class="chess-accent-text">The courts are awake.</span>
+                    </h2>
+                    <p class="lead chess-section-lead">
+                        These images show the updated board, special moves,
+                        check warning, and completed draw-rule validation.
+                    </p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <article class="chess-gallery-card">
+                            <a href="images/ghostline-chess-check.png" target="_blank" rel="noopener noreferrer">
+                                <img src="images/ghostline-chess-check.png" alt="Crimson warning around the Pale King while in check" class="chess-gallery-image" loading="lazy">
+                            </a>
+                            <h3>King in Check</h3>
+                            <p>The checked king receives a crimson aura and the status banner preserves the warning after an illegal escape.</p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="chess-gallery-card">
+                            <a href="images/ghostline-chess-castling.png" target="_blank" rel="noopener noreferrer">
+                                <img src="images/ghostline-chess-castling.png" alt="Ghostline Chess after successful queenside castling" class="chess-gallery-image" loading="lazy">
+                            </a>
+                            <h3>Queenside Castling</h3>
+                            <p>The king and rook move together, the Tome records O-O-O, and the updated FEN removes the castling right.</p>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 mb-4">
+                        <article class="chess-gallery-card">
+                            <a href="images/ghostline-chess-threefold.png" target="_blank" rel="noopener noreferrer">
+                                <img src="images/ghostline-chess-threefold.png" alt="Ghostline Chess declaring a draw by threefold repetition" class="chess-gallery-image" loading="lazy">
+                            </a>
+                            <h3>Threefold Repetition</h3>
+                            <p>The engine tracks repeated positions independently of FEN move counters and locks play after the third occurrence.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
         </section>
 
 
@@ -929,7 +1015,7 @@
                             <div class="download-panel-content">
 
                                 <span class="chess-tag">
-                                    Current Release
+                                    Original Packaged Release
                                 </span>
 
                                 <h2 class="mt-3">
@@ -938,9 +1024,10 @@
 
                                 <p>
 
-                                    Download the packaged 64-bit Windows
-                                    release from the project’s GitHub release
-                                    page.
+                                    Version 1.0.0 remains available as the
+                                    original packaged Windows release. The
+                                    gothic interface shown above is the newer
+                                    development source milestone.
 
                                 </p>
 
@@ -1367,30 +1454,29 @@
 
                         <h2 class="section-title">
 
-                            From programming exercise to a packaged
+                            From programming exercise to a tested
 
                             <span class="chess-accent-text">
-                                release.
+                                game engine.
                             </span>
 
                         </h2>
 
                         <p class="lead">
 
-                            Ghostline Chess demonstrates the complete process
-                            of designing game logic, building an interface,
-                            testing interactions, managing source code, and
-                            distributing a working application.
+                            Ghostline Chess now demonstrates layered game
+                            logic, visual theming, custom assets, systematic
+                            rule testing, source control, and Windows desktop
+                            development with C# and .NET 10.
 
                         </p>
 
                         <p class="text-muted-custom">
 
-                            The project also serves as a technical foundation
-                            for future Haunted Echoes Studios development by
-                            providing experience with game-state management,
-                            user interaction, visual feedback, packaging, and
-                            release organization.
+                            Its completed rule-validation milestone establishes
+                            a stable foundation for audiovisual polish and for
+                            future Haunted Echoes Studios projects built in
+                            Unity.
 
                         </p>
 
@@ -1551,10 +1637,11 @@
 
                             <p class="text-muted-custom">
 
-                                Ghostline Chess provides a smaller completed
-                                project that strengthens the studio’s technical
-                                foundation while larger original game concepts
-                                continue through planning and prototyping.
+                                Ghostline Chess is the studio’s active playable
+                                development project and strengthens the technical
+                                foundation for larger original horror and mystery
+                                concepts now moving through planning and Unity
+                                prototyping.
 
                             </p>
 
