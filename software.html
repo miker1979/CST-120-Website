@@ -25,6 +25,40 @@
     <link
         rel="stylesheet"
         href="css/styles.css">
+
+    <style>
+        .fleettrack-gallery {
+            margin-top: 3rem;
+        }
+
+        .fleettrack-shot {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid rgba(51, 205, 221, 0.35);
+            border-radius: 14px;
+            background: var(--card-bg, #ffffff);
+            box-shadow: 0 16px 34px rgba(4, 17, 32, 0.13);
+        }
+
+        .fleettrack-shot img {
+            display: block;
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .fleettrack-shot figcaption {
+            padding: 1rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        body.dark-mode .fleettrack-shot {
+            background: #0d1c2e;
+        }
+    </style>
 </head>
 
 <body class="light-mode">
@@ -67,6 +101,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="labs.html">Labs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="development-log.html">Dev Log</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="company.html">Company</a>
@@ -719,6 +756,52 @@
 
                     </div>
 
+                </div>
+
+                <div class="fleettrack-gallery">
+                    <div class="text-center mb-4">
+                        <p class="section-label">Working Prototype</p>
+                        <h3 class="section-title">FleetTrack in development</h3>
+                        <p class="text-muted-custom">
+                            These interfaces show the dashboard, employee-management,
+                            and evaluation systems built during the Java Swing prototype.
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <figure class="fleettrack-shot">
+                                <a href="images/dashboard.jpg" target="_blank" rel="noopener noreferrer">
+                                    <img src="images/dashboard.jpg" alt="FleetTrack dashboard interface" loading="lazy">
+                                </a>
+                                <figcaption>Dashboard UI</figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <figure class="fleettrack-shot">
+                                <a href="images/employees.jpg" target="_blank" rel="noopener noreferrer">
+                                    <img src="images/employees.jpg" alt="FleetTrack employee management interface" loading="lazy">
+                                </a>
+                                <figcaption>Employee Management</figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <figure class="fleettrack-shot">
+                                <a href="images/evaluation.jpg" target="_blank" rel="noopener noreferrer">
+                                    <img src="images/evaluation.jpg" alt="FleetTrack employee evaluation interface" loading="lazy">
+                                </a>
+                                <figcaption>Evaluation Form</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-2">
+                        <a href="fleettrack-development-log.html" class="btn btn-ghostline-outline">
+                            View FleetTrack Development History
+                        </a>
+                    </div>
                 </div>
 
             </div>
