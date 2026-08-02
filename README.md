@@ -1,44 +1,49 @@
-# CST-120: Personal Website Project
+# Ghostline Technology LLC Website
 
-## 🌐 Overview
-This repository contains my personal website developed for the **CST-120 Introduction to Web Development** course at **Grand Canyon University**. This project represents my transition from a 23-year professional career in logistics to the field of Software Development. 
+The official website for **Ghostline Technology LLC**, presenting practical software projects, original interactive entertainment, and experimental concepts developed across the Ghostline organization.
 
-My commitment to high achievement in this new path is reflected in my **President’s List (3.8-4.0 GPA)** distinction and my foundational training in programming logic.
+## Live Website
 
----
+[Visit the Ghostline Technology website](https://miker1979.github.io/responsive-multi-page-website/)
 
-## 🚀 Live Website
-You can view the live project here:  
-**https://miker1979.github.io/responsive-multi-page-website/**
+## Divisions
 
----
+- **Ghostline Software** — Business-focused software and operational tools.
+- **Haunted Echoes Studios** — Original games built around horror, mystery, history, and meaningful player choices.
+- **Ghostline Labs** — Early concepts, experiments, and dormant ideas waiting to be developed.
 
-## 🛠️ Project Features & Technologies
-* **Multi-page Architecture:** Organized HTML5 structure with seamless internal navigation.
-* **Responsive UI:** Styled with **Bootstrap 4.4** for compatibility across all device sizes.
-* **Dynamic Logic:** Utilizes **jQuery** for DOM manipulation and dynamic table generation.
-* **Organized Assets:** Structured file management for CSS, images, and scripts.
+## Featured Projects
 
----
+- **Ghostline Chess** — A gothic C# and .NET 10 chess game featuring the Pale Court, Shadow Court, Ghostline Tome, Graveyard, FEN tools, and a complete tested ruleset.
+- **Construction Operations** — A software concept for organizing construction workflows.
+- **Ghostline Load Board** — A logistics and freight-management concept.
+- **Broker Operations** — A business operations concept for freight brokerage.
+- **Arizona Paranormal Project** — A Unity horror-mystery concept set in Jerome, Arizona.
+- **The Boston Ripper** — A historical horror investigation concept set in colonial Boston.
 
-# 🎓 Academic Honors & Technical Certifications
+## Website Features and Technologies
 
-### 🎖️ Undergraduate Certificate in Programming Essentials (WITH HONORS)
-**DeVry University | Awarded February 2024**
-* Achieved **Honors distinction** through mastery of foundational programming logic and development.
-* Demonstrated elite proficiency in software design and coding standards.
+- Responsive multi-page HTML5 architecture
+- Shared CSS styling and reusable navigation
+- Bootstrap 4.4 responsive layout
+- JavaScript and jQuery interactions
+- Light and dark display modes
+- Organized image, stylesheet, and script assets
+- GitHub Pages deployment
 
-### 🏆 President’s List (3.8 - 4.0 GPA)
-**Grand Canyon University | Recognized January 2026**
-* Maintained a near-perfect GPA in pursuit of a Bachelor of Science in Information Technology.
-* Recognized for "contributions in the classroom and quality of submitted work".
+## Project History
 
-### ⭐ Dean’s List Achievement
-**DeVry University | Consecutive Honors 2023**
-* Recognized for outstanding academic performance across Spring, Summer, and Fall sessions.
+This repository began as Mike Robinson's personal website for **CST-120: Introduction to Web Development** at **Grand Canyon University**. It has since evolved from an academic assignment into the public website for Ghostline Technology LLC.
 
----
+That academic foundation remains an important part of the project's history, demonstrating continued growth from introductory web development into software engineering, game development, source control, and product design.
 
-# #️⃣ Author: Mike Robinson
-**Honors Graduate | President's List Student | Professional Logistics Specialist (2001 - Present)**
-Website redeploy
+## Academic Background
+
+- Undergraduate Certificate in Programming Essentials with Honors — DeVry University, February 2024
+- President's List recognition — Grand Canyon University, January 2026
+- Bachelor of Science in Software Development — In progress
+
+## Author
+
+**Mike Robinson**  
+Software Development student and founder of Ghostline Technology LLC
