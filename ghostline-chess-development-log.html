@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
         name="description"
-        content="The Ghostline Chess development log documents the project’s progression from its first playable Windows prototype to the gothic Hallowed Saints and Damned Souls engine milestone.">
+        content="The Ghostline Chess development log documents the project’s progression from its first playable Windows prototype to the gothic Hallowed Saints and Damned Souls engine and layered-audio milestones.">
 
     <title>Ghostline Chess Development Log | Haunted Echoes Studios</title>
 
@@ -362,11 +362,11 @@
                             </div>
                             <div class="status-item">
                                 <strong>Current milestone</strong>
-                                Gothic engine validation — August 2, 2026
+                                Layered audio system — August 4, 2026
                             </div>
                             <div class="status-item">
                                 <strong>Current status</strong>
-                                Core rules tested; visual and audio polish next
+                                Audio routing works; cue curation and visual polish next
                             </div>
                         </aside>
                     </div>
@@ -492,6 +492,49 @@
                             </div>
                         </div>
                     </article>
+
+                    <article class="timeline-entry">
+                        <span class="timeline-marker" aria-hidden="true"></span>
+                        <div class="timeline-card">
+                            <header class="timeline-header">
+                                <span class="timeline-date">August 4, 2026</span>
+                                <h2>Layered Audio and Piece-Specific Feedback</h2>
+                            </header>
+                            <div class="timeline-body">
+                                <p>
+                                    The v7 development build established a working
+                                    audio architecture for the board. Background
+                                    atmosphere now continues while independent move,
+                                    capture, environmental, and game-state sounds play.
+                                </p>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <h3 class="h5">Audio Architecture</h3>
+                                        <ul class="milestone-list">
+                                            <li>Software mixer for simultaneous audio layers</li>
+                                            <li>Balanced 5:50 looping gothic background suite</li>
+                                            <li>Four randomized creaks with no immediate repeat</li>
+                                            <li>Deferred device startup to prevent launch freezes</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6 mt-4 mt-md-0">
+                                        <h3 class="h5">Board Feedback</h3>
+                                        <ul class="milestone-list">
+                                            <li>24 routed move and capture cues</li>
+                                            <li>Six piece types across both factions</li>
+                                            <li>Bright ceremonial identity for the Hallowed Saints</li>
+                                            <li>Dark creature-based identity for the Damned Souls</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <p class="image-caption">
+                                    The system is stable and playable; individual cues remain subject to track-by-track review.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -502,12 +545,12 @@
                     <div class="row align-items-center">
                         <div class="col-lg-8 mb-4 mb-lg-0">
                             <p class="section-label">Next Milestone</p>
-                            <h2>Give the courts movement, sound, and atmosphere.</h2>
+                            <h2>Curate the final sound set and strengthen visual feedback.</h2>
                             <p class="log-muted mb-0">
-                                Planned work includes movement and capture audio,
+                                Planned work includes track-by-track cue review,
                                 spectral capture fades, improved runic indicators,
-                                ambient effects, release packaging, and continued
-                                separation of the chess engine from the interface.
+                                release packaging, and continued separation of the
+                                chess engine from the interface.
                             </p>
                         </div>
                         <div class="col-lg-4 text-lg-right">
