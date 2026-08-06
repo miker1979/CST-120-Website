@@ -1,3 +1,4 @@
+# One-time, idempotent publisher for the August 5 company and chess log entries.
 name: Apply August 5 Development Log Update
 
 on:
