@@ -1,0 +1,134 @@
+name: Finalize Ghostline Chess v1.2.0 website after Pages
+
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow
+
+      - name: Generate current cards and update website references
+        id: refresh
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
+
+          root = Path('.')
+          images = root / 'images'
+          source = images / 'ghostline-chess-v2.png'
+          shot = Image.open(source).convert('RGB')
+          bold = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
+          regular = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+
+          def f(path, size):
+              return ImageFont.truetype(path, size)
+
+          def card(size, output, social=False):
+              w, h = size
+              canvas = Image.new('RGB', size, '#07111f')
+              d = ImageDraw.Draw(canvas)
+              for y in range(h):
+                  t = y / max(h - 1, 1)
+                  d.line((0, y, w, y), fill=(int(7 + 8*t), int(17 + 5*t), int(31 + 18*t)))
+              for x in range(0, w, 60): d.line((x, 0, x, h), fill=(10, 43, 70), width=1)
+              for y in range(0, h, 60): d.line((0, y, w, y), fill=(10, 43, 70), width=1)
+
+              box = (610, 75, 1148, 555) if social else (560, 80, 1145, 680)
+              tx, ty, ts = (60, 80, 62) if social else (60, 95, 72)
+              sw, sh = box[2]-box[0], box[3]-box[1]
+              fitted = ImageOps.fit(shot, (sw, sh), method=Image.Resampling.LANCZOS, centering=(0.5, 0.45))
+              shadow = Image.new('RGBA', (sw+30, sh+30), (0,0,0,0))
+              sd = ImageDraw.Draw(shadow)
+              sd.rounded_rectangle((15,15,sw+15,sh+15), radius=22, fill=(0,0,0,165))
+              shadow = shadow.filter(ImageFilter.GaussianBlur(10))
+              canvas.paste(shadow, (box[0]-15, box[1]-15), shadow)
+              canvas.paste(fitted, (box[0], box[1]))
+              d.rounded_rectangle(box, radius=18, outline='#d4a63b', width=4)
+
+              d.text((tx,ty),'GHOSTLINE',font=f(bold,ts),fill='#f7fbff')
+              d.text((tx,ty+ts+2),'CHESS',font=f(bold,ts),fill='#d4a63b')
+              d.text((tx,ty+ts*2+34),'THE HALLOWED SAINTS',font=f(bold,24),fill='#f1cf73')
+              d.text((tx,ty+ts*2+70),'VS. THE DAMNED',font=f(bold,24),fill='#ef7788')
+              by = ty+ts*2+132
+              d.rounded_rectangle((tx,by,tx+302,by+54),radius=27,fill='#981936',outline='#ef7788',width=2)
+              d.text((tx+22,by+11),'VERSION 1.2.0',font=f(bold,24),fill='white')
+              d.text((tx,by+80),'TACTICAL AI • COMPLETE RULES',font=f(bold,20),fill='#18d7df')
+              d.text((tx,by+115),'LAYERED GOTHIC AUDIO • WINDOWS x64',font=f(regular,18),fill='#c9d7e5')
+              d.text((tx,h-58),'Every move awakens something.',font=f(regular,19),fill='#d7e2ed')
+              canvas.save(output, 'PNG', optimize=True)
+
+          card((1200,750), images/'ghostline-chess-web-card-v1-2.png', False)
+          card((1200,630), images/'ghostline-chess-social-card-v1-2.png', True)
+
+          index = root/'index.html'
+          text = index.read_text(encoding='utf-8')
+          text = text.replace('src="images/ghostline-chess.png"', 'src="images/ghostline-chess-web-card-v1-2.png"')
+          text = text.replace('A gothic local chess game where the Hallowed Saints\n                                and Damned Souls battle through a complete,\n                                tested ruleset.', 'A gothic chess game with local play, a tactical Damned AI opponent, complete rules, FEN tools, and layered horror audio.')
+          text = text.replace('<span class="product-tag">Active Development</span>', '<span class="product-tag">Version 1.2.0 Prerelease</span>', 1)
+          index.write_text(text, encoding='utf-8')
+
+          haunted = root/'haunted-echoes.html'
+          text = haunted.read_text(encoding='utf-8')
+          text = text.replace('Audio Development Milestone', 'Tactical AI Release Milestone')
+          text = text.replace('features a complete chess engine, a gothic identity,\n                        and a working layered audio system.', 'features a complete chess engine, tactical single-player AI,\n                        a gothic identity, and a working layered audio system.')
+          text = text.replace('The v7 development milestone adds a continuous\n                                5:50 background suite, randomized environmental\n                                creaks, and 24 faction-and-piece move and capture\n                                cues without interrupting the underlying ambience.', 'Version 1.2.0 adds a tactical Damned AI opponent with minimax\n                                search and alpha-beta pruning while preserving the continuous\n                                background suite, randomized ambience, and 24 piece cues.')
+          needle = '<ul class="product-list mb-4">\n\n                                <li>\n                                    Custom Hallowed Saints and Damned Souls artwork'
+          repl = '<ul class="product-list mb-4">\n\n                                <li>\n                                    Tactical single-player Damned AI opponent\n                                </li>\n\n                                <li>\n                                    Custom Hallowed Saints and Damned Souls artwork'
+          text = text.replace(needle, repl, 1)
+          text = text.replace('releases/download/v1.0.0/GhostlineChess-v1.0.0-win-x64.zip', 'releases/download/v1.2.0/GhostlineChess-v1.2.0-win-x64.zip')
+          text = text.replace('releases/tag/v1.0.0', 'releases/tag/v1.2.0')
+          text = text.replace('The public download remains v1.0.0 while the v7\n                                audio build completes sound-by-sound review.', 'The public download is now v1.2.0 with tactical AI, current\n                                artwork, complete rules, FEN tools, and layered audio.')
+          haunted.write_text(text, encoding='utf-8')
+
+          chess = root/'ghostline-chess.html'
+          text = chess.read_text(encoding='utf-8')
+          text = text.replace('https://ghostlinetech.com/images/ghostline-chess-v2.png', 'https://ghostlinetech.com/images/ghostline-chess-social-card-v1-2.png')
+          text = text.replace('src="images/ghostline-chess-web-card-v1-2.svg"', 'src="images/ghostline-chess-web-card-v1-2.png"')
+          chess.write_text(text, encoding='utf-8')
+          PY
+
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit final website refresh
+        if: steps.refresh.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html haunted-echoes.html ghostline-chess.html images/ghostline-chess-web-card-v1-2.png images/ghostline-chess-social-card-v1-2.png
+          git commit -m "Finalize Ghostline Chess v1.2.0 cards, screenshots, and download links"
+          git push origin main
+
+      - name: Upload refreshed Pages artifact
+        if: steps.refresh.outputs.changed == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy refreshed website
+        if: steps.refresh.outputs.changed == 'true'
+        uses: actions/deploy-pages@v4
