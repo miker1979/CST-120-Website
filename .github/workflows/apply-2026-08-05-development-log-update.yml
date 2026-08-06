@@ -1,0 +1,36 @@
+name: Apply August 5 Development Log Update
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-2026-08-05-development-log-update.yml"
+      - "scripts/apply-2026-08-05-development-log-update.py"
+
+permissions:
+  contents: write
+
+jobs:
+  update-development-logs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply dated log entries
+        run: python scripts/apply-2026-08-05-development-log-update.py
+
+      - name: Commit updated logs
+        run: |
+          if git diff --quiet -- development-log.html ghostline-chess-development-log.html; then
+            echo "Development logs already contain the August 5 entries."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add development-log.html ghostline-chess-development-log.html
+          git commit -m "Update TransitLogic and Ghostline Chess development logs [skip ci]"
+          git push
