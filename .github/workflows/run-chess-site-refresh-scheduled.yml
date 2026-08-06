@@ -1,0 +1,35 @@
+name: Run one-time chess website refresh
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow
+
+      - name: Refresh pages, release links, screenshots, and cards
+        run: python scripts/refresh_chess_release_site.py
+
+      - name: Commit website refresh and remove scheduler
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add development-log.html ghostline-chess.html ghostline-chess-development-log.html haunted-echoes.html index.html images/ghostline-chess-social-card-v1-2.png images/ghostline-chess-web-card-v1-2.png scripts/refresh_chess_release_site.py
+          git rm .github/workflows/run-chess-site-refresh-scheduled.yml
+          git commit -m "Update chess v1.2.0 download, screenshots, web cards, and dev logs"
+          git push origin main
