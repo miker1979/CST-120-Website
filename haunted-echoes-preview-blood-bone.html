@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haunted Echoes Preview - Blood and Bone</title>
+  <style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000}iframe{display:block;width:100%;height:100%;border:0}</style>
+</head>
+<body>
+<iframe id="preview" src="haunted-echoes.html" title="Haunted Echoes Blood and Bone theme preview"></iframe>
+<script>
+const frame=document.getElementById('preview');
+frame.addEventListener('load',()=>{
+  const doc=frame.contentDocument;
+  if(!doc)return;
+  const style=doc.createElement('style');
+  style.id='hes-blood-bone-theme';
+  style.textContent=`
+    :root{--hes-blood:#8b2638;--hes-blood-dark:#641b28;--hes-bone:#e9dfcf;--hes-bone-light:#f8f3ea;--hes-charcoal:#221d1d;--hes-ash:#6f6262}
+    body.light-mode main{background:radial-gradient(circle at 18% 12%,rgba(139,38,56,.09),transparent 31rem),linear-gradient(180deg,#f8f3ea,#eee6da)!important;color:#241f1f!important}
+    body.light-mode main .hero-section{background:linear-gradient(135deg,#faf6ef 0%,#f0e8dd 58%,#e8ddd1 100%)!important;border-bottom:1px solid rgba(139,38,56,.24)!important}
+    body.light-mode main .section-dark{background:linear-gradient(180deg,#e8ded2,#dfd2c4)!important;border-color:rgba(139,38,56,.2)!important}
+    body.light-mode main .section-label,body.light-mode main .accent-text{color:#8b2638!important}
+    body.light-mode main .hero-title,body.light-mode main .section-title,body.light-mode main h2,body.light-mode main h3{color:#241f1f!important}
+    body.light-mode main p,body.light-mode main .lead,body.light-mode main .text-muted-custom,body.light-mode main .product-list li{color:#6e5f5f!important}
+    body.light-mode main .btn-ghostline{background:linear-gradient(135deg,#a83249,#7c1f31)!important;color:#fff7ed!important;box-shadow:0 12px 30px rgba(117,27,44,.2)!important}
+    body.light-mode main .btn-ghostline-outline{border-color:rgba(139,38,56,.6)!important;color:#782033!important;background:rgba(250,246,239,.72)!important}
+    body.light-mode main .btn-ghostline-outline:hover{background:rgba(139,38,56,.1)!important;color:#641b28!important}
+    body.light-mode main .product-tag,body.light-mode main .branch-code{background:rgba(139,38,56,.08)!important;border-color:rgba(139,38,56,.27)!important;color:#7b2233!important}
+    body.light-mode main .ghostline-card{background:linear-gradient(145deg,#fffaf2,#eee4d7)!important;border-color:rgba(91,71,65,.2)!important;box-shadow:0 18px 45px rgba(64,41,41,.12)!important}
+    body.light-mode main .ghostline-card h2,body.light-mode main .ghostline-card h3,body.light-mode main .ghostline-card h4{color:#241f1f!important}
+    body.light-mode main .ghostline-card p{color:#6e5f5f!important}
+    body.light-mode main .hero-logo{border-color:rgba(139,38,56,.2)!important;box-shadow:0 0 90px rgba(98,24,38,.16)!important}
+    body.light-mode main .unity-engine-badge{border-color:rgba(139,38,56,.28)!important;box-shadow:0 12px 28px rgba(64,41,41,.12)!important}
+    body.dark-mode main{background:radial-gradient(circle at 18% 10%,rgba(139,38,56,.09),transparent 30rem),linear-gradient(180deg,#0c090a,#171112)!important}
+    body.dark-mode main .hero-section{background:linear-gradient(135deg,#0b0909,#171112 58%,#211417)!important;border-bottom-color:rgba(168,50,73,.22)!important}
+    body.dark-mode main .section-dark{background:#171112!important;border-color:rgba(168,50,73,.18)!important}
+    body.dark-mode main .section-label,body.dark-mode main .accent-text{color:#c64b62!important}
+    body.dark-mode main .hero-title,body.dark-mode main .section-title,body.dark-mode main h2,body.dark-mode main h3{color:#eadfce!important}
+    body.dark-mode main p,body.dark-mode main .lead,body.dark-mode main .text-muted-custom,body.dark-mode main li{color:#bcae9f!important}
+    body.dark-mode main .btn-ghostline{background:linear-gradient(135deg,#a83249,#751c2d)!important;color:#fff7ed!important}
+    body.dark-mode main .btn-ghostline-outline{border-color:rgba(198,75,98,.58)!important;color:#e1a6b1!important}
+    body.dark-mode main .product-tag,body.dark-mode main .branch-code{background:rgba(139,38,56,.11)!important;border-color:rgba(198,75,98,.25)!important;color:#d98696!important}
+    body.dark-mode main .ghostline-card{background:linear-gradient(145deg,#161011,#241619)!important;border-color:rgba(168,50,73,.21)!important}
+    body.dark-mode main .ghostline-card h2,body.dark-mode main .ghostline-card h3,body.dark-mode main .ghostline-card h4{color:#eadfce!important}
+    body.dark-mode main .hero-logo{border-color:rgba(198,75,98,.2)!important;box-shadow:0 0 95px rgba(139,38,56,.18)!important}
+    .studio-intro-button,.studio-intro-start{border-color:rgba(198,75,98,.82)!important}.studio-intro-button:hover,.studio-intro-button:focus{background:rgba(139,38,56,.22)!important}
+  `;
+  doc.head.appendChild(style);
+});
+</script>
+</body>
+</html>
