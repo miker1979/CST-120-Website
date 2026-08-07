@@ -1250,3 +1250,30 @@ body.light-mode .site-footer small {
       38px;
   }
 }
+
+/* =========================================================
+   QA: FOOTER POLISH
+   ========================================================= */
+
+.site-footer {
+  background:
+    linear-gradient(
+      180deg,
+      #03101f 0%,
+      #010917 100%
+    ) !important;
+
+  border-top: 1px solid rgba(54, 217, 220, 0.32);
+}
+
+.footer-logo {
+  width: 225px;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767.98px) {
+  .footer-logo {
+    width: 190px;
+  }
+}
