@@ -1,0 +1,230 @@
+from pathlib import Path
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
+import re
+
+ROOT = Path(__file__).resolve().parents[1]
+IMAGES = ROOT / "images"
+IMAGES.mkdir(exist_ok=True)
+
+RELEASE_URL = "https://github.com/miker1979/Ghostline-Chess/releases/download/v1.2.0/GhostlineChess-v1.2.0-win-x64.zip"
+RELEASE_PAGE = "https://github.com/miker1979/Ghostline-Chess/releases/tag/v1.2.0"
+
+SOURCE = IMAGES / "ghostline-chess-v2.png"
+if not SOURCE.exists():
+    SOURCE = IMAGES / "ghostline-chess.png"
+
+BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+
+
+def font(path: str, size: int):
+    return ImageFont.truetype(path, size)
+
+
+screenshot = Image.open(SOURCE).convert("RGB")
+
+
+def make_card(size, output, social=False):
+    width, height = size
+    card = Image.new("RGB", size, "#07111f")
+    draw = ImageDraw.Draw(card)
+
+    for y in range(height):
+        t = y / max(height - 1, 1)
+        draw.line((0, y, width, y), fill=(int(7 + 8 * t), int(17 + 5 * t), int(31 + 18 * t)))
+
+    for x in range(0, width, 60):
+        draw.line((x, 0, x, height), fill=(10, 43, 70), width=1)
+    for y in range(0, height, 60):
+        draw.line((0, y, width, y), fill=(10, 43, 70), width=1)
+
+    if social:
+        shot_box = (610, 80, 1145, 550)
+        title_x, title_y, title_size = 65, 85, 64
+    else:
+        shot_box = (560, 90, 1135, 675)
+        title_x, title_y, title_size = 60, 100, 72
+
+    shot_w = shot_box[2] - shot_box[0]
+    shot_h = shot_box[3] - shot_box[1]
+    fitted = ImageOps.fit(screenshot, (shot_w, shot_h), method=Image.Resampling.LANCZOS, centering=(0.5, 0.42))
+
+    shadow = Image.new("RGBA", (shot_w + 30, shot_h + 30), (0, 0, 0, 0))
+    shadow_draw = ImageDraw.Draw(shadow)
+    shadow_draw.rounded_rectangle((15, 15, shot_w + 15, shot_h + 15), radius=22, fill=(0, 0, 0, 165))
+    shadow = shadow.filter(ImageFilter.GaussianBlur(10))
+    card.paste(shadow, (shot_box[0] - 15, shot_box[1] - 15), shadow)
+    card.paste(fitted, (shot_box[0], shot_box[1]))
+    draw.rounded_rectangle(shot_box, radius=18, outline="#d4a63b", width=4)
+
+    draw.text((title_x, title_y), "GHOSTLINE", font=font(BOLD, title_size), fill="#f7fbff")
+    draw.text((title_x, title_y + title_size + 2), "CHESS", font=font(BOLD, title_size), fill="#d4a63b")
+    draw.text((title_x, title_y + title_size * 2 + 35), "THE HALLOWED SAINTS", font=font(BOLD, 25), fill="#f1cf73")
+    draw.text((title_x, title_y + title_size * 2 + 72), "VS. THE DAMNED", font=font(BOLD, 25), fill="#e16b7c")
+
+    badge_y = title_y + title_size * 2 + 135
+    draw.rounded_rectangle((title_x, badge_y, title_x + 305, badge_y + 52), radius=26, fill="#8e1730", outline="#e16b7c", width=2)
+    draw.text((title_x + 24, badge_y + 11), "VERSION 1.2.0", font=font(BOLD, 24), fill="white")
+    draw.text((title_x, badge_y + 80), "TACTICAL AI • COMPLETE RULES", font=font(BOLD, 20), fill="#18d7df")
+    draw.text((title_x, badge_y + 115), "LAYERED GOTHIC AUDIO • WINDOWS x64", font=font(REGULAR, 18), fill="#c9d7e5")
+    draw.text((title_x, height - 68), "Every move awakens something.", font=font(REGULAR, 20), fill="#d7e2ed")
+    card.save(output, "PNG", optimize=True)
+
+
+make_card((1200, 630), IMAGES / "ghostline-chess-social-card-v1-2.png", social=True)
+make_card((1200, 750), IMAGES / "ghostline-chess-web-card-v1-2.png", social=False)
+
+
+for path in ROOT.glob("*.html"):
+    text = path.read_text(encoding="utf-8")
+    original = text
+    replacements = {
+        "GhostlineChess-v1.1.0-win-x64.zip": "GhostlineChess-v1.2.0-win-x64.zip",
+        "/releases/download/v1.1.0/": "/releases/download/v1.2.0/",
+        "/releases/tag/v1.1.0": "/releases/tag/v1.2.0",
+        "Ghostline Chess 1.1.0": "Ghostline Chess 1.2.0",
+        "Version 1.1.0": "Version 1.2.0",
+        "version 1.1.0": "version 1.2.0",
+        "Download Version 1.1.0": "Download Version 1.2.0",
+        "images/ghostline-chess.png": "images/ghostline-chess-v2.png",
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    if path.name == "index.html":
+        text = text.replace("images/ghostline-chess-v2.png", "images/ghostline-chess-web-card-v1-2.png")
+    if text != original:
+        path.write_text(text, encoding="utf-8")
+
+
+chess_path = ROOT / "ghostline-chess.html"
+chess = chess_path.read_text(encoding="utf-8")
+if "ghostline-chess-social-card-v1-2.png" not in chess:
+    og = '''
+    <!-- Ghostline Chess social and messaging preview -->
+    <meta property="og:title" content="Ghostline Chess v1.2.0 | Haunted Echoes Studios">
+    <meta property="og:description" content="Battle the tactical Damned AI or play locally with complete chess rules, FEN tools, gothic artwork, and layered horror audio.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ghostlinetech.com/ghostline-chess.html">
+    <meta property="og:image" content="https://ghostlinetech.com/images/ghostline-chess-social-card-v1-2.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Ghostline Chess v1.2.0 tactical AI release">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ghostline Chess v1.2.0">
+    <meta name="twitter:description" content="Tactical AI, complete chess rules, gothic artwork, and layered horror audio for Windows.">
+    <meta name="twitter:image" content="https://ghostlinetech.com/images/ghostline-chess-social-card-v1-2.png">
+'''
+    chess = chess.replace("    <title>", og + "\n    <title>", 1)
+
+chess = chess.replace("Audio Milestone Complete", "Tactical AI Milestone")
+chess = chess.replace("Local Two Player", "Local + Single Player")
+chess = chess.replace("Upcoming Features", "Current and Upcoming Features", 1)
+chess = chess.replace("Original Packaged Release", "Latest Windows Prerelease")
+chess = chess.replace(
+    "A planned single-player mode will let players\n                                choose a faction and face a computer-controlled\n                                opponent with selectable challenge levels.",
+    "The Damned now fight as a tactical computer opponent using\n                                material evaluation, two-ply minimax search, alpha-beta\n                                pruning, and background calculation that keeps the\n                                interface responsive.",
+)
+chess = chess.replace(
+    "Version 1.2.0 remains available as the\n                                    original packaged Windows release. The\n                                    gothic interface shown above is the newer\n                                    development source milestone.",
+    "Version 1.2.0 is the current packaged Windows prerelease. It\n                                    includes the tactical AI opponent, current gothic\n                                    interface, complete chess rules, FEN tools, and\n                                    layered audio system.",
+)
+chess = re.sub(r"https://github\.com/miker1979/Ghostline-Chess/releases/download/v\d+\.\d+\.\d+/GhostlineChess-v\d+\.\d+\.\d+-win-x64\.zip", RELEASE_URL, chess)
+chess = re.sub(r"https://github\.com/miker1979/Ghostline-Chess/releases/tag/v\d+\.\d+\.\d+", RELEASE_PAGE, chess)
+chess_path.write_text(chess, encoding="utf-8")
+
+
+haunted_path = ROOT / "haunted-echoes.html"
+haunted = haunted_path.read_text(encoding="utf-8")
+haunted = haunted.replace("Audio Development Milestone", "Tactical AI Release Milestone")
+haunted = haunted.replace("The public download remains v1.0.0 while the v7\n                                audio build completes sound-by-sound review.", "The public download is now v1.2.0 with the tactical AI, current\n                                artwork, complete rules, and layered audio milestone.")
+haunted = haunted.replace("The public download remains v1.1.0 while the v7\n                                audio build completes sound-by-sound review.", "The public download is now v1.2.0 with the tactical AI, current\n                                artwork, complete rules, and layered audio milestone.")
+haunted = re.sub(r"https://github\.com/miker1979/Ghostline-Chess/releases/download/v\d+\.\d+\.\d+/GhostlineChess-v\d+\.\d+\.\d+-win-x64\.zip", RELEASE_URL, haunted)
+haunted = re.sub(r"https://github\.com/miker1979/Ghostline-Chess/releases/tag/v\d+\.\d+\.\d+", RELEASE_PAGE, haunted)
+haunted_path.write_text(haunted, encoding="utf-8")
+
+
+dev_path = ROOT / "development-log.html"
+dev = dev_path.read_text(encoding="utf-8")
+marker = "<!-- 2026-08-06-release-organization-and-war -->"
+if marker not in dev:
+    entry = '''
+                    <!-- 2026-08-06-release-organization-and-war -->
+                    <article class="timeline-entry">
+                        <span class="timeline-marker" aria-hidden="true"></span>
+                        <div class="timeline-card">
+                            <header class="timeline-header">
+                                <span class="timeline-date">August 6, 2026 · Company-Wide Milestone</span>
+                                <h2>Ghostline Chess v1.2.0, Website Cards, and Development Workspace Reorganization</h2>
+                            </header>
+                            <div class="timeline-body">
+                                <p>Ghostline completed a company-wide cleanup and release pass. Active repositories were consolidated under one development workspace, obsolete copies were archived, the website received current Ghostline Chess artwork and sharing cards, and the playable Windows package advanced to version 1.2.0.</p>
+                                <section class="entry-section">
+                                    <h3>Ghostline Chess v1.2.0</h3>
+                                    <ul class="improvement-list">
+                                        <li>Published a self-contained Windows x64 prerelease from the current main branch.</li>
+                                        <li>Packaged the tactical Damned AI with two-ply minimax, alpha-beta pruning, and material-aware evaluation.</li>
+                                        <li>Retained complete chess rules, FEN tools, the Ghostline Tome, the Graveyard, current artwork, and layered audio.</li>
+                                        <li>Replaced outdated website screenshots and added dedicated 1200 × 630 social-sharing artwork.</li>
+                                    </ul>
+                                </section>
+                                <section class="entry-section">
+                                    <h3>Development environment and project organization</h3>
+                                    <ul class="improvement-list">
+                                        <li>Centralized FleetTrack, Ghostline Chess, the Ghostline website, and TransitLogic under C:\\Dev\\01_ACTIVE_PROJECTS.</li>
+                                        <li>Created dedicated folders for school work, project documents, assets, reference data, workspaces, and archived builds.</li>
+                                        <li>Verified Git remotes, clean working trees, and successful builds before archiving duplicate repositories.</li>
+                                        <li>Created one Ghostline Development VS Code workspace for all active company projects.</li>
+                                    </ul>
+                                </section>
+                                <section class="entry-section">
+                                    <h3>Additional project progress</h3>
+                                    <ul class="improvement-list">
+                                        <li>Locked the current Jerome paranormal-game canon and established the location-survey phase as the next production step.</li>
+                                        <li>Added the War card-game prototype to active development as a future Ghostline Arcade release.</li>
+                                        <li>Identified and removed the duplicate War Game Program.cs entry point so the prototype can return to a clean build.</li>
+                                        <li>Added cache-proof website image filenames and updated social-preview metadata for current branding.</li>
+                                    </ul>
+                                </section>
+                                <div class="timeline-links">
+                                    <a href="ghostline-chess.html">Download Ghostline Chess v1.2.0 &rarr;</a>
+                                    <a href="ghostline-chess-development-log.html">Detailed chess log &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+'''
+    dev = dev.replace('<div class="company-timeline">', '<div class="company-timeline">\n' + entry, 1)
+
+dev = dev.replace("Ghostline Chess tactical AI and dynamic audio", "Ghostline Chess v1.2.0 release, tactical AI, and website presentation")
+dev = dev.replace("Company website structure and development records", "Current download links, screenshots, social cards, and development records")
+dev_path.write_text(dev, encoding="utf-8")
+
+
+detailed_path = ROOT / "ghostline-chess-development-log.html"
+if detailed_path.exists():
+    detailed = detailed_path.read_text(encoding="utf-8")
+    marker = "<!-- 2026-08-06-v1-2-release -->"
+    if marker not in detailed:
+        section = '''
+        <!-- 2026-08-06-v1-2-release -->
+        <section class="section-padding">
+            <div class="container">
+                <article class="ghostline-card">
+                    <span class="product-tag">August 6, 2026 · v1.2.0 Prerelease</span>
+                    <h2 class="mt-3">Tactical AI Release and Website Presentation Refresh</h2>
+                    <p class="lead">Ghostline Chess v1.2.0 packages the current tactical AI build as a self-contained Windows x64 download and updates the public website with current screenshots, download cards, and social-sharing artwork.</p>
+                    <ul class="product-list">
+                        <li>Two-ply minimax AI with alpha-beta pruning and material-aware evaluation</li>
+                        <li>Responsive background AI calculation</li>
+                        <li>Current Hallowed Saints and Damned Souls artwork</li>
+                        <li>Complete rules, FEN tools, Tome, Graveyard, and layered audio</li>
+                        <li>New 1200 × 630 social card and current website card imagery</li>
+                        <li>Updated Windows download and release-note links</li>
+                    </ul>
+                    <a href="https://github.com/miker1979/Ghostline-Chess/releases/tag/v1.2.0" class="btn btn-ghostline" target="_blank" rel="noopener noreferrer">View v1.2.0 Release</a>
+                </article>
+            </div>
+        </section>
+'''
+        detailed = detailed.replace("<main>", "<main>\n" + section, 1)
+        detailed_path.write_text(detailed, encoding="utf-8")
