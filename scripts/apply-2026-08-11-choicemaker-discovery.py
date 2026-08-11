@@ -134,3 +134,5 @@ changed_labs = update_labs()
 
 if not changed_home and not changed_labs:
     print("No changes required.")
+
+# Triggered after workflow installation so the update runs on main.
