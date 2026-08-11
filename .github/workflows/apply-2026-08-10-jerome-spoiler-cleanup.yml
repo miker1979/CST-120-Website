@@ -1,0 +1,36 @@
+name: Apply August 10 Jerome Spoiler Cleanup
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-2026-08-10-jerome-spoiler-cleanup.yml"
+      - "scripts/apply-2026-08-10-jerome-spoiler-cleanup.py"
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup-jerome-page:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove remaining public spoiler
+        run: python scripts/apply-2026-08-10-jerome-spoiler-cleanup.py
+
+      - name: Commit cleanup
+        run: |
+          if git diff --quiet -- arizona-paranormal.html arizona-paranormal-v2.html; then
+            echo "Spoiler cleanup is already applied."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add arizona-paranormal.html arizona-paranormal-v2.html
+          git commit -m "Remove remaining Jerome finale spoiler [skip ci]"
+          git push
