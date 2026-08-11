@@ -1,0 +1,36 @@
+name: Apply August 10 Jerome Website Update
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-2026-08-10-jerome-site-update.yml"
+      - "scripts/apply-2026-08-10-jerome-site-update.py"
+
+permissions:
+  contents: write
+
+jobs:
+  update-jerome-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply August 10 Jerome updates
+        run: python scripts/apply-2026-08-10-jerome-site-update.py
+
+      - name: Commit website changes
+        run: |
+          if git diff --quiet -- development-log.html arizona-paranormal.html arizona-paranormal-v2.html; then
+            echo "August 10 Jerome website updates are already present."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add development-log.html arizona-paranormal.html arizona-paranormal-v2.html
+          git commit -m "Update Jerome dev log and public mystery page [skip ci]"
+          git push
