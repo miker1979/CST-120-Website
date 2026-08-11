@@ -1,105 +1,152 @@
 from pathlib import Path
 
-MARKER = "<!-- 2026-08-10-jerome-public-mystery-pass -->"
+PAGES = [Path("arizona-paranormal.html"), Path("arizona-paranormal-v2.html")]
+DEVLOG = Path("development-log.html")
 
 
-def replace_once(text: str, old: str, new: str, label: str) -> str:
-    if old not in text:
-        raise RuntimeError(f"Could not locate {label}")
-    return text.replace(old, new, 1)
+def resolve_head_conflicts(text: str) -> str:
+    """Resolve any accidentally committed Git conflict blocks by keeping HEAD."""
+    marker = "<<<<<<< HEAD"
+    while marker in text:
+        start = text.index(marker)
+        sep = text.index("=======", start)
+        end = text.index(">>>>>>>", sep)
+        end_line = text.find("\n", end)
+        if end_line == -1:
+            end_line = len(text)
+        else:
+            end_line += 1
+        head = text[start + len(marker):sep]
+        if head.startswith("\n"):
+            head = head[1:]
+        text = text[:start] + head + text[end_line:]
+    return text
 
 
-def update_jerome_page(path: Path) -> bool:
-    text = path.read_text(encoding="utf-8")
-    if MARKER in text:
-        return False
+ANCHOR_CSS = r'''
 
-    text = replace_once(
-        text,
-        '<meta name="description" content="Arizona Paranormal Project — Jerome is a four-player cooperative paranormal investigation and survival-horror mystery from Haunted Echoes Studios, built around real Jerome, Arizona locations and a fixed 1928 supernatural history.">',
-        '<meta name="description" content="Arizona Paranormal Project — Jerome is a four-player cooperative paranormal investigation and survival-horror mystery from Haunted Echoes Studios, built around real Jerome, Arizona locations and a buried history that reaches far beyond one night in the mines.">',
-        "meta description",
-    )
-    text = replace_once(
-        text,
-        '<meta property="og:description" content="Four investigators uncover the truth behind a 1928 breach across real Jerome locations, resolve eight trapped miner souls, and return to Haynes for the final binding.">',
-        '<meta property="og:description" content="Four investigators enter real Jerome locations and uncover a supernatural mystery whose roots reach much deeper than the town remembers.">',
-        "Open Graph description",
-    )
-    text = replace_once(text, '<main>', '<main>\n' + MARKER, "main marker")
+    /* EIGHT ANCHOR POINTS GALLERY */
+    .anchor-card{height:100%;overflow:hidden;padding:0;border:1px solid var(--az-border);border-top:4px solid #704b36;border-radius:14px;background:#fff;box-shadow:0 10px 28px rgba(15,23,42,.07)}
+    .anchor-shot{position:relative;margin:0;aspect-ratio:16/10;overflow:hidden;background:#050608;border-bottom:1px solid var(--az-border)}
+    .anchor-shot a{display:block;width:100%;height:100%;cursor:zoom-in}
+    .anchor-shot img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .22s ease,filter .22s ease}
+    .anchor-shot:hover img{transform:scale(1.035);filter:brightness(1.06)}
+    .anchor-shot figcaption{position:absolute;top:.55rem;left:.55rem;margin:0;padding:.3rem .55rem;border-radius:999px;background:rgba(7,9,13,.86);color:#f3eadc;font-size:.65rem;font-weight:900;letter-spacing:.04rem;text-transform:uppercase;pointer-events:none}
+    .anchor-body{padding:1.25rem 1.35rem 1.45rem}
+    .anchor-id{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:32px;padding:0 .65rem;border-radius:999px;background:var(--az-midnight);color:#f2c067;font-weight:900;font-size:.75rem;letter-spacing:.04rem}
+    .anchor-type{display:inline-block;padding:.3rem .55rem;border-radius:999px;background:rgba(125,31,48,.1);color:var(--az-oxblood);font-size:.65rem;font-weight:800;text-transform:uppercase}
+    .anchor-body h3{margin:.85rem 0 .35rem;color:var(--az-text)!important;font-size:1.18rem}
+    .anchor-body .miner-name{margin:0 0 .7rem;color:#704b36!important;font-weight:800}
+    .anchor-body p{color:var(--az-muted)!important}
+    body.arizona-page.dark-mode .anchor-card{background:#171c26;border-color:#3b4657}
+    body.arizona-page.dark-mode .anchor-body h3{color:#f6efe7!important}
+    body.arizona-page.dark-mode .anchor-body p{color:#bdc7d2!important}
+    body.arizona-page.dark-mode .anchor-body .miner-name{color:#d2aa8f!important}
+    body.arizona-page.dark-mode .anchor-type{color:#ef9dac;background:rgba(125,31,48,.23)}
+    /* END EIGHT ANCHOR POINTS GALLERY */
+'''
 
-    old_hero = '''<section class="az-hero"><div class="container"><div class="row align-items-center"><div class="col-lg-6 mb-5 mb-lg-0"><p class="section-label">Haunted Echoes Studios — Canon v2.0</p><h1 class="az-title">Arizona Paranormal Project <span class="accent">— Jerome</span></h1><p class="lead">A four-investigator cooperative paranormal investigation and survival-horror mystery set in modern-day Jerome, Arizona.</p><p class="az-hero-copy">The mystery begins with a December 3, 1928 mine-breach cinematic. In the present day, four player-defined investigators enter real Jerome locations, uncover a fixed supernatural history through randomized evidence placement, resolve eight trapped miner souls, and eventually return to Haynes for the final binding.</p><div class="mt-4"><a href="#canon" class="btn btn-ghostline btn-lg mr-2 mb-2">Explore the Locked Canon</a><a href="#locations" class="btn btn-ghostline-outline btn-lg mb-2">View Jerome Locations</a></div><div class="mt-3"><span class="az-tag">Four Investigators</span><span class="az-tag">Real Jerome Locations</span><span class="az-tag">1928 Breach</span><span class="az-tag">Unity</span></div></div><div class="col-lg-6"><figure class="az-showcase"><div class="az-showcase-head"><div><span>Current Visual Direction</span><br><strong>Jerome Grand Hotel Investigation</strong></div><span>Canon / Design Locked</span></div><a href="images/jerome-locations/Game/jerome-grand-hotel-game.png" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Game/jerome-grand-hotel-game.png" alt="First-person paranormal investigation outside the Jerome Grand Hotel at night"></a><figcaption>Current concept visualization of the first-person investigation style. The website now reflects the locked Jerome narrative and location framework rather than the earlier generic Arizona concept.</figcaption></figure></div></div></div></section>'''
-    new_hero = '''<section class="az-hero"><div class="container"><div class="row align-items-center"><div class="col-lg-6 mb-5 mb-lg-0"><p class="section-label">Haunted Echoes Studios — In Development</p><h1 class="az-title">Arizona Paranormal Project <span class="accent">— Jerome</span></h1><p class="lead">A four-investigator cooperative paranormal investigation and survival-horror mystery set in modern-day Jerome, Arizona.</p><p class="az-hero-copy">Four player-defined investigators enter real Jerome locations expecting a haunted-town case. What they uncover is older, stranger, and far less certain than the story Jerome has remembered. Evidence moves between playthroughs, voices cannot always be trusted, and the deeper the team investigates, the more the mountain begins to answer back.</p><div class="mt-4"><a href="#canon" class="btn btn-ghostline btn-lg mr-2 mb-2">Enter the Mystery</a><a href="#locations" class="btn btn-ghostline-outline btn-lg mb-2">View Jerome Locations</a></div><div class="mt-3"><span class="az-tag">Four Investigators</span><span class="az-tag">Real Jerome Locations</span><span class="az-tag">Buried History</span><span class="az-tag">Unity</span></div></div><div class="col-lg-6"><figure class="az-showcase"><div class="az-showcase-head"><div><span>Current Visual Direction</span><br><strong>Jerome Grand Hotel Investigation</strong></div><span>Preproduction</span></div><a href="images/jerome-locations/Game/jerome-grand-hotel-game.png" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Game/jerome-grand-hotel-game.png" alt="First-person paranormal investigation outside the Jerome Grand Hotel at night"></a><figcaption>Current concept visualization of the first-person investigation style: real Jerome locations, environmental storytelling, cooperative pressure, and a mystery designed to reveal itself piece by piece.</figcaption></figure></div></div></div></section>'''
-    text = replace_once(text, old_hero, new_hero, "hero section")
+ANCHOR_SECTION = r'''
+<section id="anchors" class="az-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="section-label">The Eight Anchor Points</p>
+      <h2 class="section-title">Eight fictionalized locations built for <span class="az-accent">Jerome's mining landscape.</span></h2>
+      <p class="lead az-lead">The Anchor Points are original game locations rather than surviving historic buildings. Their architecture and terrain draw from the mining character of Jerome while each environment is designed around a different investigation style.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A1-old-foremans-office.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A1-old-foremans-office.webp" alt="Game render of the fictional Old Foreman's Office anchor point"></a><figcaption>Game Render</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">A1</span><span class="anchor-type">Fictional Anchor</span></div><h3>Old Foreman's Office</h3><p class="miner-name">Jack &ldquo;Ironhand&rdquo; Calloway</p><p class="mb-0">A weathered mining administration office built around records, accountability, and the foreman's final investigation trail.</p></div></article></div>
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A2-powder-magazine.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A2-powder-magazine.webp" alt="Game render of the fictional Powder Magazine anchor point"></a><figcaption>Game Render</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">A2</span><span class="anchor-type">Fictional Anchor</span></div><h3>Powder Magazine</h3><p class="miner-name">Samuel &ldquo;Blaze&rdquo; McKenna</p><p class="mb-0">An isolated reinforced explosives bunker cut into the hillside, with blast doors, firing equipment, and narrow service corridors.</p></div></article></div>
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A3-company-survey-archive.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A3-company-survey-archive.webp" alt="Game render of the fictional Company Survey Archive anchor point"></a><figcaption>Game Render</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">A3</span><span class="anchor-type">Fictional Anchor</span></div><h3>Company Survey Archive</h3><p class="miner-name">Mateo Ruiz</p><p class="mb-0">A forgotten engineering and map archive filled with drafting tables, mine plans, survey instruments, and geometry that becomes increasingly unreliable.</p></div></article></div>
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A4-level-3200-barricade.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A4-level-3200-barricade.webp" alt="Game render of the fictional Level 3200 Barricade anchor point"></a><figcaption>Game Render</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">A4</span><span class="anchor-type">Fictional Anchor</span></div><h3>Level 3200 Barricade</h3><p class="miner-name">Walter &ldquo;Timber&rdquo; Briggs</p><p class="mb-0">A timbered mine portal descending toward a dead-end barricade, unstable supports, and a progressively tighter underground route.</p></div></article></div>
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A5-main-shaft-hoist-house.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A5-main-shaft-hoist-house.webp" alt="Game render of the fictional Main Shaft Hoist House anchor point"></a><figcaption>Game Render</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">A5</span><span class="anchor-type">Fictional Anchor</span></div><h3>Main Shaft Hoist House</h3><p class="miner-name">Emil Novak</p><p class="mb-0">A heavy industrial shaft complex dominated by winding drums, steel cable, brake systems, and an elevated operator station.</p></div></article></div>
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A6-lower-pump-house.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A6-lower-pump-house.webp" alt="Game render of the fictional Lower Drainage Station anchor point"></a><figcaption>Game Render</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">A6</span><span class="anchor-type">Fictional Anchor</span></div><h3>Lower Drainage Station</h3><p class="miner-name">Thomas &ldquo;Pumps&rdquo; Hale</p><p class="mb-0">A low-elevation mine utility station of pipes, valves, pumps, standing water, gauges, and drainage machinery beneath the industrial hillside.</p></div></article></div>
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A7-assay-office.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A7-assay-office.webp" alt="Game render of the fictional Assay Office and Specimen Vault anchor point"></a><figcaption>Game Render</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">A7</span><span class="anchor-type">Fictional Anchor</span></div><h3>Assay Office &amp; Specimen Vault</h3><p class="miner-name">Nathaniel Crowe</p><p class="mb-0">A compact mining laboratory combining ore preparation, furnace work, chemical analysis, and a secure specimen vault.</p></div></article></div>
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A8-old-infirmary-chapel.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A8-old-infirmary-chapel.webp" alt="Game render of the fictional Old Infirmary and Chapel Annex anchor point"></a><figcaption>Game Render</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">A8</span><span class="anchor-type">Fictional Anchor</span></div><h3>Old Infirmary &amp; Chapel Annex</h3><p class="miner-name">Isaiah Brooks</p><p class="mb-0">A decaying medical facility that transitions into a small rock-set chapel, blending emergency care spaces with the spiritual side of the investigation.</p></div></article></div>
+    </div>
+  </div>
+</section>
+'''
 
-    old_canon = '''<section id="canon" class="az-section"><div class="container"><div class="text-center mb-5"><p class="section-label">Canon v2.0</p><h2 class="section-title">The mystery has a <span class="az-accent">fixed truth.</span></h2><p class="lead az-lead">Replayability comes from where evidence appears, how encounters unfold, and how the AI Director pressures the team — not from changing what actually happened in 1928.</p></div><div class="canon-banner mb-5"><h3>December 3, 1928</h3><p class="mb-0">The game opens with the mine breach that created the supernatural crisis. Elias Vance Finch caused the breach. The eight miners became containment anchors, and the modern investigation slowly exposes the truth behind their deaths, Elias’s manipulation, and the entity he helped unleash.</p></div><div class="row"><div class="col-lg-4 mb-4"><article class="az-card"><h3>Investigate</h3><p class="mb-0">All 12 main locations are canonical story spaces. Clues and events can move between valid positions, but the underlying history remains consistent.</p></article></div><div class="col-lg-4 mb-4"><article class="az-card gold"><h3>Resolve</h3><p class="mb-0">Each miner’s corrupted loop must be understood and resolved. When a miner is released, that soul lights one vessel in the talisman.</p></article></div><div class="col-lg-4 mb-4"><article class="az-card cyan"><h3>Return to Haynes</h3><p class="mb-0">The investigation ultimately returns to Gold King Mine &amp; Ghost Town / the historical Haynes site for the final binding and ending.</p></article></div></div></div></section>'''
-    new_canon = '''<section id="canon" class="az-section"><div class="container"><div class="text-center mb-5"><p class="section-label">A Fixed Mystery Beneath a Changing Investigation</p><h2 class="section-title">The truth stays fixed. <span class="az-accent">Finding it does not.</span></h2><p class="lead az-lead">Replayability comes from where evidence appears, how encounters unfold, what the team notices, and how the AI Director pressures the investigation. The underlying history does not rewrite itself between runs.</p></div><div class="canon-banner mb-5"><h3>The story did not begin where everyone thinks it did.</h3><p class="mb-0">Jerome remembers mining disasters, restless dead, and stories carried from one generation to the next. The investigators begin with a mystery tied to 1928, but surviving records suggest that whatever happened beneath the mountain may have been waiting much longer.</p></div><div class="row"><div class="col-lg-4 mb-4"><article class="az-card"><h3>Investigate</h3><p class="mb-0">Twelve main locations form the core case. Evidence can move between authored positions, so knowing the story from a previous run does not mean knowing where the answers will be this time.</p></article></div><div class="col-lg-4 mb-4"><article class="az-card gold"><h3>Understand</h3><p class="mb-0">Eight miners remain central to the case, but what happened to them — and why their names keep surfacing — is something the players must piece together for themselves.</p></article></div><div class="col-lg-4 mb-4"><article class="az-card cyan"><h3>Go Deeper</h3><p class="mb-0">The strongest endings require more than collecting objects. The team must understand the history it uncovered, preserve the right evidence, and recognize what the final ritual is actually asking them to do.</p></article></div></div></div></section>'''
-    text = replace_once(text, old_canon, new_canon, "canon teaser section")
-
-    old_talisman = '''<section class="az-section-alt"><div class="container"><div class="row align-items-stretch"><div class="col-lg-6 mb-4"><div class="talisman-panel h-100"><span class="status-pill">Nine Soul Vessels</span><h2 class="mt-3">The talisman is not built from gems.</h2><p>The talisman is discovered at Laura Williams Memorial Park. It contains nine soul vessels: eight for the trapped miners and one possible final vessel for Elias.</p><ul><li>Each resolved miner lights one vessel.</li><li>Eight miner souls make the talisman powerful, but incomplete.</li><li>Elias can become the ninth soul only if he rejects the entity and willingly completes the binding.</li><li>Personal relics remain evidence and puzzle objects — they are not progression currency.</li></ul><div class="vessels"><div class="vessel">1</div><div class="vessel">2</div><div class="vessel">3</div><div class="vessel">4</div><div class="vessel">5</div><div class="vessel">6</div><div class="vessel">7</div><div class="vessel">8</div><div class="vessel ninth">9</div></div></div></div><div class="col-lg-6 mb-4"><article class="az-card h-100"><p class="section-label">One-Way Progression</p><h2 class="section-title">Leaving a story location has consequences.</h2><p>Once a story location closes, players cannot freely revisit it unless an authored event specifically reopens it. The route moves forward, but every closure must preserve at least one valid path to each ending that is still available.</p><p class="mb-0">This makes evidence decisions meaningful without turning the mystery into random truth. Players may miss information, interpret clues differently, or reach the finale under greater pressure — but Jerome’s history does not rewrite itself between runs.</p></article></div></div></div></section>'''
-    new_talisman = '''<section class="az-section-alt"><div class="container"><div class="row align-items-stretch"><div class="col-lg-6 mb-4"><div class="talisman-panel h-100"><span class="status-pill">Nine Positions</span><h2 class="mt-3">A relic with one question too many.</h2><p>A strange nine-position talisman becomes part of the investigation. Eight outer positions appear to connect to the 1928 crew. The purpose of the center position is left unanswered until the players uncover enough of the case to understand what they are really carrying.</p><ul><li>The talisman is assembled from recovered physical pieces and instructions — not gems.</li><li>Its outer positions react to choices made during the miner investigations.</li><li>Missing evidence can leave parts of the relic inert or misunderstood.</li><li>The ninth position is visible long before its meaning becomes clear.</li></ul><div class="vessels"><div class="vessel">1</div><div class="vessel">2</div><div class="vessel">3</div><div class="vessel">4</div><div class="vessel">5</div><div class="vessel">6</div><div class="vessel">7</div><div class="vessel">8</div><div class="vessel ninth">?</div></div></div></div><div class="col-lg-6 mb-4"><article class="az-card h-100"><p class="section-label">One-Way Progression</p><h2 class="section-title">Leaving a story location has consequences.</h2><p>Once a story location closes, players cannot freely revisit it unless an authored event specifically reopens it. The route moves forward, but every closure must preserve at least one valid path to each ending that is still available.</p><p class="mb-0">This makes evidence decisions meaningful without turning the mystery into random truth. Players may miss information, interpret clues differently, or reach the finale under greater pressure — but Jerome’s history does not rewrite itself between runs.</p></article></div></div></div></section>'''
-    text = replace_once(text, old_talisman, new_talisman, "talisman section")
-
-    old_miners_intro = '''<section class="az-section"><div class="container"><div class="text-center mb-5"><p class="section-label">The Eight Miners</p><h2 class="section-title">Eight 1928 souls stand between the team and <span class="az-accent">the final binding.</span></h2><p class="lead az-lead">Each miner is a supernatural miniboss and containment anchor. Their professions are locked; their exact assignment among the main locations remains part of the field-reference/photo-survey work.</p></div><div class="row">'''
-    new_miners_intro = '''<section class="az-section"><div class="container"><div class="text-center mb-5"><p class="section-label">The Eight Miners</p><h2 class="section-title">Eight names keep returning to <span class="az-accent">the case.</span></h2><p class="lead az-lead">The 1928 crew is central to the investigation. Each miner carries a different profession, history, and supernatural encounter, but the website leaves their true role beneath Jerome for the players to discover.</p></div><div class="row">'''
-    text = replace_once(text, old_miners_intro, new_miners_intro, "miners introduction")
-
-    old_elias = '''<div class="col-lg-6 mb-4"><article class="az-card h-100"><p class="section-label">Elias Vance Finch</p><h2 class="section-title">Guide, manipulator, and possible <span class="az-accent">ninth soul.</span></h2><p>Elias caused the 1928 breach and guides the modern investigators toward the ritual he needs. His role is intentionally unstable: he can continue serving the entity, or reject it at the end.</p><p class="mb-0">On the redemption path, Elias willingly fills the ninth vessel. That choice creates the true binding and changes the final outcome.</p></article></div>'''
-    new_elias = '''<div class="col-lg-6 mb-4"><article class="az-card h-100"><p class="section-label">Elias Vance Finch</p><h2 class="section-title">A voice with <span class="az-accent">his own reasons.</span></h2><p>Elias appears throughout the investigation in records, voices, and manifestations connected to the events beneath Jerome. At times he seems helpful. At others he is evasive, angry, or impossible to read.</p><p class="mb-0">The team has to decide what parts of his story deserve trust — and whether the voice guiding them is always the voice they think it is.</p></article></div>'''
-    text = replace_once(text, old_elias, new_elias, "Elias section")
-
-    old_endings = '''<section class="az-section"><div class="container"><div class="text-center mb-5"><p class="section-label">Locked Endings</p><h2 class="section-title">The finale reflects what the team <span class="az-accent">resolved, lost, and chose.</span></h2></div><div class="row"><div class="col-lg-3 col-md-6 mb-4"><article class="ending-card"><h3>The Herald</h3><p class="mb-0">Bad ending. The ninth vessel remains dark and the entity’s plan succeeds through the unresolved breach.</p></article></div><div class="col-lg-3 col-md-6 mb-4"><article class="ending-card"><h3>Containment</h3><p class="mb-0">The team survives and contains the immediate threat, but the debt is not fully resolved.</p></article></div><div class="col-lg-3 col-md-6 mb-4"><article class="ending-card true"><h3>The Ninth Soul</h3><p class="mb-0">True ending. Elias rejects the entity and willingly completes the talisman as the ninth soul.</p></article></div><div class="col-lg-3 col-md-6 mb-4"><article class="ending-card loss"><h3>Complete Loss</h3><p class="mb-0">The prison fails. The team loses control of the binding and the supernatural threat breaks free.</p></article></div></div></div></section>'''
-    new_endings = '''<section class="az-section"><div class="container"><div class="text-center mb-5"><p class="section-label">Consequence-Driven Endings</p><h2 class="section-title">The finale remembers what the team <span class="az-accent">understood, lost, and chose.</span></h2><p class="lead az-lead">There is no single ending score. Jerome, the investigators, the miners, Elias, and the force beneath the mountain can each finish the campaign in a different state.</p></div><div class="row"><div class="col-lg-3 col-md-6 mb-4"><article class="ending-card"><h3>What You Save</h3><p class="mb-0">Some victories preserve people, history, and sacred systems. Others save only part of what the team came for.</p></article></div><div class="col-lg-3 col-md-6 mb-4"><article class="ending-card"><h3>What You Leave Behind</h3><p class="mb-0">Missed evidence, unresolved encounters, and difficult compromises can remain part of Jerome after the investigators leave.</p></article></div><div class="col-lg-3 col-md-6 mb-4"><article class="ending-card true"><h3>Who Walks Out</h3><p class="mb-0">Every investigator receives an individual fate based on their own actions during the campaign and the final descent.</p></article></div><div class="col-lg-3 col-md-6 mb-4"><article class="ending-card loss"><h3>What Jerome Becomes</h3><p class="mb-0">The town itself has an ending. It may recover, endure, fracture, or become something no one can safely explain.</p></article></div></div></div></section>'''
-    text = replace_once(text, old_endings, new_endings, "endings section")
-
-    old_status = '''<section class="az-section-alt"><div class="container"><div class="text-center mb-5"><p class="section-label">Current Production Status</p><h2 class="section-title">Canon and location framework are <span class="az-accent">locked.</span></h2><p class="lead az-lead">The project is beyond the old generic concept page. The next production milestone is field-reference and photography work in Jerome so the locked locations can be translated into accurate exterior and interior game environments.</p></div><div class="row"><div class="col-lg-4 mb-4"><article class="az-card"><span class="status-pill">Status</span><h3 class="mt-3">Canon / Design Locked</h3><p class="mb-0">Narrative truth, major progression, 12 main locations, 10 secondary locations, miner roster, talisman structure, Elias arc, and endings are defined.</p></article></div><div class="col-lg-4 mb-4"><article class="az-card cyan"><span class="status-pill">Engine</span><h3 class="mt-3">Unity Development</h3><p class="mb-0">The technical direction remains Unity for first-person exploration, cooperative systems, adaptive encounters, environmental storytelling, and supernatural effects.</p></article></div><div class="col-lg-4 mb-4"><article class="az-card gold"><span class="status-pill">Next</span><h3 class="mt-3">Jerome Photo Survey</h3><p class="mb-0">Capture exterior and interior reference photography, confirm access and sightlines, and use those references to finalize miner/location assignments and environment blockouts.</p></article></div></div></div></section>'''
-    new_status = '''<section class="az-section-alt"><div class="container"><div class="text-center mb-5"><p class="section-label">Current Production Status</p><h2 class="section-title">The mystery framework is <span class="az-accent">moving into deeper preproduction.</span></h2><p class="lead az-lead">The ending architecture, investigation systems, real-location framework, and major character-state logic are now defined. The historical spine is being refined beneath the public mystery while environment reference work continues.</p></div><div class="row"><div class="col-lg-4 mb-4"><article class="az-card"><span class="status-pill">Narrative</span><h3 class="mt-3">Multi-Era Mystery</h3><p class="mb-0">The story now reaches far beyond the original 1928 incident, with earlier layers of Jerome’s supernatural history feeding the modern investigation without changing the real-world locations at its center.</p></article></div><div class="col-lg-4 mb-4"><article class="az-card cyan"><span class="status-pill">Systems</span><h3 class="mt-3">Ending Resolver &amp; Revelation Gates</h3><p class="mb-0">Campaign outcomes now distinguish physical preparation from what the investigators actually understand, preventing raw collection progress from substituting for story discovery.</p></article></div><div class="col-lg-4 mb-4"><article class="az-card gold"><span class="status-pill">Next</span><h3 class="mt-3">Jerome Reference &amp; Environment Pass</h3><p class="mb-0">Continue exterior and interior reference photography, confirm access and sightlines, and translate the locked real-world spaces into environment blockouts and investigation routes.</p></article></div></div></div></section>'''
-    text = replace_once(text, old_status, new_status, "production status section")
-
-    path.write_text(text, encoding="utf-8")
-    return True
-
-
-def update_development_log() -> bool:
-    path = Path("development-log.html")
-    text = path.read_text(encoding="utf-8")
-    if MARKER in text:
-        return False
-
-    text = replace_once(
-        text,
-        '<span class="status">Updated August 7, 2026</span><h2 class="mt-3">Current work snapshot</h2><p><strong>Primary release:</strong> Ghostline Chess v1.2.0 tactical AI prerelease</p><p><strong>Website:</strong> Company QA pass, Blood &amp; Bone Haunted Echoes treatment, and Jerome Canon v2 preview</p><p><strong>Jerome:</strong> Canon and location framework locked; real-world reference photography underway</p><p><strong>Next game phase:</strong> Pair real Jerome photos with matching in-game visualizations and begin environment reference packs</p>',
-        '<span class="status">Updated August 10, 2026</span><h2 class="mt-3">Current work snapshot</h2><p><strong>Primary focus:</strong> Arizona Paranormal Project — Jerome narrative systems and ending architecture</p><p><strong>Website:</strong> Jerome public-page mystery pass and August 10 development-log update</p><p><strong>Jerome:</strong> Ending framework, cinematic state bible, deterministic QA resolver, and narrative revelation gates advanced</p><p><strong>Next game phase:</strong> Continue the deeper historical-spine rewrite while preserving the mystery publicly, then return to Jerome reference photography and environment blockouts</p>',
-        "development log snapshot",
-    )
-
-    entry = r'''
-
-<!-- 2026-08-10-jerome-public-mystery-pass -->
-<article class="entry"><div class="cardlog"><header class="head"><span class="date">August 10, 2026 · Haunted Echoes Studios / Arizona Paranormal Project</span><h2>Jerome ending architecture, resolver QA, and deeper historical spine</h2></header><div class="bodycopy">
-<p>Jerome received its largest narrative-systems pass to date. The work focused on making the campaign endings deterministic enough to program while keeping the public-facing mystery deliberately incomplete.</p>
-<h3>Ending and cinematic architecture</h3><ul><li>Finalized independent outcome tracks for the entity, Elias, the eight miners, each investigator, and the town instead of relying on one blended ending score.</li><li>Completed a detailed final-campaign cinematic bible describing faction states, survivor outcomes, player deaths, chamber conditions, and town aftermath across the full ending ladder.</li><li>Locked the terminal town-collapse safeguards, including the absolute total-loss override, without exposing those exact ending conditions on the public game page.</li></ul>
-<h3>Resolver and QA systems</h3><ul><li>Built a master ending resolver and QA matrix covering chamber integrity, sacred readiness, exact miner ledgers, Elias gates, player gates, town gates, covenant safeguards, and regression scenarios.</li><li>Separated campaign performance from narrative understanding so collecting large amounts of evidence cannot automatically unlock an ending the investigators do not actually understand.</li><li>Added sequential Revelation Gates that require meaningful story discoveries and location milestones before the highest ritual routes become available.</li></ul>
-<h3>Canon refinement</h3><ul><li>Clarified the relationship between the eight 1928 miners, Elias, and the nine-position talisman so the historical containment system and the modern ritual system no longer conflict.</li><li>Expanded the historical spine beneath the 1928 mystery into a much older pattern while preserving the miners, Elias, real Jerome locations, talisman, and previously locked ending systems.</li><li>Kept the deeper origin mythology inside the private Canon Bible rather than publishing the answers on the website.</li></ul>
-<h3>Website presentation</h3><ul><li>Rewrote the Jerome project page as a spoiler-conscious public preview.</li><li>Removed direct explanations of the true ending, the center talisman position, and Elias’s final role.</li><li>Reframed the project around buried history, unreliable voices, real Jerome locations, adaptive investigation, and consequence-driven endings.</li></ul>
-<p><strong>Next:</strong> consolidate the revised historical spine into the next authoritative Canon Bible revision, continue resolver QA, and resume the Jerome field-reference/environment pass.</p>
+DEVLOG_ENTRY = r'''
+<!-- 2026-08-11-anchor-gallery -->
+<article class="entry"><div class="cardlog"><header class="head"><span class="date">August 11, 2026 &middot; Haunted Echoes Studios / Arizona Paranormal Project</span><h2>Jerome anchor-point visual pass reaches the website</h2></header><div class="bodycopy">
+<p>The Jerome environment pass now includes all eight dedicated miner Anchor Point renders alongside the real-location investigation gallery.</p>
+<ul><li>Added eight original Anchor Point environments designed specifically for the game rather than presenting them as surviving historical buildings.</li><li>Kept the locations visually grounded in Jerome's mining landscape while giving each site a distinct investigation identity.</li><li>Finalized the public anchor set: Old Foreman's Office, Powder Magazine, Company Survey Archive, Level 3200 Barricade, Main Shaft Hoist House, Lower Drainage Station, Assay Office &amp; Specimen Vault, and Old Infirmary &amp; Chapel Annex.</li><li>Preserved spoiler-sensitive death events, ritual solutions, and ending conditions for discovery inside the game.</li></ul>
+<p><strong>Next:</strong> continue environment refinement and synchronize the older ChoiceMaker console prototype with the current canon as a separate development task.</p>
+<p><a href="arizona-paranormal.html#anchors">View the eight Anchor Point renders &rarr;</a></p>
 </div></div></article>
 '''
 
-    marker = '<section class="pad alt"><div class="container"><div class="timeline">'
-    if marker not in text:
-        raise RuntimeError("Could not locate development log timeline")
-    text = text.replace(marker, marker + entry, 1)
-    path.write_text(text, encoding="utf-8")
-    return True
+
+def update_page(path: Path) -> bool:
+    text = path.read_text(encoding="utf-8")
+    original = text
+    text = resolve_head_conflicts(text)
+
+    # Keep the public meta description aligned with the spoiler-safe current presentation.
+    text = text.replace(
+        '<meta property="og:description" content="Four investigators explore real Jerome locations and uncover a fixed supernatural mystery through replayable evidence and adaptive encounters.">',
+        '<meta property="og:description" content="Four investigators enter real Jerome locations and uncover a supernatural mystery whose roots reach much deeper than the town remembers.">'
+    )
+
+    if "/* EIGHT ANCHOR POINTS GALLERY */" not in text:
+        css_marker = "    /* QA: LIGHT MODE HERO LIFT */"
+        if css_marker not in text:
+            raise RuntimeError(f"CSS insertion marker not found in {path}")
+        text = text.replace(css_marker, ANCHOR_CSS + "\n" + css_marker, 1)
+
+    if 'id="anchors"' not in text:
+        system_marker = '<section class="az-section-alt"><div class="container"><div class="text-center mb-5"><p class="section-label">Spoiler-Free Systems Preview</p>'
+        if system_marker not in text:
+            raise RuntimeError(f"Anchor insertion marker not found in {path}")
+        text = text.replace(system_marker, ANCHOR_SECTION + "\n" + system_marker, 1)
+
+    # Current public terminology for A6.
+    text = text.replace("Lower Pump House", "Lower Drainage Station")
+
+    if text != original:
+        path.write_text(text, encoding="utf-8")
+        return True
+    return False
 
 
-if __name__ == "__main__":
-    changed = []
-    if update_development_log():
-        changed.append("development-log.html")
-    if update_jerome_page(Path("arizona-paranormal.html")):
-        changed.append("arizona-paranormal.html")
-    if update_jerome_page(Path("arizona-paranormal-v2.html")):
-        changed.append("arizona-paranormal-v2.html")
-    print("Updated:", ", ".join(changed) if changed else "nothing (marker already present)")
+def update_devlog(path: Path) -> bool:
+    text = path.read_text(encoding="utf-8")
+    original = text
+    text = resolve_head_conflicts(text)
+    text = text.replace("Updated August 10, 2026", "Updated August 11, 2026")
+
+    if "2026-08-11-anchor-gallery" not in text:
+        timeline_marker = '<section class="pad alt"><div class="container"><div class="timeline">\n'
+        if timeline_marker not in text:
+            raise RuntimeError("Development-log timeline marker not found")
+        text = text.replace(timeline_marker, timeline_marker + "\n" + DEVLOG_ENTRY + "\n", 1)
+
+    # Remove a stale phrasing from an older public entry if present.
+    text = text.replace(
+        "Rebuilt the project preview around four investigators, 12 main locations, 10 secondary locations, eight miner Anchor Points, and a deeper historical mystery that predates the 1928 disaster.",
+        "Rebuilt the project preview around four investigators, 12 main locations, 10 secondary locations, eight miner Anchor Points, and a deeper historical mystery that predates the 1928 disaster."
+    )
+
+    if text != original:
+        path.write_text(text, encoding="utf-8")
+        return True
+    return False
+
+
+changed = []
+for page in PAGES:
+    if update_page(page):
+        changed.append(str(page))
+if update_devlog(DEVLOG):
+    changed.append(str(DEVLOG))
+
+# Fail loudly if unresolved merge markers remain.
+for path in [*PAGES, DEVLOG]:
+    check = path.read_text(encoding="utf-8")
+    for marker in ("<<<<<<<", "=======", ">>>>>>>"):
+        if marker in check:
+            raise RuntimeError(f"Unresolved merge marker {marker!r} remains in {path}")
+
+print("Updated:", ", ".join(changed) if changed else "nothing")
