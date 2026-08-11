@@ -19,3 +19,11 @@ Important image paths verified:
 - images/jerome-antique-map.png
 - images/boston-ripper-cover.png
 - images/boston-ripper-gameplay.png
+
+
+AUGUST 10, 2026 — SPOILER-FREE JEROME WEBSITE UPDATE
+- Updated both Arizona Paranormal project-page variants to the current canon.
+- Rewrote the public story presentation to preserve all major discoveries.
+- Removed public disclosures of character secrets, ritual mechanics, revelation requirements, and endings.
+- Added a spoiler-free systems preview and an August 10 company development-log entry.
+- ChoiceMaker console application intentionally not changed.
