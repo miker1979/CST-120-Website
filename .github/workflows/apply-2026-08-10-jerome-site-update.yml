@@ -21,7 +21,18 @@ jobs:
           fetch-depth: 0
 
       - name: Apply August 10 Jerome updates
-        run: python scripts/apply-2026-08-10-jerome-site-update.py
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("scripts/apply-2026-08-10-jerome-site-update.py")
+          text = path.read_text(encoding="utf-8")
+          text = text.replace(
+              'for marker in ("<<<<<<<", "=======", ">>>>>>>"):',
+              'for marker in ("<<<<<<<", ">>>>>>>"):'
+          )
+          path.write_text(text, encoding="utf-8")
+          PY
+          python scripts/apply-2026-08-10-jerome-site-update.py
 
       - name: Commit website changes
         run: |
