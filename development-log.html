@@ -45,10 +45,25 @@
 <main>
 <section class="hero"><div class="container"><div class="row align-items-center">
     <div class="col-lg-7 mb-4"><p class="section-label">A Living Company Work Record</p><h1 class="title">Ghostline <span class="cyan">Development Log</span></h1><p class="lead">A dated record of software, games, prototypes, research, releases, organization, and the decisions moving each project forward.</p></div>
-    <div class="col-lg-5"><aside class="snapshot"><span class="status">Updated August 11, 2026</span><h2 class="mt-3">Current work snapshot</h2><p><strong>Primary game milestone:</strong> Jerome Canon v64 locked</p><p><strong>Jerome:</strong> Multi-generation history, investigation structure, character logic, and outcome framework completed internally</p><p><strong>Website:</strong> Project presentation revised to protect all major discoveries and endings</p><p><strong>Next game phase:</strong> Update the console prototype separately, then continue the Jerome field survey and Unity vertical-slice planning</p></aside></div>
+    <div class="col-lg-5"><aside class="snapshot"><span class="status">Updated August 11, 2026</span><h2 class="mt-3">Current work snapshot</h2><p><strong>Primary software milestone:</strong> ChoiceMaker generic validation and ending-resolution core proven with 46 automated tests</p><p><strong>ChoiceMaker:</strong> Developer-facing project validation, ending evaluation, priority resolution, and failure explanations are working; a public developer preview is live</p><p><strong>Website &amp; Search:</strong> Arizona software-development landing page published, Search Console domain verified, sitemap submitted, and indexing requested</p><p><strong>Jerome:</strong> Anchor-point visual pass is live while spoiler-sensitive story and ending material remains protected</p><p><strong>Next:</strong> add ChoiceMaker project save/load, then continue Jerome field-survey and Unity vertical-slice planning</p></aside></div>
 </div></div></section>
 <section class="pad alt"><div class="container"><div class="timeline">
 
+<!-- 2026-08-11-choicemaker-core -->
+<article class="entry"><div class="cardlog"><header class="head"><span class="date">August 11, 2026 &middot; Ghostline Labs / ChoiceMaker</span><h2>ChoiceMaker becomes a reusable developer-facing narrative validation engine</h2></header><div class="bodycopy">
+<p>ChoiceMaker moved beyond its original Jerome-specific proof-of-concept role and now has a generic core designed to help game developers define, test, and validate branching outcome logic.</p>
+<ul><li>Added a generic developer model for projects, state variables, ending definitions, rule conditions, operators, validation issues, and evaluation results.</li><li>Built a <strong>ProjectValidator</strong> that detects duplicate IDs, unknown variables, invalid operators, invalid comparison values, enum mismatches, range violations, and empty ending definitions.</li><li>Built an <strong>EndingEvaluator</strong> that evaluates every ending against supplied game state, reports why rejected endings failed, and resolves the highest-priority valid outcome when multiple endings match.</li><li>Expanded the automated suite to <strong>46 tests with 46 passing, 0 failed, and 0 skipped</strong>.</li><li>Created a generic non-Jerome developer demo proving that multiple endings can match simultaneously while priority determines the resolved ending.</li><li>Published a dedicated ChoiceMaker developer-preview page with an interactive browser demonstration while keeping Jerome-specific logic and spoilers private.</li></ul>
+<p><strong>Next:</strong> create a portable ChoiceMaker project format and save/load workflow so developers can define projects without recompiling C#.</p>
+<p><a href="choicemaker.html">Explore the ChoiceMaker developer preview &rarr;</a></p>
+</div></div></article>
+
+<!-- 2026-08-11-google-search-seo -->
+<article class="entry"><div class="cardlog"><header class="head"><span class="date">August 11, 2026 &middot; Company Website / Search &amp; SEO</span><h2>Ghostline software-development search foundation goes live</h2></header><div class="bodycopy">
+<p>The company website received a dedicated search-visibility pass focused on presenting Ghostline Technology LLC clearly as an Arizona software-development company.</p>
+<ul><li>Published <strong>software-development.html</strong> with focused content for custom software development in Arizona, including C#/.NET, Java, web applications, fleet and logistics software, prototypes, systems design, and developer tools.</li><li>Added canonical metadata, social-sharing metadata, and Organization/Service structured data.</li><li>Updated the homepage, Software page, Company page, and site footers with internal links to the new software-development page.</li><li>Published <strong>robots.txt</strong> and <strong>sitemap.xml</strong> so search engines can discover the current public site structure.</li><li>Verified <strong>ghostlinetech.com</strong> as a Google Search Console Domain property through a DNS TXT record while preserving the existing GitHub Pages DNS configuration.</li><li>Submitted the sitemap successfully; Google reported <strong>16 discovered pages</strong>.</li><li>Ran a live inspection of the new software-development page, confirmed that the URL is available to Google and can be indexed, and submitted it to Google's priority crawl queue.</li></ul>
+<p><strong>Next:</strong> monitor Search Console as Google recrawls the site, then improve content and internal linking based on real search impressions and queries rather than keyword guessing.</p>
+<p><a href="software-development.html">View Software Development Services &rarr;</a></p>
+</div></div></article>
 
 <!-- 2026-08-11-anchor-gallery -->
 <article class="entry"><div class="cardlog"><header class="head"><span class="date">August 11, 2026 &middot; Haunted Echoes Studios / Arizona Paranormal Project</span><h2>Jerome anchor-point visual pass reaches the website</h2></header><div class="bodycopy">
@@ -57,7 +72,6 @@
 <p><strong>Next:</strong> continue environment refinement and synchronize the older ChoiceMaker console prototype with the current canon as a separate development task.</p>
 <p><a href="arizona-paranormal.html#anchors">View the eight Anchor Point renders &rarr;</a></p>
 </div></div></article>
-
 
 <article class="entry"><div class="cardlog"><header class="head"><span class="date">August 10, 2026 · Haunted Echoes Studios / Arizona Paranormal Project</span><h2>Jerome story canon reaches version 64</h2></header><div class="bodycopy">
 <p>The internal story bible received a major structural update that brings the project’s historical mystery, character logic, investigation progression, and possible outcomes into one consistent canon.</p>
