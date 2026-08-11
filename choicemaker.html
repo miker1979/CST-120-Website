@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ChoiceMaker is a Ghostline Labs developer tool for designing, testing, simulating, and validating branching game-state logic and endings.">
+
+    <meta property="og:title" content="ChoiceMaker | Ghostline Technology LLC">
+    <meta property="og:description" content="Design the choices. Test the consequences. ChoiceMaker helps game developers validate branching outcomes before they ship.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ghostlinetech.com/choicemaker.html">
+    <meta property="og:image" content="https://ghostlinetech.com/images/ghostline-social-preview-v2.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title>ChoiceMaker | Ghostline Technology LLC</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .cm-hero-grid { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr); gap:2rem; align-items:center; }
+        .cm-terminal { background:#07111f; color:#dce9f5; border:1px solid rgba(103,232,249,.25); border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,.22); overflow:hidden; }
+        .cm-terminal-head { display:flex; align-items:center; justify-content:space-between; padding:.85rem 1rem; border-bottom:1px solid rgba(103,232,249,.18); background:#0d1828; }
+        .cm-terminal-dots { display:flex; gap:.45rem; }
+        .cm-terminal-dot { width:10px; height:10px; border-radius:50%; background:#5f7288; }
+        .cm-terminal-body { padding:1.2rem; font-family:Consolas,"Courier New",monospace; font-size:.9rem; line-height:1.55; white-space:pre-wrap; min-height:330px; }
+        .cm-pass { color:#7ee787; }
+        .cm-cyan { color:#67e8f9; }
+        .cm-warn { color:#f2cc60; }
+        .cm-fail { color:#ff7b72; }
+        .cm-stat { text-align:center; padding:1.4rem 1rem; height:100%; }
+        .cm-stat strong { display:block; font-size:2rem; line-height:1; margin-bottom:.5rem; }
+        .cm-flow { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:.75rem; }
+        .cm-flow-step { min-width:170px; text-align:center; padding:1rem; border-radius:12px; border:1px solid rgba(8,123,138,.3); background:rgba(8,123,138,.06); font-weight:700; }
+        .cm-arrow { font-size:1.35rem; color:#087b8a; font-weight:900; }
+        .cm-sandbox { border:1px solid rgba(8,123,138,.25); border-radius:18px; overflow:hidden; box-shadow:0 16px 40px rgba(15,23,42,.08); }
+        .cm-controls { padding:1.5rem; }
+        .cm-output { padding:1.5rem; background:#07111f; color:#e8eef6; min-height:100%; }
+        .cm-output pre { color:#e8eef6; margin:0; white-space:pre-wrap; font-size:.9rem; }
+        .cm-value { font-weight:800; color:#087b8a; }
+        body.dark-mode .cm-value { color:#67e8f9; }
+        body.dark-mode .cm-sandbox { border-color:#34465c; }
+        body.dark-mode .cm-controls { background:#111d2d; }
+        body.dark-mode .cm-flow-step { background:rgba(103,232,249,.05); border-color:rgba(103,232,249,.22); }
+        .cm-roadmap-item { height:100%; }
+        .cm-kicker { text-transform:uppercase; letter-spacing:.12rem; font-size:.78rem; font-weight:900; color:#087b8a; }
+        body.dark-mode .cm-kicker { color:#67e8f9; }
+        @media (max-width: 991.98px) { .cm-hero-grid { grid-template-columns:1fr; } }
+    </style>
+</head>
+
+<body class="light-mode">
+<nav class="navbar navbar-expand-lg navbar-dark ghostline-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="images/company_logo.png" alt="" class="nav-logo mr-2">
+            <span><span class="brand-primary">GHOSTLINE TECH</span><span class="brand-secondary">GHOSTLINE TECHNOLOGY LLC</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNavigation">
+            <ul class="navbar-nav ml-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="software.html">Software</a></li>
+                <li class="nav-item"><a class="nav-link" href="haunted-echoes.html">Haunted Echoes Studios</a></li>
+                <li class="nav-item"><a class="nav-link" href="labs.html">Labs</a></li>
+                <li class="nav-item"><a class="nav-link active" href="choicemaker.html" aria-current="page">ChoiceMaker</a></li>
+                <li class="nav-item"><a class="nav-link" href="development-log.html">Dev Log</a></li>
+                <li class="nav-item"><a class="nav-link" href="company.html">Company</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item ml-lg-2"><button id="darkModeToggle" class="btn btn-sm btn-outline-info theme-button" type="button" aria-pressed="false">Dark Mode</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="hero-section">
+        <div class="container">
+            <div class="cm-hero-grid">
+                <div class="hero-content">
+                    <p class="section-label">Ghostline Labs · Developer Tools</p>
+                    <h1 class="hero-title">Choice<span class="accent-text">Maker</span></h1>
+                    <h2 class="h3 mb-4">Design the choices. Test the consequences.</h2>
+                    <p class="lead">ChoiceMaker is a developer-facing narrative logic tool for designing, testing, simulating, and validating branching game-state rules before those rules reach production.</p>
+                    <p class="text-muted-custom">Define state variables, outcome conditions, priorities, and exclusions. Then supply a game state and see every matching ending, the resolved outcome, and the exact reasons other endings were rejected.</p>
+                    <div class="mt-4 mb-4">
+                        <span class="product-tag">Developer Preview</span>
+                        <span class="product-tag">C# / .NET</span>
+                        <span class="product-tag">46 Core Tests Passing</span>
+                        <span class="product-tag">Ghostline Labs</span>
+                    </div>
+                    <div>
+                        <a href="#sandbox" class="btn btn-ghostline btn-lg mr-2 mb-2">Try the Browser Preview</a>
+                        <a href="development-log.html" class="btn btn-ghostline-outline btn-lg mb-2">Follow Development</a>
+                    </div>
+                </div>
+
+                <div class="cm-terminal" aria-label="ChoiceMaker developer preview output">
+                    <div class="cm-terminal-head">
+                        <strong>ChoiceMaker Analysis</strong>
+                        <div class="cm-terminal-dots" aria-hidden="true"><span class="cm-terminal-dot"></span><span class="cm-terminal-dot"></span><span class="cm-terminal-dot"></span></div>
+                    </div>
+                    <div class="cm-terminal-body"><span class="cm-cyan">PROJECT VALIDATION</span>
+----------------------------------------
+<span class="cm-pass">PASS - No configuration problems detected.</span>
+
+<span class="cm-cyan">ENDING ANALYSIS</span>
+----------------------------------------
+<span class="cm-fail">[REJECTED]</span> Hero Ending
+<span class="cm-fail">[REJECTED]</span> Dark Ending
+<span class="cm-pass">[MATCH]</span> Secret Redemption <span class="cm-warn">(100)</span>
+<span class="cm-pass">[MATCH]</span> Exile <span class="cm-warn">(30)</span>
+<span class="cm-fail">[REJECTED]</span> Catastrophe
+
+<span class="cm-cyan">RESOLVED ENDING</span>
+----------------------------------------
+<span class="cm-pass">Secret Redemption (Priority 100)</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-label">The Problem</p>
+                <h2 class="section-title">Branching logic gets complicated <span class="accent-text">fast.</span></h2>
+                <p class="lead mx-auto" style="max-width:900px;">A game can have dozens of variables, hidden gates, competing outcomes, and precedence rules. ChoiceMaker is being built to help developers prove that those systems resolve the way they intended.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4"><article class="ghostline-card h-100"><span class="branch-code">01</span><h3>Define</h3><p class="text-muted-custom mb-0">Describe state variables such as morality, trust, faction, artifacts, objectives, or any other value that can affect an outcome.</p></article></div>
+                <div class="col-md-4 mb-4"><article class="ghostline-card h-100"><span class="branch-code">02</span><h3>Validate</h3><p class="text-muted-custom mb-0">Catch duplicate IDs, unknown variables, invalid operators, out-of-range values, bad enum values, and structurally unsafe rules.</p></article></div>
+                <div class="col-md-4 mb-4"><article class="ghostline-card h-100"><span class="branch-code">03</span><h3>Resolve</h3><p class="text-muted-custom mb-0">Evaluate every ending against a supplied game state, expose simultaneous matches, apply priority, and explain every rejection.</p></article></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding section-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-label">Current Core Milestone</p>
+                <h2 class="section-title">A reusable engine is taking <span class="accent-text">shape.</span></h2>
+            </div>
+            <div class="row">
+                <div class="col-6 col-lg-3 mb-4"><article class="ghostline-card cm-stat"><strong>46</strong><span>Automated Core tests passing</span></article></div>
+                <div class="col-6 col-lg-3 mb-4"><article class="ghostline-card cm-stat"><strong>5</strong><span>Generic state-variable types</span></article></div>
+                <div class="col-6 col-lg-3 mb-4"><article class="ghostline-card cm-stat"><strong>6</strong><span>Comparison operators</span></article></div>
+                <div class="col-6 col-lg-3 mb-4"><article class="ghostline-card cm-stat"><strong>2</strong><span>Core developer services: validation + evaluation</span></article></div>
+            </div>
+            <div class="cm-flow mt-4" aria-label="ChoiceMaker workflow">
+                <div class="cm-flow-step">Define Variables</div><div class="cm-arrow">→</div>
+                <div class="cm-flow-step">Define Outcomes</div><div class="cm-arrow">→</div>
+                <div class="cm-flow-step">Validate Rules</div><div class="cm-arrow">→</div>
+                <div class="cm-flow-step">Supply Game State</div><div class="cm-arrow">→</div>
+                <div class="cm-flow-step">Explain &amp; Resolve</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sandbox" class="section-padding">
+        <div class="container">
+            <div class="row align-items-end mb-5">
+                <div class="col-lg-7"><p class="section-label">Interactive Preview</p><h2 class="section-title">Try a generic <span class="accent-text">ending analysis.</span></h2></div>
+                <div class="col-lg-5"><p class="lead mb-0">Change the sample game state and run the analysis. This browser preview demonstrates the ChoiceMaker concept without exposing any game-specific production data.</p></div>
+            </div>
+
+            <div class="cm-sandbox">
+                <div class="row no-gutters">
+                    <div class="col-lg-5 cm-controls">
+                        <p class="cm-kicker">Sample Game State</p>
+
+                        <div class="form-group">
+                            <label for="cmMorality"><strong>Morality:</strong> <span id="cmMoralityValue" class="cm-value">75</span></label>
+                            <input id="cmMorality" class="custom-range" type="range" min="-100" max="100" value="75">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cmTrust"><strong>Companion Trust:</strong> <span id="cmTrustValue" class="cm-value">5</span></label>
+                            <input id="cmTrust" class="custom-range" type="range" min="0" max="5" value="5">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cmFaction"><strong>Faction</strong></label>
+                            <select id="cmFaction" class="form-control">
+                                <option>Loyal</option>
+                                <option selected>Rebel</option>
+                                <option>Enemy</option>
+                            </select>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="cmArtifact" checked>
+                            <label class="custom-control-label" for="cmArtifact">Artifact recovered</label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-4">
+                            <input type="checkbox" class="custom-control-input" id="cmBoss" checked>
+                            <label class="custom-control-label" for="cmBoss">Boss defeated</label>
+                        </div>
+
+                        <button id="cmAnalyze" type="button" class="btn btn-ghostline btn-block">Analyze Endings</button>
+                        <p class="small text-muted-custom mt-3 mb-0">Preview note: this page uses a small JavaScript demonstration model. The production ChoiceMaker Core is being developed in C#/.NET.</p>
+                    </div>
+                    <div class="col-lg-7 cm-output">
+                        <p class="cm-kicker">Analysis Output</p>
+                        <pre id="cmOutput" aria-live="polite"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding section-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-label">Roadmap</p>
+                <h2 class="section-title">From internal tool to <span class="accent-text">developer product.</span></h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4"><article class="ghostline-card cm-roadmap-item"><span class="product-tag">Current</span><h3 class="h5 mt-3">Core Validation</h3><p class="text-muted-custom mb-0">Generic variable definitions, rule validation, state evaluation, priority resolution, and rejection explanations.</p></article></div>
+                <div class="col-lg-3 col-md-6 mb-4"><article class="ghostline-card cm-roadmap-item"><span class="product-tag">Next</span><h3 class="h5 mt-3">Project Files</h3><p class="text-muted-custom mb-0">Save and load reusable ChoiceMaker project definitions instead of hard-coding a game model in C#.</p></article></div>
+                <div class="col-lg-3 col-md-6 mb-4"><article class="ghostline-card cm-roadmap-item"><span class="product-tag">Planned</span><h3 class="h5 mt-3">Logic Audits</h3><p class="text-muted-custom mb-0">Detect unreachable outcomes, overlapping terminal endings, dead variables, missing states, and contradictory conditions.</p></article></div>
+                <div class="col-lg-3 col-md-6 mb-4"><article class="ghostline-card cm-roadmap-item"><span class="product-tag">Planned</span><h3 class="h5 mt-3">ChoiceMaker Studio</h3><p class="text-muted-custom mb-0">A visual developer application for building and testing game-state logic without editing engine code.</p></article></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="contact-panel text-center">
+                <p class="section-label">Ghostline Labs Developer Tool</p>
+                <h2 class="section-title">Build complicated outcomes with <span class="accent-text">confidence.</span></h2>
+                <p class="lead mx-auto" style="max-width:850px;">ChoiceMaker is currently in active development. The goal is a reusable tool that lets game developers test branching rules before those rules become expensive production bugs.</p>
+                <div class="mt-4">
+                    <a href="labs.html" class="btn btn-ghostline mr-2 mb-2">Back to Ghostline Labs</a>
+                    <a href="development-log.html" class="btn btn-ghostline-outline mr-2 mb-2">Read the Dev Log</a>
+                    <a href="contact.html" class="btn btn-ghostline-outline mb-2">Contact Ghostline Tech</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <img src="images/company_logo.png" alt="Ghostline Technology LLC" class="footer-logo">
+                <p>Practical software, original interactive entertainment, and a disciplined path from prototype to product.</p>
+            </div>
+            <div class="col-6 col-lg-2 mb-4">
+                <h2 class="footer-heading">Divisions</h2>
+                <a href="software.html">Ghostline Software</a>
+                <a href="haunted-echoes.html">Haunted Echoes Studios</a>
+                <a href="labs.html">Ghostline Labs</a>
+            </div>
+            <div class="col-6 col-lg-2 mb-4">
+                <h2 class="footer-heading">Company</h2>
+                <a href="company.html">About</a>
+                <a href="company.html#founder">Founder</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="col-lg-3">
+                <h2 class="footer-heading">Products &amp; Projects</h2>
+                <a href="choicemaker.html">ChoiceMaker</a>
+                <a href="construction-ops.html">Construction Ops</a>
+                <a href="load-board.html">Load Board</a>
+                <a href="ghostline-chess.html">Ghostline Chess</a>
+                <a href="arizona-paranormal.html">Arizona Paranormal Project</a>
+                <a href="academic-archive.html">Academic Archive</a>
+            </div>
+        </div>
+        <hr class="footer-rule">
+        <div class="d-md-flex justify-content-between"><span>&copy; <span id="currentYear" class="current-year"></span> Ghostline Technology LLC.</span><span>All rights reserved.</span></div>
+        <p class="small text-center mt-3 mb-0">Ghostline Tech&trade;, Ghostline Software&trade;, Haunted Echoes Studios&trade;, Ghostline Chess&trade;, and ChoiceMaker&trade; are project and brand identifiers of Ghostline Technology LLC.</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script>
+    const currentYear = document.getElementById('currentYear');
+    if (currentYear) currentYear.textContent = new Date().getFullYear();
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    function applyGhostlineTheme(theme) {
+        const useLightMode = theme !== 'dark';
+        document.body.classList.toggle('light-mode', useLightMode);
+        document.body.classList.toggle('dark-mode', !useLightMode);
+        if (darkModeToggle) {
+            darkModeToggle.textContent = useLightMode ? 'Dark Mode' : 'Light Mode';
+            darkModeToggle.setAttribute('aria-pressed', String(!useLightMode));
+        }
+    }
+    const savedTheme = localStorage.getItem('ghostlineTheme') || 'light';
+    applyGhostlineTheme(savedTheme);
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', function () {
+            const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+            localStorage.setItem('ghostlineTheme', nextTheme);
+            applyGhostlineTheme(nextTheme);
+        });
+    }
+
+    const morality = document.getElementById('cmMorality');
+    const trust = document.getElementById('cmTrust');
+    const faction = document.getElementById('cmFaction');
+    const artifact = document.getElementById('cmArtifact');
+    const boss = document.getElementById('cmBoss');
+    const moralityValue = document.getElementById('cmMoralityValue');
+    const trustValue = document.getElementById('cmTrustValue');
+    const output = document.getElementById('cmOutput');
+
+    function evaluateCondition(actual, operator, expected) {
+        switch (operator) {
+            case '==': return actual === expected;
+            case '!=': return actual !== expected;
+            case '>=': return Number(actual) >= Number(expected);
+            case '<=': return Number(actual) <= Number(expected);
+            case '>': return Number(actual) > Number(expected);
+            case '<': return Number(actual) < Number(expected);
+            default: return false;
+        }
+    }
+
+    function analyzeChoiceMakerPreview() {
+        const state = {
+            morality: Number(morality.value),
+            trust: Number(trust.value),
+            artifact: artifact.checked,
+            boss: boss.checked,
+            faction: faction.value
+        };
+
+        moralityValue.textContent = state.morality;
+        trustValue.textContent = state.trust;
+
+        const endings = [
+            { name:'Hero Ending', priority:50, rules:[['morality','>=',40],['boss','==',true],['faction','==','Loyal']] },
+            { name:'Dark Ending', priority:60, rules:[['morality','<=',-40]] },
+            { name:'Secret Redemption', priority:100, rules:[['morality','>=',60],['trust','>=',4],['artifact','==',true],['boss','==',true],['faction','!=','Enemy']] },
+            { name:'Exile', priority:30, rules:[['faction','==','Rebel']] },
+            { name:'Catastrophe', priority:80, rules:[['boss','==',false]] }
+        ];
+
+        const results = endings.map(function (ending) {
+            const failures = ending.rules.filter(function (rule) {
+                return !evaluateCondition(state[rule[0]], rule[1], rule[2]);
+            }).map(function (rule) {
+                return rule[0] + ' is ' + state[rule[0]] + ' but requires ' + rule[1] + ' ' + rule[2];
+            });
+            return { ending: ending, failures: failures, match: failures.length === 0 };
+        });
+
+        const matches = results.filter(function (r) { return r.match; }).sort(function (a,b) { return b.ending.priority - a.ending.priority; });
+        const resolved = matches.length ? matches[0].ending : null;
+
+        const lines = [];
+        lines.push('PROJECT VALIDATION');
+        lines.push('----------------------------------------');
+        lines.push('PASS - Sample project structure is valid.');
+        lines.push('');
+        lines.push('ENDING ANALYSIS');
+        lines.push('----------------------------------------');
+
+        results.forEach(function (result) {
+            if (result.match) {
+                lines.push('[MATCH] ' + result.ending.name + ' (Priority ' + result.ending.priority + ')');
+            } else {
+                lines.push('[REJECTED] ' + result.ending.name);
+                result.failures.forEach(function (reason) { lines.push('  - ' + reason); });
+            }
+            lines.push('');
+        });
+
+        lines.push('RESOLVED ENDING');
+        lines.push('----------------------------------------');
+        lines.push(resolved ? resolved.name + ' (Priority ' + resolved.priority + ')' : 'NO ENDING MATCHED');
+        output.textContent = lines.join('\n');
+    }
+
+    document.getElementById('cmAnalyze').addEventListener('click', analyzeChoiceMakerPreview);
+    morality.addEventListener('input', function () { moralityValue.textContent = morality.value; });
+    trust.addEventListener('input', function () { trustValue.textContent = trust.value; });
+    analyzeChoiceMakerPreview();
+</script>
+</body>
+</html>
