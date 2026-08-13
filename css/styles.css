@@ -1277,3 +1277,10 @@ body.light-mode .site-footer small {
     width: 190px;
   }
 }
+.project-cover {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: contain;
+    object-position: center;
+    background: #050608;
+}
