@@ -21,81 +21,11 @@ jobs:
           set -euo pipefail
           mkdir -p Video
           cat .video-upload/part-* | base64 --decode > Video/the-9th-vessel-gameplay-concept.mp4
-
-          python3 - <<'PY'
-          from pathlib import Path
-
-          page = Path('arizona-paranormal.html')
-          text = page.read_text(encoding='utf-8')
-
-          css = '''
-    /* GAMEPLAY CONCEPT TEASER */
-    .gameplay-teaser-card{
-      overflow:hidden;
-      border:1px solid var(--az-border);
-      border-top:4px solid var(--az-oxblood);
-      border-radius:18px;
-      background:#050608;
-      box-shadow:0 22px 50px rgba(0,0,0,.20);
-    }
-    .gameplay-teaser-video{
-      display:block;
-      width:100%;
-      background:#000;
-    }
-    .gameplay-teaser-copy{
-      padding:1.25rem 1.4rem 1.4rem;
-      background:#0d0e12;
-    }
-    .gameplay-teaser-copy p{color:#c9c1bb!important;}
-    body.arizona-page.dark-mode .gameplay-teaser-card{border-color:#3b4657;}
-    /* END GAMEPLAY CONCEPT TEASER */
-'''
-
-          section = '''
-<section id="gameplay-teaser" class="az-section">
-  <div class="container">
-    <div class="text-center mb-5">
-      <p class="section-label">Gameplay Concept Teaser</p>
-      <h2 class="section-title">A first look at the <span class="az-accent">Haunted Hamburger investigation.</span></h2>
-      <p class="lead az-lead">This work-in-progress visual concept explores the first-person atmosphere, pacing, and paranormal tension planned for The 9th Vessel. It is AI-assisted concept footage and does not represent final in-engine gameplay.</p>
-    </div>
-    <div class="gameplay-teaser-card">
-      <video class="gameplay-teaser-video" controls preload="metadata" poster="images/the-9th-vessel-cover.png">
-        <source src="Video/the-9th-vessel-gameplay-concept.mp4" type="video/mp4">
-        Your browser does not support the video element.
-      </video>
-      <div class="gameplay-teaser-copy">
-        <div class="mb-2">
-          <span class="az-tag">Work in Progress</span>
-          <span class="az-tag">Concept Footage</span>
-          <span class="az-tag">First-Person Horror</span>
-        </div>
-        <p class="mb-0">Haunted Hamburger is one of the locked Jerome investigation locations. This teaser is a visual development experiment used to explore mood, movement, sound, and encounter pacing.</p>
-      </div>
-    </div>
-  </div>
-</section>
-'''
-
-          if '/* GAMEPLAY CONCEPT TEASER */' not in text:
-              marker = '\n</style>'
-              if marker not in text:
-                  raise SystemExit('Could not find style closing tag')
-              text = text.replace(marker, css + marker, 1)
-
-          if 'id="gameplay-teaser"' not in text:
-              marker = '<section id="canon" class="az-section">'
-              if marker not in text:
-                  raise SystemExit('Could not find canon section')
-              text = text.replace(marker, section + marker, 1)
-
-          page.write_text(text, encoding='utf-8')
-          PY
-
+          python3 .github/scripts/publish-9th-vessel-teaser.py
           rm -rf .video-upload
           rm -f tmp-tool-test.txt video-publish-note.txt
           rm -f .github/workflows/publish-9th-vessel-teaser.yml
+          rm -f .github/scripts/publish-9th-vessel-teaser.py
 
       - name: Commit published teaser
         shell: bash
