@@ -1,0 +1,108 @@
+name: One-time brighten Jerome renders
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-time-brighten-jerome.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  brighten:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow numpy
+
+      - name: Lift shadows in Jerome renders
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageEnhance
+          import numpy as np
+
+          files = [
+              'images/jerome-locations/Game/connor-hotel-game.png',
+              'images/jerome-locations/Game/douglas-mansion-game.png',
+              'images/jerome-locations/Game/episcopal-christ-church-game.png',
+              'images/jerome-locations/Game/gold-king-haynes-game.png',
+              'images/jerome-locations/Game/haunted-hamburger-game.png',
+              'images/jerome-locations/Game/jennies-place-game.png',
+              'images/jerome-locations/Game/jerome-grand-hotel-game.png',
+              'images/jerome-locations/Game/jerome-pioneer-graveyard-game.png',
+              'images/jerome-locations/Game/liberty-theatre-game.png',
+              'images/jerome-locations/Game/little-daisy-hotel-game.png',
+              'images/jerome-locations/Game/new-state-motor-company-game.png',
+              'images/jerome-locations/Game/old-jerome-high-school-game.png',
+              'images/jerome-locations/Anchors/A1-old-foremans-office.webp',
+              'images/jerome-locations/Anchors/A2-powder-magazine.webp',
+              'images/jerome-locations/Anchors/A3-company-survey-archive.webp',
+              'images/jerome-locations/Anchors/A4-level-3200-barricade.webp',
+              'images/jerome-locations/Anchors/A5-main-shaft-hoist-house.webp',
+              'images/jerome-locations/Anchors/A6-lower-pump-house.webp',
+              'images/jerome-locations/Anchors/A7-assay-office.webp',
+              'images/jerome-locations/Anchors/A8-old-infirmary-chapel.webp',
+          ]
+
+          def gamma_for(im):
+              thumb = im.copy()
+              thumb.thumbnail((400, 400))
+              arr = np.asarray(thumb.convert('RGB'), dtype=np.float32)
+              luma = 0.2126*arr[:,:,0] + 0.7152*arr[:,:,1] + 0.0722*arr[:,:,2]
+              mean = float(luma.mean())
+              med = float(np.median(luma))
+              if mean > 130: return 0.98
+              if mean > 80: return 0.90
+              if med < 10: return 0.48
+              if med < 18: return 0.54
+              if med < 28: return 0.60
+              if med < 40: return 0.68
+              return 0.78
+
+          changed = []
+          for filename in files:
+              path = Path(filename)
+              if not path.exists():
+                  print(f'SKIP missing: {filename}')
+                  continue
+              with Image.open(path) as src:
+                  original_mode = src.mode
+                  alpha = src.getchannel('A') if 'A' in src.getbands() else None
+                  rgb = src.convert('RGB')
+                  gamma = gamma_for(rgb)
+                  lut = [0 if i == 0 else int(round(255*((i/255)**gamma))) for i in range(256)]
+                  out = rgb.point(lut * 3)
+                  out = ImageEnhance.Contrast(out).enhance(1.04)
+                  out = ImageEnhance.Color(out).enhance(1.03)
+                  if alpha is not None:
+                      out = out.convert('RGBA')
+                      out.putalpha(alpha)
+                  suffix = path.suffix.lower()
+                  if suffix == '.webp':
+                      out.convert('RGB').save(path, 'WEBP', quality=88, method=6)
+                  elif suffix == '.png':
+                      out.save(path, 'PNG', optimize=True)
+                  else:
+                      out.convert('RGB').save(path, quality=94, optimize=True)
+                  changed.append((filename, gamma))
+
+          print(f'Brightened {len(changed)} Jerome images:')
+          for filename, gamma in changed:
+              print(f'  gamma {gamma:.2f}  {filename}')
+          PY
+
+      - name: Remove one-time workflow and commit results
+        shell: bash
+        run: |
+          rm -f .github/workflows/one-time-brighten-jerome.yml
+          git config user.name 'ghostline-site-bot'
+          git config user.email '149340718+miker1979@users.noreply.github.com'
+          git add images/jerome-locations .github/workflows/one-time-brighten-jerome.yml
+          git commit -m 'Brighten Jerome website renders' || exit 0
+          git push
