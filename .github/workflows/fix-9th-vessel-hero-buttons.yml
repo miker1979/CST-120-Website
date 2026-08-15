@@ -1,0 +1,43 @@
+name: Fix The 9th Vessel Hero Buttons
+
+on:
+  push:
+    paths:
+      - '.button-fix/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Fix hero navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          page = Path('arizona-paranormal.html')
+          text = page.read_text(encoding='utf-8')
+          old = '<a href="#canon" class="btn btn-ghostline btn-lg mr-2 mb-2">Explore the Project</a><a href="#locations" class="btn btn-ghostline-outline btn-lg mb-2">View Jerome Locations</a>'
+          new = '<a href="#gameplay-teaser" class="btn btn-ghostline btn-lg mr-2 mb-2">Watch Gameplay Teaser</a><a href="#locations" class="btn btn-ghostline-outline btn-lg mb-2">View Jerome Locations</a>'
+          if old not in text:
+              raise SystemExit('Expected hero button markup not found')
+          page.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          rm -rf .button-fix
+          rm -f .github/workflows/fix-9th-vessel-hero-buttons.yml
+
+      - name: Commit button fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix The 9th Vessel hero navigation"
+          git push
