@@ -3,38 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ghostline Chess v1.2.0 is a gothic Windows chess game with tactical AI, complete rules, FEN tools, custom factions, and layered horror audio.">
+    <meta name="description" content="Ghostline Chess v1.2.0 is a gothic Windows chess game with three AI difficulty levels, horror board themes, full-square legal-move highlighting, complete rules, FEN tools, and layered audio.">
     <meta property="og:title" content="Ghostline Chess v1.2.0 | Haunted Echoes Studios">
-    <meta property="og:description" content="Battle the tactical Damned AI or play locally with complete chess rules, gothic artwork, and layered horror audio.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ghostlinetech.com/ghostline-chess.html">
-    <meta property="og:image" content="https://ghostlinetech.com/images/ghostline-chess-v2.png">
-    <meta property="og:image:width" content="1448">
-    <meta property="og:image:height" content="1086">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ghostline Chess v1.2.0">
-    <meta name="twitter:description" content="Tactical AI, complete rules, FEN tools, gothic artwork, and layered horror audio for Windows.">
-    <meta name="twitter:image" content="https://ghostlinetech.com/images/ghostline-chess-v2.png">
-
-    <!-- Ghostline Chess social and messaging preview -->
-    <meta property="og:title" content="Ghostline Chess v1.2.0 | Haunted Echoes Studios">
-    <meta property="og:description" content="Battle the tactical Damned AI or play locally with complete chess rules, FEN tools, gothic artwork, and layered horror audio.">
+    <meta property="og:description" content="A gothic chess game with selectable AI difficulty, horror board themes, full-square move highlighting, complete rules, FEN tools, and layered audio.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ghostlinetech.com/ghostline-chess.html">
     <meta property="og:image" content="https://ghostlinetech.com/images/ghostline-chess-social-card-v1-2.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Ghostline Chess v1.2.0 tactical AI release">
+    <meta property="og:image:alt" content="Ghostline Chess v1.2.0 gothic chess release">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ghostline Chess v1.2.0">
-    <meta name="twitter:description" content="Tactical AI, complete chess rules, gothic artwork, and layered horror audio for Windows.">
+    <meta name="twitter:description" content="Selectable AI difficulty, horror board themes, complete chess rules, and gothic presentation for Windows.">
     <meta name="twitter:image" content="https://ghostlinetech.com/images/ghostline-chess-social-card-v1-2.png">
-
     <title>Ghostline Chess v1.2.0 | Haunted Echoes Studios</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        :root { --gold:#d4a63b; --blood:#8e1730; --cyan:#18d7df; }
+        :root { --gold:#d4a63b; --blood:#8e1730; }
         body { background:#f4f7fa; color:#172033; }
         body.dark-mode { background:#07111f; color:#e8eef6; }
         .chess-hero { padding:86px 20px; background:linear-gradient(135deg,#fff,#fff8e9 55%,#f7e8ec); }
@@ -55,49 +41,20 @@
         .btn-gold { background:var(--gold); border-color:var(--gold); color:#111!important; font-weight:800; }
         .btn-blood { background:var(--blood); border-color:var(--blood); color:#fff!important; font-weight:800; }
         .release-list li { margin-bottom:.65rem; }
+        .refresh-note { border-left:5px solid var(--blood); padding:1.25rem 1.5rem; border-radius:12px; background:rgba(142,23,48,.08); }
         body.dark-mode h1,body.dark-mode h2,body.dark-mode h3,body.dark-mode p,body.dark-mode li { color:#e8eef6; }
-
-        /* =================================================
-           QA: CHESS DOWNLOAD CARD LIGHT-MODE CONTRAST
-           ================================================= */
-
-        body.light-mode .download h2 {
-            color: #ffffff !important;
-        }
-
-        body.light-mode .download p {
-            color: #cbd5e1 !important;
-        }
-
-        body.light-mode .download li {
-            color: #ffffff !important;
-        }
-
-        body.light-mode .download strong {
-            color: #ffffff !important;
-        }
-</style>
+        body.light-mode .download h2, body.light-mode .download li, body.light-mode .download strong { color:#fff!important; }
+        body.light-mode .download p { color:#cbd5e1!important; }
+    </style>
 </head>
 <body class="light-mode">
 <nav class="navbar navbar-expand-lg navbar-dark ghostline-navbar sticky-top">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <img src="images/company_logo.png" alt="" class="nav-logo mr-2">
-            <span><span class="brand-primary">GHOSTLINE TECH</span><span class="brand-secondary">GHOSTLINE TECHNOLOGY LLC</span></span>
-        </a>
+        <a class="navbar-brand d-flex align-items-center" href="index.html"><img src="images/company_logo.png" alt="" class="nav-logo mr-2"><span><span class="brand-primary">GHOSTLINE TECH</span><span class="brand-secondary">GHOSTLINE TECHNOLOGY LLC</span></span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="mainNavigation">
-            <ul class="navbar-nav ml-auto align-items-lg-center">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="software.html">Software</a></li>
-                <li class="nav-item"><a class="nav-link" href="haunted-echoes.html">Haunted Echoes Studios</a></li>
-                <li class="nav-item"><a class="nav-link" href="labs.html">Labs</a></li>
-                <li class="nav-item"><a class="nav-link" href="development-log.html">Dev Log</a></li>
-                <li class="nav-item"><a class="nav-link" href="company.html">Company</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                <li class="nav-item ml-lg-2"><button id="darkModeToggle" class="btn btn-sm btn-outline-info theme-button" type="button">Dark Mode</button></li>
-            </ul>
-        </div>
+        <div class="collapse navbar-collapse" id="mainNavigation"><ul class="navbar-nav ml-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="software.html">Software</a></li><li class="nav-item"><a class="nav-link" href="haunted-echoes.html">Haunted Echoes Studios</a></li><li class="nav-item"><a class="nav-link" href="labs.html">Labs</a></li><li class="nav-item"><a class="nav-link" href="development-log.html">Dev Log</a></li><li class="nav-item"><a class="nav-link" href="company.html">Company</a></li><li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li><li class="nav-item ml-lg-2"><button id="darkModeToggle" class="btn btn-sm btn-outline-info theme-button" type="button">Dark Mode</button></li>
+        </ul></div>
     </div>
 </nav>
 <main>
@@ -107,27 +64,27 @@
                 <p class="section-label">A Haunted Echoes Studios Release</p>
                 <h1 class="chess-title">Ghostline <span class="gold">Chess</span></h1>
                 <p class="lead mt-4">The Hallowed Saints and the Damned battle across a gothic board where every move enters the Tome and every fallen piece enters the Graveyard.</p>
-                <p>Version 1.2.0 adds a tactical computer opponent while preserving the complete rules engine, FEN tools, current faction artwork, and layered horror audio.</p>
-                <div class="mt-4">
-                    <a class="btn btn-blood btn-lg mr-2 mb-2" href="https://github.com/miker1979/Ghostline-Chess/releases/download/v1.2.0/GhostlineChess-v1.2.0-win-x64.zip">Download v1.2.0</a>
-                    <a class="btn btn-outline-dark btn-lg mb-2" href="https://github.com/miker1979/Ghostline-Chess" target="_blank" rel="noopener noreferrer">View Source</a>
-                </div>
-                <div class="mt-3"><span class="badge-pill">Tactical AI</span><span class="badge-pill">Local + Single Player</span><span class="badge-pill">Windows x64</span><span class="badge-pill">.NET 10</span></div>
+                <p>The current development refresh improves readability and control without changing the complete chess engine: three AI difficulty levels, full-square legal-move and capture highlighting, three horror board themes, and a cleaner desktop control layout.</p>
+                <div class="mt-4"><a class="btn btn-blood btn-lg mr-2 mb-2" href="https://github.com/miker1979/Ghostline-Chess/releases/download/v1.2.0/GhostlineChess-v1.2.0-win-x64.zip">Download v1.2.0</a><a class="btn btn-outline-dark btn-lg mb-2" href="https://github.com/miker1979/Ghostline-Chess" target="_blank" rel="noopener noreferrer">View Source</a></div>
+                <div class="mt-3"><span class="badge-pill">3 AI Levels</span><span class="badge-pill">3 Horror Themes</span><span class="badge-pill">Full-Square Move Highlights</span><span class="badge-pill">Windows x64</span><span class="badge-pill">.NET 10</span></div>
             </div>
-            <div class="col-lg-6"><figure class="panel"><a href="images/ghostline-chess-v2.png" target="_blank" rel="noopener noreferrer"><img src="images/ghostline-chess-v2.png" alt="Current Ghostline Chess interface with Tome, Graveyard, audio controls, and AI opponent"></a></figure></div>
+            <div class="col-lg-6"><figure class="panel"><a href="images/ghostline-chess-v2.png" target="_blank" rel="noopener noreferrer"><img src="images/ghostline-chess-v2.png" alt="Current Ghostline Chess interface with gothic board, Tome, Graveyard, AI controls, themes, audio controls, and compact game controls"></a></figure></div>
         </div></div>
     </section>
 
     <section class="section-pad">
-        <div class="container"><div class="text-center mb-5"><p class="section-label">Version 1.2.0</p><h2 class="section-title">A complete gothic chess match with a <span class="gold">thinking opponent.</span></h2></div>
-        <div class="row">
-            <div class="col-md-6 col-lg-4 mb-4"><article class="feature ai"><h3>Tactical Damned AI</h3><p>Material-aware two-ply minimax search, alpha-beta pruning, capture-first ordering, check and checkmate scoring, and background calculation.</p></article></div>
-            <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Complete Rules</h3><p>Castling, en passant, all promotion choices, king safety, checkmate, stalemate, insufficient material, repetition, and fifty-move draws.</p></article></div>
-            <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Ghostline Tome</h3><p>Algebraic move history, current FEN, load/copy tools, counters, and captured-piece Graveyards preserve the battle state.</p></article></div>
-            <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Faction Artwork</h3><p>Custom Hallowed Saints and Damned Souls pieces replace the original prototype artwork throughout the active build.</p></article></div>
-            <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Layered Horror Audio</h3><p>A continuous gothic suite, randomized environmental creaks, and twenty-four faction-and-piece move and capture cues play through NAudio.</p></article></div>
-            <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Responsive Desktop Play</h3><p>AI analysis runs away from the interface thread so the Windows Forms game remains responsive while the Damned calculate their reply.</p></article></div>
-        </div></div>
+        <div class="container">
+            <div class="text-center mb-5"><p class="section-label">Current Development Refresh</p><h2 class="section-title">A clearer board, a better difficulty curve, and <span class="gold">three ways to haunt the match.</span></h2></div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4"><article class="feature ai"><h3>Three AI Levels</h3><p>Choose Easy, Normal, or Hard without changing the rules. The difficulty selector makes the computer opponent approachable for casual play while preserving the stronger challenge.</p></article></div>
+                <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Full-Square Legal Moves</h3><p>Legal destinations now highlight the entire board square instead of relying on small circular markers. Capture destinations remain visually distinct for faster scanning.</p></article></div>
+                <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Three Horror Themes</h3><p>Switch between Oxblood Chapel, Crypt, and Moonlit Graveyard while keeping the board readable and the Haunted Echoes identity intact.</p></article></div>
+                <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Complete Rules</h3><p>Castling, en passant, all promotion choices, king safety, checkmate, stalemate, insufficient material, repetition, and fifty-move draws remain intact.</p></article></div>
+                <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Ghostline Tome &amp; Graveyard</h3><p>Algebraic move history, FEN tools, captured-piece displays, and the Chronicle-style presentation preserve the state and story of every match.</p></article></div>
+                <div class="col-md-6 col-lg-4 mb-4"><article class="feature"><h3>Refined Desktop Layout</h3><p>The board and status remain on the left while the Tome, Graveyard, FEN, AI, board theme, and audio controls are organized into one compact right-side command area.</p></article></div>
+            </div>
+            <div class="refresh-note mt-2"><strong>August 15, 2026:</strong> the latest development pass focuses on board readability, difficulty selection, horror-themed board palettes, and desktop UI polish. The public v1.2.0 download remains available below while the refreshed development build continues through testing.</div>
+        </div>
     </section>
 
     <section class="section-pad alt">
@@ -135,7 +92,7 @@
             <div class="col-lg-6 mb-4"><img class="img-fluid rounded shadow" src="images/ghostline-chess-web-card-v1-2.png" alt="Ghostline Chess version 1.2.0 website card"></div>
             <div class="col-lg-6"><div class="download">
                 <h2>Download Ghostline Chess v1.2.0</h2>
-                <p>This self-contained Windows x64 prerelease includes the current tactical AI build. Visual Studio and a separate .NET installation are not required.</p>
+                <p>This self-contained Windows x64 prerelease includes the published v1.2.0 tactical AI build. Visual Studio and a separate .NET installation are not required.</p>
                 <ul class="release-list"><li>Download the ZIP archive.</li><li>Extract it to a normal folder.</li><li>Run <strong>GhostlineChess.exe</strong>.</li><li>Windows may show a SmartScreen warning because the prototype is unsigned.</li></ul>
                 <a class="btn btn-gold btn-lg btn-block" href="https://github.com/miker1979/Ghostline-Chess/releases/download/v1.2.0/GhostlineChess-v1.2.0-win-x64.zip">Download Windows x64 ZIP</a>
                 <a class="btn btn-outline-light btn-block mt-2" href="https://github.com/miker1979/Ghostline-Chess/releases/tag/v1.2.0" target="_blank" rel="noopener noreferrer">Read v1.2.0 Release Notes</a>
@@ -143,14 +100,13 @@
         </div></div>
     </section>
 
-    <section class="section-pad"><div class="container text-center"><h2>Development history</h2><p class="lead">Follow the path from the first board prototype through complete rules, faction artwork, audio, and tactical AI.</p><a class="btn btn-blood" href="ghostline-chess-development-log.html">Open the Ghostline Chess Development Log</a></div></section>
+    <section class="section-pad"><div class="container text-center"><h2>Development history</h2><p class="lead">Follow the path from the first board prototype through complete rules, faction artwork, audio, tactical AI, difficulty levels, board themes, and the current visual polish pass.</p><a class="btn btn-blood" href="ghostline-chess-development-log.html">Open the Ghostline Chess Development Log</a></div></section>
 </main>
 <footer class="site-footer"><div class="container"><div class="row">
     <div class="col-lg-5 mb-4 mb-lg-0"><img src="images/company_logo.png" alt="Ghostline Technology LLC" class="footer-logo"><p>Practical software, original interactive entertainment, and a disciplined path from prototype to product.</p></div>
-    <div class="col-6 col-lg-2 mb-4"><h2 class="footer-heading">Divisions</h2><a href="software.html">Ghostline Software</a>
-                <a href="software-development.html">Software Development</a><a href="haunted-echoes.html">Haunted Echoes Studios</a><a href="labs.html">Ghostline Labs</a></div>
+    <div class="col-6 col-lg-2 mb-4"><h2 class="footer-heading">Divisions</h2><a href="software.html">Ghostline Software</a><a href="software-development.html">Software Development</a><a href="haunted-echoes.html">Haunted Echoes Studios</a><a href="labs.html">Ghostline Labs</a></div>
     <div class="col-6 col-lg-2 mb-4"><h2 class="footer-heading">Company</h2><a href="company.html">About</a><a href="development-log.html">Development Log</a><a href="contact.html">Contact</a></div>
-    <div class="col-lg-3"><h2 class="footer-heading">Projects</h2><a href="ghostline-chess.html">Ghostline Chess</a><a href="load-board.html">TransitLogic</a><a href="arizona-paranormal.html">The 9th Vessel</a><a href="boston-ripper.html">The Boston Ripper</a></div>
+    <div class="col-lg-3"><h2 class="footer-heading">Projects</h2><a href="ghostline-chess.html">Ghostline Chess</a><a href="war-of-the-damned.html">War of the Damned</a><a href="load-board.html">TransitLogic</a><a href="arizona-paranormal.html">The 9th Vessel</a><a href="boston-ripper.html">The Boston Ripper</a></div>
 </div><hr class="footer-rule"><div class="d-md-flex justify-content-between"><span>&copy; <span id="currentYear"></span> Ghostline Technology LLC.</span><span>All rights reserved.</span></div></div></footer>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>document.getElementById("currentYear").textContent=new Date().getFullYear();const t=document.getElementById("darkModeToggle");function applyTheme(v){const d=v==="dark";document.body.classList.toggle("dark-mode",d);document.body.classList.toggle("light-mode",!d);if(t)t.textContent=d?"Light Mode":"Dark Mode";}applyTheme(localStorage.getItem("ghostlineTheme")||"light");if(t)t.addEventListener("click",()=>{const v=document.body.classList.contains("dark-mode")?"light":"dark";localStorage.setItem("ghostlineTheme",v);applyTheme(v);});</script>
