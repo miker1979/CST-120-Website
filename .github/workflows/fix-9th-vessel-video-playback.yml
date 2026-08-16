@@ -1,0 +1,83 @@
+name: Fix The 9th Vessel Video Playback
+
+on:
+  push:
+    paths:
+      - '.fix-9th-vessel-video-playback'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Re-encode teaser for browser playback
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+
+          src='Video/the-9th-vessel-gameplay-concept.mp4'
+          tmp='Video/the-9th-vessel-gameplay-concept.web.mp4'
+
+          ffmpeg -y -i "$src" \
+            -vf "scale='min(1280,iw)':-2:flags=lanczos" \
+            -c:v libx264 -profile:v high -level 4.0 -preset medium -crf 22 \
+            -pix_fmt yuv420p \
+            -c:a aac -b:a 160k \
+            -movflags +faststart \
+            "$tmp"
+
+          mv "$tmp" "$src"
+
+          ffprobe -v error \
+            -select_streams v:0 \
+            -show_entries stream=codec_name,pix_fmt,width,height \
+            -of default=noprint_wrappers=1 "$src"
+
+      - name: Make embedded player more robust and bust old cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          page = Path('arizona-paranormal.html')
+          text = page.read_text(encoding='utf-8')
+
+          text = text.replace(
+              '<video class="gameplay-teaser-video" controls preload="metadata" poster="images/the-9th-vessel-cover.png">',
+              '<video id="gameplayTeaserVideo" class="gameplay-teaser-video" controls preload="auto" playsinline poster="images/the-9th-vessel-cover.png">',
+              1,
+          )
+          text = text.replace(
+              '<source src="Video/the-9th-vessel-gameplay-concept.mp4" type="video/mp4">',
+              '<source src="Video/the-9th-vessel-gameplay-concept.mp4?v=2" type="video/mp4">',
+              1,
+          )
+
+          needle = '<p class="mb-0">Haunted Hamburger is one of the Jerome investigation locations. This teaser is a visual-development experiment used to explore mood, movement, sound, and encounter pacing.</p>'
+          replacement = needle + '\n        <p class="mt-3 mb-0"><a href="Video/the-9th-vessel-gameplay-concept.mp4?v=2" target="_blank" rel="noopener noreferrer">Open the gameplay teaser directly &rarr;</a></p>'
+          if needle in text and 'Open the gameplay teaser directly' not in text:
+              text = text.replace(needle, replacement, 1)
+
+          page.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit playback fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .fix-9th-vessel-video-playback
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix The 9th Vessel teaser browser playback"
+          git push
