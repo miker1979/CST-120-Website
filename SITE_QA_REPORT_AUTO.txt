@@ -1,0 +1,90 @@
+Ghostline Website Automated QA Report
+Generated: 2026-08-20 15:03:56 UTC
+
+=== HTML LOCAL-LINK / ENCODING AUDIT ===
+Ghostline website QA
+Root: /home/runner/work/ghostline-tech/ghostline-tech
+
+Found 2 issue(s):
+
+MISSING   /home/runner/work/ghostline-tech/ghostline-tech/haunted-echoes.html  -> Images/chess_cover_art.png
+MISSING   /home/runner/work/ghostline-tech/ghostline-tech/haunted-echoes.html  -> Images/ghostline-chess-gameplay.png
+
+site-qa.ps1 exit code: 1
+
+=== STRUCTURE / DUPLICATE-ASSET AUDIT ===
+Repository files checked: 228
+Exact duplicate groups: 20
+Approx duplicate storage: 137.2 MiB
+
+DUPLICATE:
+  images/horror walk 8.mp4 (41015257 bytes)
+  images/the_9th_vessel_teaser.mp4 (41015257 bytes)
+  images/horror walk 7.mp4 (41015257 bytes)
+  Video/the-9th-vessel-gameplay-concept.mp4 (41015257 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/old-jerome-high-school.png (4066283 bytes)
+  images/Jerome Locations/Real/old-jerome-high-school.png (4066283 bytes)
+DUPLICATE:
+  images/jerome-locations/game screen shots.png (2797205 bytes)
+  images/Jerome Locations/game screen shots.png (2797205 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/haunted-hamburger.png (1857811 bytes)
+  images/Jerome Locations/Real/haunted-hamburger.png (1857811 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/jennies-place.png (1771233 bytes)
+  images/Jerome Locations/Real/jennies-place.png (1771233 bytes)
+DUPLICATE:
+  images/jerome-hotel-gameplay.png (1677631 bytes)
+  images/jerome-locations/jerome-hotel-gameplay.png (1677631 bytes)
+  images/Jerome Locations/jerome-hotel-gameplay.png (1677631 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/new-state-motor-company.png (1494192 bytes)
+  images/Jerome Locations/Real/new-state-motor-company.png (1494192 bytes)
+DUPLICATE:
+  images/jerome-locations/old jerome high school.png (823103 bytes)
+  images/Jerome Locations/old jerome high school.png (823103 bytes)
+DUPLICATE:
+  images/jerome-locations/belgian jennie 2.png (711190 bytes)
+  images/Jerome Locations/belgian jennie 2.png (711190 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/episcopal-christ-church.jpeg (647005 bytes)
+  images/Jerome Locations/Real/episcopal-christ-church.jpeg (647005 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/liberty-theatre.jpg (618822 bytes)
+  images/Jerome Locations/Real/liberty-theatre.jpg (618822 bytes)
+DUPLICATE:
+  images/jerome-locations/kings mine ghost town 2.jpg (546925 bytes)
+  images/Jerome Locations/kings mine ghost town 2.jpg (546925 bytes)
+  images/jerome-locations/Real/gold-king-haynes.jpg (546925 bytes)
+DUPLICATE:
+  images/jerome-locations/kings mine ghost town.jpg (322685 bytes)
+  images/Jerome Locations/kings mine ghost town.jpg (322685 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/little-daisy-hotel.jpg (317703 bytes)
+  images/Jerome Locations/Real/little-daisy-hotel.jpg (317703 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/jerome-pioneer-graveyard.jpg (223886 bytes)
+  images/Jerome Locations/Real/jerome-pioneer-graveyard.jpg (223886 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/douglas-mansion.jpg (176162 bytes)
+  images/Jerome Locations/Real/douglas-mansion.jpg (176162 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/douglas-mansion-alt.jpg (156168 bytes)
+  images/Jerome Locations/Real/douglas-mansion-alt.jpg (156168 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/jerome-grand-hotel.jpg (153786 bytes)
+  images/Jerome Locations/Real/jerome-grand-hotel.jpg (153786 bytes)
+DUPLICATE:
+  images/jerome-locations/Real/connor-hotel.jpg (109005 bytes)
+  images/Jerome Locations/Real/connor-hotel.jpg (109005 bytes)
+DUPLICATE:
+  images/jerome-locations/Belgian Jennie.webp (92814 bytes)
+  images/Jerome Locations/Belgian Jennie.webp (92814 bytes)
+NOTE: DUPLICATE TREE: images/Jerome Locations exists alongside images/jerome-locations
+NOTE: LEGACY ASSET: images/witchfinder-salem-cover.jpg
+NOTE: LEGACY ASSET: images/witchfinder-salem-cover.svg
+NOTE: LEGACY ASSET: images/witchfinder-salem-cover.webp
+
+STRUCTURAL PROBLEMS:
+  DOWNLOAD: downloads/GhostlineChess-v1.2.0-win-x64.zip is only 1 byte(s)
