@@ -1,5 +1,5 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 18:55:02 UTC
+Generated: 2026-08-20 19:00:20 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
@@ -13,10 +13,10 @@ ENCODING  /home/runner/work/ghostline-tech/ghostline-tech/arizona-paranormal.htm
 site-qa.ps1 exit code: 1
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
-Repository files checked: 151
-Root HTML pages: 44
+Repository files checked: 148
+Root HTML pages: 43
 Sitemap/public pages: 22
-Media files: 84
+Media files: 82
 
 --- PUBLIC / LEGACY PAGE INVENTORY ---
 Public pages from sitemap:
@@ -54,7 +54,6 @@ Root HTML not in sitemap (review as legacy/private utility):
   REVIEW  helloworld.html
   REVIEW  hobbies.html
   REVIEW  load-board-demo.html
-  REVIEW  media.html
   REVIEW  navbar.html
   REVIEW  photos.html
   REVIEW  playbs.html
@@ -78,9 +77,9 @@ Root HTML not in sitemap (review as legacy/private utility):
 
 --- CSS / JS USAGE ---
   KEEP: css/calculator.css refs=['calculator.html', 'freightcalculator.html']
-  KEEP: css/styles.css refs=['about.html', 'academic-archive.html', 'accomplishments.html', 'arizona-paranormal.html', 'assignments.html', 'boston-ripper.html', 'broker-operations.html', 'calculator.html', 'choicemaker.html', 'company.html', 'construction-ops.html', 'contact.html', 'crypt.html', 'development-log.html', 'events.html', 'fleettrack-development-log.html', 'freightcalculator.html', 'gallery.html', 'ghostline-chess-development-log.html', 'ghostline-chess.html', 'haunted-echoes.html', 'helloworld.html', 'hobbies.html', 'index.html', 'labs.html', 'load-board-demo.html', 'load-board.html', 'media.html', 'photos.html', 'playbs.html', 'playjq1.html', 'playjq2.html', 'playjq3.html', 'playjs.html', 'portfolio.html', 'software-development.html', 'software.html', 'tando.html', 'thankyou.html', 'war-of-the-damned-development-log.html', 'war-of-the-damned.html', 'witchfinder-salem.html']
+  KEEP: css/styles.css refs=['about.html', 'academic-archive.html', 'accomplishments.html', 'arizona-paranormal.html', 'assignments.html', 'boston-ripper.html', 'broker-operations.html', 'calculator.html', 'choicemaker.html', 'company.html', 'construction-ops.html', 'contact.html', 'crypt.html', 'development-log.html', 'events.html', 'fleettrack-development-log.html', 'freightcalculator.html', 'gallery.html', 'ghostline-chess-development-log.html', 'ghostline-chess.html', 'haunted-echoes.html', 'helloworld.html', 'hobbies.html', 'index.html', 'labs.html', 'load-board-demo.html', 'load-board.html', 'photos.html', 'playbs.html', 'playjq1.html', 'playjq2.html', 'playjq3.html', 'playjs.html', 'portfolio.html', 'software-development.html', 'software.html', 'tando.html', 'thankyou.html', 'war-of-the-damned-development-log.html', 'war-of-the-damned.html', 'witchfinder-salem.html']
   KEEP: js/calculator.js refs=['calculator.html', 'freightcalculator.html']
-  KEEP: js/copyright.js refs=['about.html', 'accomplishments.html', 'assignments.html', 'events.html', 'freightcalculator.html', 'gallery.html', 'hobbies.html', 'media.html', 'photos.html', 'playjs.html', 'portfolio.html', 'tando.html']
+  KEEP: js/copyright.js refs=['about.html', 'accomplishments.html', 'assignments.html', 'events.html', 'freightcalculator.html', 'gallery.html', 'hobbies.html', 'photos.html', 'playjs.html', 'portfolio.html', 'tando.html']
   KEEP: js/mycode.js refs=['playjs.html']
   KEEP: js/myscript.js refs=['helloworld.html']
   KEEP: js/theme.js refs=['photos.html', 'tando.html']
@@ -138,7 +137,7 @@ Unreferenced media files: 25
 
 --- SUMMARY ---
 Missing local references: 0
-Legacy/non-sitemap root HTML pages: 22
+Legacy/non-sitemap root HTML pages: 21
 Exact duplicate groups: 3
 Unreferenced media candidates: 25
 Duplicate storage estimate: 41.2 MiB
