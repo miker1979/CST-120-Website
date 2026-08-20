@@ -1,5 +1,5 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 15:12:59 UTC
+Generated: 2026-08-20 15:20:07 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
@@ -10,7 +10,7 @@ PASS: No encoding artifacts or missing local href/src targets found.
 site-qa.ps1 exit code: 0
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
-Repository files checked: 228
+Repository files checked: 227
 Root HTML pages: 45
 Sitemap/public pages: 20
 Media files: 142
