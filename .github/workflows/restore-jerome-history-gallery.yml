@@ -1,0 +1,112 @@
+name: Restore Jerome Mining History Gallery
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/restore-jerome-history-gallery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Restore historical mining reference gallery
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('arizona-paranormal.html')
+          text = path.read_text(encoding='utf-8')
+
+          start_marker = '<section class="az-section"><div class="container"><div class="text-center mb-5"><p class="section-label">Original Investigation Environments</p>'
+          end_marker = '<section class="az-section-alt"><div class="container"><div class="text-center mb-5"><p class="section-label">Spoiler-Free Systems Preview</p>'
+
+          start = text.find(start_marker)
+          end = text.find(end_marker, start)
+          if start == -1 or end == -1:
+              raise SystemExit('Could not locate the current environment section markers.')
+
+          replacement = '''<section id="mining-history" class="az-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="section-label">Jerome Mining History &amp; Environment References</p>
+      <h2 class="section-title">Historic mining functions inspire <span class="az-accent">the environment studies.</span></h2>
+      <p class="lead az-lead">These eight visual studies are inspired by the industrial systems, work spaces, and community infrastructure associated with historic copper mining in Jerome and the wider Arizona mining industry. They are presented as historical environment references rather than surviving Jerome buildings, exact reconstructions, or story revelations.</p>
+    </div>
+
+    <div class="canon-banner mb-5">
+      <h3>Historical Mining Context</h3>
+      <p class="mb-0">Jerome grew around major copper-mining operations in the late nineteenth and early twentieth centuries. Underground mining depended on administration, explosives storage, surveying, timbered workings, hoisting equipment, drainage systems, ore-assay work, and community support facilities. The studies below highlight those real mining functions without revealing their role in the game’s story.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A1-old-foremans-office.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A1-old-foremans-office.webp" alt="Concept study of a historic mining foreman's office"></a><figcaption>Reference Study</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">REF 01</span><span class="anchor-type">Mine Administration</span></div><h3>Foreman's Office</h3><p class="mb-0">Large mining operations required administrative spaces for shift assignments, work records, production reports, maps, correspondence, and day-to-day coordination between crews and supervisors.</p></div></article></div>
+
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A2-powder-magazine.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A2-powder-magazine.webp" alt="Concept study of a historic mining powder magazine"></a><figcaption>Reference Study</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">REF 02</span><span class="anchor-type">Explosives Storage</span></div><h3>Powder Magazine</h3><p class="mb-0">Hard-rock mining relied on blasting, so explosives were stored in dedicated magazines designed to keep volatile materials secure, dry, and separated from ordinary work areas.</p></div></article></div>
+
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A3-company-survey-archive.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A3-company-survey-archive.webp" alt="Concept study of a historic mine survey and drafting office"></a><figcaption>Reference Study</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">REF 03</span><span class="anchor-type">Survey &amp; Mapping</span></div><h3>Company Survey Archive</h3><p class="mb-0">Mine surveyors documented underground workings, elevations, claim boundaries, new development, and geological information. Drafting rooms and map archives were essential to planning a complex underground mine.</p></div></article></div>
+
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A4-level-3200-barricade.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A4-level-3200-barricade.webp" alt="Concept study of timbered underground mine workings"></a><figcaption>Reference Study</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">REF 04</span><span class="anchor-type">Underground Workings</span></div><h3>Timbered Mine Level</h3><p class="mb-0">Historic underground mines organized their workings by levels and used extensive timber support, doors, bulkheads, and barricades to control access and reinforce unstable ground.</p></div></article></div>
+
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A5-main-shaft-hoist-house.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A5-main-shaft-hoist-house.webp" alt="Concept study of a historic mine hoist house"></a><figcaption>Reference Study</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">REF 05</span><span class="anchor-type">Hoisting Systems</span></div><h3>Main Shaft Hoist House</h3><p class="mb-0">Hoisting machinery moved miners, ore, tools, and supplies through vertical shafts. Drums, steel cable, brakes, controls, cages, and skips made the hoist house one of the most important surface structures at a deep mine.</p></div></article></div>
+
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A6-lower-pump-house.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A6-lower-pump-house.webp" alt="Concept study of historic mine drainage equipment"></a><figcaption>Reference Study</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">REF 06</span><span class="anchor-type">Mine Drainage</span></div><h3>Drainage &amp; Pump Station</h3><p class="mb-0">Groundwater had to be removed from lower workings so mining could continue. Pumps, pipes, valves, sumps, and drainage lines were part of the infrastructure required to keep deep mines operating.</p></div></article></div>
+
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A7-assay-office.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A7-assay-office.webp" alt="Concept study of a historic mining assay office"></a><figcaption>Reference Study</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">REF 07</span><span class="anchor-type">Ore Analysis</span></div><h3>Assay Office</h3><p class="mb-0">Assay work measured the metal content and value of ore samples. Crushing, sampling, furnace work, chemical analysis, scales, and specimen storage helped mine operators decide where and how to continue extraction.</p></div></article></div>
+
+      <div class="col-lg-6 mb-4"><article class="anchor-card"><figure class="anchor-shot"><a href="images/jerome-locations/Anchors/A8-old-infirmary-chapel.webp" target="_blank" rel="noopener noreferrer"><img src="images/jerome-locations/Anchors/A8-old-infirmary-chapel.webp" alt="Concept study inspired by medical and religious facilities in historic mining communities"></a><figcaption>Reference Study</figcaption></figure><div class="anchor-body"><div class="d-flex justify-content-between align-items-center"><span class="anchor-id">REF 08</span><span class="anchor-type">Mining Community Support</span></div><h3>Infirmary &amp; Chapel Study</h3><p class="mb-0">Mining towns supported more than extraction alone. Hospitals, medical facilities, churches, schools, lodging, and other community institutions grew alongside major operations. This image is a period-inspired visual study rather than a claim that one exact combined building survived in Jerome.</p></div></article></div>
+    </div>
+  </div>
+</section>
+
+'''
+
+          updated = text[:start] + replacement + text[end:]
+
+          forbidden = [
+              'Jack "Ironhand" Calloway',
+              'Samuel "Blaze" McKenna',
+              'Mateo Ruiz',
+              'Walter "Timber" Briggs',
+              'Emil Novak',
+              'Thomas "Pumps" Hale',
+              'Nathaniel Crowe',
+              'Isaiah Brooks'
+          ]
+          for name in forbidden:
+              if name in replacement:
+                  raise SystemExit(f'Story name leaked into history section: {name}')
+
+          path.write_text(updated, encoding='utf-8')
+          PY
+
+      - name: Commit update safely
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add arizona-paranormal.html
+          if git diff --cached --quiet; then
+            echo "No page changes were required."
+            exit 0
+          fi
+          git commit -m "Restore Jerome mining history reference gallery"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1
