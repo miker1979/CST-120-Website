@@ -1,16 +1,13 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 19:00:20 UTC
+Generated: 2026-08-20 19:13:43 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
 Root: /home/runner/work/ghostline-tech/ghostline-tech
 
-Found 2 issue(s):
+PASS: No encoding artifacts or missing local href/src targets found.
 
-ENCODING  /home/runner/work/ghostline-tech/ghostline-tech/arizona-paranormal.html  contains 'â€'
-ENCODING  /home/runner/work/ghostline-tech/ghostline-tech/arizona-paranormal.html  contains 'â€™'
-
-site-qa.ps1 exit code: 1
+site-qa.ps1 exit code: 0
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
 Repository files checked: 148
