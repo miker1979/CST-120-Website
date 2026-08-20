@@ -1,5 +1,5 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 15:20:07 UTC
+Generated: 2026-08-20 15:34:28 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
@@ -10,7 +10,7 @@ PASS: No encoding artifacts or missing local href/src targets found.
 site-qa.ps1 exit code: 0
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
-Repository files checked: 227
+Repository files checked: 225
 Root HTML pages: 45
 Sitemap/public pages: 20
 Media files: 142
@@ -251,14 +251,12 @@ Unreferenced media files: 81
   KEEP  downloads/.gitkeep
 
 --- WORKFLOW / SCRIPT CLEANUP CANDIDATES ---
-  WORKFLOW  .github/workflows/fix-9th-vessel-video-playback.yml
   WORKFLOW  .github/workflows/site-qa.yml
   HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-05-development-log-update.py
   HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-10-jerome-site-update.py
   HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-10-jerome-spoiler-cleanup.py
   HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-11-choicemaker-discovery.py
   HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-11-software-development-seo.py
-  DELETE-CANDIDATE  .fix-9th-vessel-video-playback (obsolete one-time trigger)
 
 --- SUMMARY ---
 Missing local references: 0
