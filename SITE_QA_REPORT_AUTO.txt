@@ -1,90 +1,268 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 15:03:56 UTC
+Generated: 2026-08-20 15:12:59 UTC
 
-=== HTML LOCAL-LINK / ENCODING AUDIT ===
+=== EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
 Root: /home/runner/work/ghostline-tech/ghostline-tech
 
-Found 2 issue(s):
+PASS: No encoding artifacts or missing local href/src targets found.
 
-MISSING   /home/runner/work/ghostline-tech/ghostline-tech/haunted-echoes.html  -> Images/chess_cover_art.png
-MISSING   /home/runner/work/ghostline-tech/ghostline-tech/haunted-echoes.html  -> Images/ghostline-chess-gameplay.png
+site-qa.ps1 exit code: 0
 
-site-qa.ps1 exit code: 1
-
-=== STRUCTURE / DUPLICATE-ASSET AUDIT ===
+=== COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
 Repository files checked: 228
+Root HTML pages: 45
+Sitemap/public pages: 20
+Media files: 142
+
+--- PUBLIC / LEGACY PAGE INVENTORY ---
+Public pages from sitemap:
+  KEEP  academic-archive.html
+  KEEP  arizona-paranormal.html
+  KEEP  boston-ripper.html
+  KEEP  broker-operations.html
+  KEEP  choicemaker.html
+  KEEP  company.html
+  KEEP  construction-ops.html
+  KEEP  contact.html
+  KEEP  crypt.html
+  KEEP  development-log.html
+  KEEP  ghostline-chess.html
+  KEEP  haunted-echoes.html
+  KEEP  index.html
+  KEEP  labs.html
+  KEEP  load-board.html
+  KEEP  software-development.html
+  KEEP  software.html
+  KEEP  war-of-the-damned-development-log.html
+  KEEP  war-of-the-damned.html
+  KEEP  witchfinder-salem.html
+Root HTML not in sitemap (review as legacy/private utility):
+  REVIEW  about.html
+  REVIEW  accomplishments.html
+  REVIEW  arizona-paranormal-v2.html
+  REVIEW  assignments.html
+  REVIEW  calculator.html
+  REVIEW  events.html
+  REVIEW  fleettrack-development-log.html
+  REVIEW  footer.html
+  REVIEW  freightcalculator.html
+  REVIEW  gallery.html
+  REVIEW  ghostline-chess-development-log.html
+  REVIEW  helloworld.html
+  REVIEW  hobbies.html
+  REVIEW  load-board-demo.html
+  REVIEW  media.html
+  REVIEW  navbar.html
+  REVIEW  photos.html
+  REVIEW  playbs.html
+  REVIEW  playjq1.html
+  REVIEW  playjq2.html
+  REVIEW  playjq3.html
+  REVIEW  playjs.html
+  REVIEW  portfolio.html
+  REVIEW  tando.html
+  REVIEW  thankyou.html
+
+--- MISSING LOCAL RUNTIME REFERENCES ---
+  PASS: no missing local href/src targets in root HTML pages.
+
+--- DIRECTORY / CASE CONSISTENCY ---
+  PASS: canonical images/ directory casing is lowercase.
+  REVIEW: duplicate legacy tree images/Jerome Locations/ exists; public runtime references=0
+  KEEP: canonical images/jerome-locations/ exists; public runtime references=32
+
+--- SALEM COVER VARIANTS ---
+  KEEP: images/witchfinder-salem-cover.png public_refs=['haunted-echoes.html', 'witchfinder-salem.html']
+  DELETE-CANDIDATE: images/witchfinder-salem-cover.jpg public_refs=[]
+  DELETE-CANDIDATE: images/witchfinder-salem-cover.svg public_refs=[]
+  DELETE-CANDIDATE: images/witchfinder-salem-cover.webp public_refs=[]
+
+--- CSS / JS USAGE ---
+  KEEP: css/calculator.css refs=['calculator.html', 'freightcalculator.html']
+  REVIEW-UNREFERENCED: css/jerome-location-gallery.css refs=[]
+  KEEP: css/styles.css refs=['about.html', 'academic-archive.html', 'accomplishments.html', 'arizona-paranormal-v2.html', 'arizona-paranormal.html', 'assignments.html', 'boston-ripper.html', 'broker-operations.html', 'calculator.html', 'choicemaker.html', 'company.html', 'construction-ops.html', 'contact.html', 'crypt.html', 'development-log.html', 'events.html', 'fleettrack-development-log.html', 'freightcalculator.html', 'gallery.html', 'ghostline-chess-development-log.html', 'ghostline-chess.html', 'haunted-echoes.html', 'helloworld.html', 'hobbies.html', 'index.html', 'labs.html', 'load-board-demo.html', 'load-board.html', 'media.html', 'photos.html', 'playbs.html', 'playjq1.html', 'playjq2.html', 'playjq3.html', 'playjs.html', 'portfolio.html', 'software-development.html', 'software.html', 'tando.html', 'thankyou.html', 'war-of-the-damned-development-log.html', 'war-of-the-damned.html', 'witchfinder-salem.html']
+  KEEP: js/calculator.js refs=['calculator.html', 'freightcalculator.html']
+  KEEP: js/copyright.js refs=['about.html', 'accomplishments.html', 'assignments.html', 'events.html', 'freightcalculator.html', 'gallery.html', 'hobbies.html', 'media.html', 'photos.html', 'playjs.html', 'portfolio.html', 'tando.html']
+  KEEP: js/mycode.js refs=['playjs.html']
+  KEEP: js/myscript.js refs=['helloworld.html']
+  KEEP: js/theme.js refs=['photos.html', 'tando.html']
+
+--- EXACT DUPLICATES ---
 Exact duplicate groups: 20
 Approx duplicate storage: 137.2 MiB
+  DUPLICATE GROUP:
+    UNREFERENCED      images/horror walk 8.mp4 (41015257 bytes) refs=[]
+    UNREFERENCED      images/the_9th_vessel_teaser.mp4 (41015257 bytes) refs=[]
+    UNREFERENCED      images/horror walk 7.mp4 (41015257 bytes) refs=[]
+    ACTIVE            Video/the-9th-vessel-gameplay-concept.mp4 (41015257 bytes) refs=['arizona-paranormal.html']
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/old-jerome-high-school.png (4066283 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/old-jerome-high-school.png (4066283 bytes) refs=[]
+  DUPLICATE GROUP:
+    UNREFERENCED      images/jerome-locations/game screen shots.png (2797205 bytes) refs=[]
+    UNREFERENCED      images/Jerome Locations/game screen shots.png (2797205 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/haunted-hamburger.png (1857811 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/haunted-hamburger.png (1857811 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/jennies-place.png (1771233 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/jennies-place.png (1771233 bytes) refs=[]
+  DUPLICATE GROUP:
+    UNREFERENCED      images/jerome-hotel-gameplay.png (1677631 bytes) refs=[]
+    UNREFERENCED      images/jerome-locations/jerome-hotel-gameplay.png (1677631 bytes) refs=[]
+    UNREFERENCED      images/Jerome Locations/jerome-hotel-gameplay.png (1677631 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/new-state-motor-company.png (1494192 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/new-state-motor-company.png (1494192 bytes) refs=[]
+  DUPLICATE GROUP:
+    UNREFERENCED      images/jerome-locations/old jerome high school.png (823103 bytes) refs=[]
+    UNREFERENCED      images/Jerome Locations/old jerome high school.png (823103 bytes) refs=[]
+  DUPLICATE GROUP:
+    UNREFERENCED      images/jerome-locations/belgian jennie 2.png (711190 bytes) refs=[]
+    UNREFERENCED      images/Jerome Locations/belgian jennie 2.png (711190 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/episcopal-christ-church.jpeg (647005 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/episcopal-christ-church.jpeg (647005 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/liberty-theatre.jpg (618822 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/liberty-theatre.jpg (618822 bytes) refs=[]
+  DUPLICATE GROUP:
+    UNREFERENCED      images/jerome-locations/kings mine ghost town 2.jpg (546925 bytes) refs=[]
+    UNREFERENCED      images/Jerome Locations/kings mine ghost town 2.jpg (546925 bytes) refs=[]
+    ACTIVE            images/jerome-locations/Real/gold-king-haynes.jpg (546925 bytes) refs=['arizona-paranormal.html']
+  DUPLICATE GROUP:
+    UNREFERENCED      images/jerome-locations/kings mine ghost town.jpg (322685 bytes) refs=[]
+    UNREFERENCED      images/Jerome Locations/kings mine ghost town.jpg (322685 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/little-daisy-hotel.jpg (317703 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/little-daisy-hotel.jpg (317703 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/jerome-pioneer-graveyard.jpg (223886 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/jerome-pioneer-graveyard.jpg (223886 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/douglas-mansion.jpg (176162 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/douglas-mansion.jpg (176162 bytes) refs=[]
+  DUPLICATE GROUP:
+    UNREFERENCED      images/jerome-locations/Real/douglas-mansion-alt.jpg (156168 bytes) refs=[]
+    UNREFERENCED      images/Jerome Locations/Real/douglas-mansion-alt.jpg (156168 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/jerome-grand-hotel.jpg (153786 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/jerome-grand-hotel.jpg (153786 bytes) refs=[]
+  DUPLICATE GROUP:
+    ACTIVE            images/jerome-locations/Real/connor-hotel.jpg (109005 bytes) refs=['arizona-paranormal.html']
+    UNREFERENCED      images/Jerome Locations/Real/connor-hotel.jpg (109005 bytes) refs=[]
+  DUPLICATE GROUP:
+    UNREFERENCED      images/jerome-locations/Belgian Jennie.webp (92814 bytes) refs=[]
+    UNREFERENCED      images/Jerome Locations/Belgian Jennie.webp (92814 bytes) refs=[]
 
-DUPLICATE:
-  images/horror walk 8.mp4 (41015257 bytes)
-  images/the_9th_vessel_teaser.mp4 (41015257 bytes)
-  images/horror walk 7.mp4 (41015257 bytes)
-  Video/the-9th-vessel-gameplay-concept.mp4 (41015257 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/old-jerome-high-school.png (4066283 bytes)
-  images/Jerome Locations/Real/old-jerome-high-school.png (4066283 bytes)
-DUPLICATE:
-  images/jerome-locations/game screen shots.png (2797205 bytes)
-  images/Jerome Locations/game screen shots.png (2797205 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/haunted-hamburger.png (1857811 bytes)
-  images/Jerome Locations/Real/haunted-hamburger.png (1857811 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/jennies-place.png (1771233 bytes)
-  images/Jerome Locations/Real/jennies-place.png (1771233 bytes)
-DUPLICATE:
-  images/jerome-hotel-gameplay.png (1677631 bytes)
-  images/jerome-locations/jerome-hotel-gameplay.png (1677631 bytes)
-  images/Jerome Locations/jerome-hotel-gameplay.png (1677631 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/new-state-motor-company.png (1494192 bytes)
-  images/Jerome Locations/Real/new-state-motor-company.png (1494192 bytes)
-DUPLICATE:
-  images/jerome-locations/old jerome high school.png (823103 bytes)
-  images/Jerome Locations/old jerome high school.png (823103 bytes)
-DUPLICATE:
-  images/jerome-locations/belgian jennie 2.png (711190 bytes)
-  images/Jerome Locations/belgian jennie 2.png (711190 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/episcopal-christ-church.jpeg (647005 bytes)
-  images/Jerome Locations/Real/episcopal-christ-church.jpeg (647005 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/liberty-theatre.jpg (618822 bytes)
-  images/Jerome Locations/Real/liberty-theatre.jpg (618822 bytes)
-DUPLICATE:
-  images/jerome-locations/kings mine ghost town 2.jpg (546925 bytes)
-  images/Jerome Locations/kings mine ghost town 2.jpg (546925 bytes)
-  images/jerome-locations/Real/gold-king-haynes.jpg (546925 bytes)
-DUPLICATE:
-  images/jerome-locations/kings mine ghost town.jpg (322685 bytes)
-  images/Jerome Locations/kings mine ghost town.jpg (322685 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/little-daisy-hotel.jpg (317703 bytes)
-  images/Jerome Locations/Real/little-daisy-hotel.jpg (317703 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/jerome-pioneer-graveyard.jpg (223886 bytes)
-  images/Jerome Locations/Real/jerome-pioneer-graveyard.jpg (223886 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/douglas-mansion.jpg (176162 bytes)
-  images/Jerome Locations/Real/douglas-mansion.jpg (176162 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/douglas-mansion-alt.jpg (156168 bytes)
-  images/Jerome Locations/Real/douglas-mansion-alt.jpg (156168 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/jerome-grand-hotel.jpg (153786 bytes)
-  images/Jerome Locations/Real/jerome-grand-hotel.jpg (153786 bytes)
-DUPLICATE:
-  images/jerome-locations/Real/connor-hotel.jpg (109005 bytes)
-  images/Jerome Locations/Real/connor-hotel.jpg (109005 bytes)
-DUPLICATE:
-  images/jerome-locations/Belgian Jennie.webp (92814 bytes)
-  images/Jerome Locations/Belgian Jennie.webp (92814 bytes)
-NOTE: DUPLICATE TREE: images/Jerome Locations exists alongside images/jerome-locations
-NOTE: LEGACY ASSET: images/witchfinder-salem-cover.jpg
-NOTE: LEGACY ASSET: images/witchfinder-salem-cover.svg
-NOTE: LEGACY ASSET: images/witchfinder-salem-cover.webp
+--- UNREFERENCED MEDIA CANDIDATES ---
+Unreferenced media files: 81
+  REVIEW  images/the_9th_vessel_teaser.mp4 (39.12 MiB)
+  REVIEW  images/horror walk 8.mp4 (39.12 MiB)
+  REVIEW  images/horror walk 7.mp4 (39.12 MiB)
+  REVIEW  images/final_copy.mp4 (37.24 MiB)
+  REVIEW  images/horror walk 1.mp4 (7.10 MiB)
+  REVIEW  images/horrow walk 1a.mp4 (6.82 MiB)
+  REVIEW  images/horror walk 5.mp4 (5.10 MiB)
+  REVIEW  images/horror walk 2.mp4 (4.83 MiB)
+  REVIEW  images/Jerome Locations/Real/old-jerome-high-school.png (3.88 MiB)
+  REVIEW  images/horror walk 6.mp4 (3.73 MiB)
+  REVIEW  images/horrow walk 3.mp4 (3.61 MiB)
+  REVIEW  Video/haunted-echoes-studio-intro.mp4 (3.47 MiB)
+  REVIEW  images/000ChatGPT Image Aug 14, 2026, 03_00_19 PM (2).png (2.93 MiB)
+  REVIEW  images/horror walk 4.mp4 (2.90 MiB)
+  REVIEW  images/ChatGPT Image Aug 14, 542026, 03_00_21 PM (9).png (2.85 MiB)
+  REVIEW  images/098ChatGPT Image Aug 14, 2026, 03_00_19 PM (3).png (2.85 MiB)
+  REVIEW  images/ChatGPT Image Aug 14, 562026, 03_00_21 PM (7).png (2.84 MiB)
+  REVIEW  images/ChatGPT Image Aug 4314, 2026, 03_00_20 PM (6).png (2.84 MiB)
+  REVIEW  images/Jerome Locations/talisman.png (2.81 MiB)
+  REVIEW  images/ChatGPT Image Aug 14, 2026, 5503_00_21 PM (8).png (2.79 MiB)
+  REVIEW  images/Ch56atGPT Image Aug 14, 2026, 03_00_20 PM (5).png (2.78 MiB)
+  REVIEW  images/C987hatGPT Image Aug 14, 2026, 03_00_19 PM (4).png (2.77 MiB)
+  REVIEW  images/jerome-locations/game screen shots.png (2.67 MiB)
+  REVIEW  images/Jerome Locations/game screen shots.png (2.67 MiB)
+  REVIEW  images/Jerome Locations/Game/gold-king-haynes.png (2.39 MiB)
+  REVIEW  images/Jerome Locations/Game/jerome-grand-hotel-game.png (2.38 MiB)
+  REVIEW  images/Jerome Locations/Game/erome-pioneer-graveyard-game.png (2.26 MiB)
+  REVIEW  images/Jerome Locations/Game/episcopal-christ-church-game.png (2.26 MiB)
+  REVIEW  images/Jerome Locations/Game/jennies-place-game.png (2.21 MiB)
+  REVIEW  images/Jerome Locations/Game/little-daisy-hotel-game.png (2.16 MiB)
+  REVIEW  images/Jerome Locations/Game/haunted-hamburger-game.png (2.15 MiB)
+  REVIEW  images/Jerome Locations/Game/new-state-motor-company-game.png (2.15 MiB)
+  REVIEW  images/Jerome Locations/Game/connor-hotel-game.png (2.11 MiB)
+  REVIEW  images/Jerome Locations/Game/liberty-theatre-game.png (2.11 MiB)
+  REVIEW  images/Jerome Locations/Game/douglas-mansion-game.png (2.08 MiB)
+  REVIEW  images/Jerome Locations/Game/old-jerome-high-school-game.png (1.95 MiB)
+  REVIEW  images/photo1.jpg (1.78 MiB)
+  REVIEW  images/Jerome Locations/Real/haunted-hamburger.png (1.77 MiB)
+  REVIEW  images/Jerome Locations/Real/jennies-place.png (1.69 MiB)
+  REVIEW  images/jerome-locations/jerome-hotel-gameplay.png (1.60 MiB)
+  REVIEW  images/jerome-hotel-gameplay.png (1.60 MiB)
+  REVIEW  images/Jerome Locations/jerome-hotel-gameplay.png (1.60 MiB)
+  REVIEW  images/ghostline-chess.png (1.44 MiB)
+  REVIEW  images/jerome-antique-map.png (1.44 MiB)
+  REVIEW  images/Jerome Locations/Real/new-state-motor-company.png (1.42 MiB)
+  REVIEW  images/photo3.jpg (1.39 MiB)
+  REVIEW  images/old logo.png (0.93 MiB)
+  REVIEW  images/jerome-locations/old jerome high school.png (0.78 MiB)
+  REVIEW  images/Jerome Locations/old jerome high school.png (0.78 MiB)
+  REVIEW  images/jerome-locations/belgian jennie 2.png (0.68 MiB)
+  REVIEW  images/Jerome Locations/belgian jennie 2.png (0.68 MiB)
+  REVIEW  images/ghostline-social-preview-v2.png (0.64 MiB)
+  REVIEW  images/Jerome Locations/Real/episcopal-christ-church.jpeg (0.62 MiB)
+  REVIEW  images/Jerome Locations/Real/liberty-theatre.jpg (0.59 MiB)
+  REVIEW  images/jerome-locations/kings mine ghost town 2.jpg (0.52 MiB)
+  REVIEW  images/Jerome Locations/kings mine ghost town 2.jpg (0.52 MiB)
+  REVIEW  images/Jerome Locations/Real/gold-king-haynes.jpg (0.44 MiB)
+  REVIEW  images/ghostline-chess-social-card-v1-2.png (0.33 MiB)
+  REVIEW  images/jerome-locations/kings mine ghost town.jpg (0.31 MiB)
+  REVIEW  images/Jerome Locations/kings mine ghost town.jpg (0.31 MiB)
+  REVIEW  images/Jerome Locations/Real/little-daisy-hotel.jpg (0.30 MiB)
+  REVIEW  images/Jerome Locations/Real/jerome-pioneer-graveyard.jpg (0.21 MiB)
+  REVIEW  images/Jerome Locations/Real/douglas-mansion.jpg (0.17 MiB)
+  REVIEW  images/jerome-locations/Real/douglas-mansion-alt.jpg (0.15 MiB)
+  REVIEW  images/Jerome Locations/Real/douglas-mansion-alt.jpg (0.15 MiB)
+  REVIEW  images/Jerome Locations/Real/jerome-grand-hotel.jpg (0.15 MiB)
+  REVIEW  images/project1.png (0.12 MiB)
+  REVIEW  images/ghostline-chess-threefold.png (0.12 MiB)
+  REVIEW  images/Jerome Locations/Real/connor-hotel.jpg (0.10 MiB)
+  REVIEW  images/jerome-locations/Belgian Jennie.webp (0.09 MiB)
+  REVIEW  images/Jerome Locations/Belgian Jennie.webp (0.09 MiB)
+  REVIEW  images/ghostline-chess-check.png (0.07 MiB)
+  REVIEW  images/ghostline-chess-castling.png (0.06 MiB)
+  REVIEW  images/ghostline-chess-cover-art.webp (0.01 MiB)
+  REVIEW  images/witchfinder-salem-cover.webp (0.01 MiB)
+  REVIEW  images/photo2.jpg (0.01 MiB)
+  REVIEW  images/ghostline-chess-v2.png (0.01 MiB)
+  REVIEW  images/witchfinder-salem-cover.jpg (0.00 MiB)
+  REVIEW  images/ghostline-chess-social-card-v1-2.svg (0.00 MiB)
+  REVIEW  images/ghostline-chess-web-card-v1-2.svg (0.00 MiB)
+  ... 1 more omitted from report
 
-STRUCTURAL PROBLEMS:
-  DOWNLOAD: downloads/GhostlineChess-v1.2.0-win-x64.zip is only 1 byte(s)
+--- LARGE MEDIA (>20 MiB) ---
+  REVIEW  images/the_9th_vessel_teaser.mp4 (39.1 MiB) active_refs=[]
+  REVIEW  images/horror walk 8.mp4 (39.1 MiB) active_refs=[]
+  REVIEW  images/horror walk 7.mp4 (39.1 MiB) active_refs=[]
+  REVIEW  Video/the-9th-vessel-gameplay-concept.mp4 (39.1 MiB) active_refs=['arizona-paranormal.html']
+  REVIEW  images/final_copy.mp4 (37.2 MiB) active_refs=[]
+
+--- DOWNLOADS ---
+  KEEP  downloads/.gitkeep
+
+--- WORKFLOW / SCRIPT CLEANUP CANDIDATES ---
+  WORKFLOW  .github/workflows/fix-9th-vessel-video-playback.yml
+  WORKFLOW  .github/workflows/site-qa.yml
+  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-05-development-log-update.py
+  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-10-jerome-site-update.py
+  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-10-jerome-spoiler-cleanup.py
+  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-11-choicemaker-discovery.py
+  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-11-software-development-seo.py
+  DELETE-CANDIDATE  .fix-9th-vessel-video-playback (obsolete one-time trigger)
+
+--- SUMMARY ---
+Missing local references: 0
+Legacy/non-sitemap root HTML pages: 25
+Exact duplicate groups: 20
+Unreferenced media candidates: 81
+Duplicate storage estimate: 137.2 MiB
