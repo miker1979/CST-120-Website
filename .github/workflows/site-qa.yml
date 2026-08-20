@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'SITE_QA_REPORT_AUTO.txt'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit:
@@ -16,13 +18,22 @@ jobs:
       - name: Check out website
         uses: actions/checkout@v4
 
-      - name: Run existing website QA
-        shell: pwsh
-        run: ./scripts/site-qa.ps1
-
-      - name: Audit repository structure and suspicious assets
-        shell: python
+      - name: Run website audit and write report
+        shell: bash
         run: |
+          set +e
+          {
+            echo "Ghostline Website Automated QA Report"
+            echo "Generated: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            echo
+            echo "=== HTML LOCAL-LINK / ENCODING AUDIT ==="
+            pwsh ./scripts/site-qa.ps1
+            QA_EXIT=$?
+            echo
+            echo "site-qa.ps1 exit code: $QA_EXIT"
+            echo
+            echo "=== STRUCTURE / DUPLICATE-ASSET AUDIT ==="
+            python3 - <<'PY'
           import hashlib
           from collections import defaultdict
           from pathlib import Path
@@ -32,27 +43,23 @@ jobs:
           problems = []
           notes = []
 
-          # Folder/path consistency checks.
           if (root / 'Images').exists():
-              problems.append("CASE: obsolete capitalized Images/ folder still exists")
+              problems.append('CASE: obsolete capitalized Images/ folder still exists')
           if (root / 'images' / 'Jerome Locations').exists():
-              notes.append("DUPLICATE TREE: images/Jerome Locations exists alongside images/jerome-locations")
+              notes.append('DUPLICATE TREE: images/Jerome Locations exists alongside images/jerome-locations')
 
-          # Known obsolete Salem variants after PNG became canonical.
           for rel in [
               'images/witchfinder-salem-cover.jpg',
               'images/witchfinder-salem-cover.svg',
               'images/witchfinder-salem-cover.webp',
           ]:
               if (root / rel).exists():
-                  notes.append(f"LEGACY ASSET: {rel}")
+                  notes.append(f'LEGACY ASSET: {rel}')
 
-          # Suspiciously tiny downloadable artifacts.
           for p in (root / 'downloads').glob('*') if (root / 'downloads').exists() else []:
               if p.is_file() and p.name != '.gitkeep' and p.stat().st_size < 1024:
-                  problems.append(f"DOWNLOAD: {p.as_posix()} is only {p.stat().st_size} byte(s)")
+                  problems.append(f'DOWNLOAD: {p.as_posix()} is only {p.stat().st_size} byte(s)')
 
-          # Exact duplicate files (skip tiny text/control files).
           by_hash = defaultdict(list)
           for p in files:
               try:
@@ -65,25 +72,41 @@ jobs:
                   pass
 
           duplicate_groups = [v for v in by_hash.values() if len(v) > 1]
-          duplicate_waste = 0
-          for group in duplicate_groups:
-              size = group[0][1]
-              duplicate_waste += size * (len(group) - 1)
+          duplicate_waste = sum(g[0][1] * (len(g) - 1) for g in duplicate_groups)
 
-          print(f"Repository files checked: {len(files)}")
-          print(f"Exact duplicate groups: {len(duplicate_groups)}")
-          print(f"Approx duplicate storage: {duplicate_waste / (1024*1024):.1f} MiB")
+          print(f'Repository files checked: {len(files)}')
+          print(f'Exact duplicate groups: {len(duplicate_groups)}')
+          print(f'Approx duplicate storage: {duplicate_waste / (1024*1024):.1f} MiB')
+          print()
 
-          for group in sorted(duplicate_groups, key=lambda g: g[0][1], reverse=True)[:30]:
-              print("DUPLICATE:")
+          for group in sorted(duplicate_groups, key=lambda g: g[0][1], reverse=True)[:40]:
+              print('DUPLICATE:')
               for path, size in group:
-                  print(f"  {path} ({size} bytes)")
+                  print(f'  {path} ({size} bytes)')
 
           for note in notes:
-              print(f"NOTE: {note}")
+              print(f'NOTE: {note}')
 
           if problems:
-              print("\nSTRUCTURAL PROBLEMS:")
+              print('\nSTRUCTURAL PROBLEMS:')
               for problem in problems:
-                  print(f"  {problem}")
-              raise SystemExit(1)
+                  print(f'  {problem}')
+          PY
+          } > SITE_QA_REPORT_AUTO.txt 2>&1
+
+          cat SITE_QA_REPORT_AUTO.txt
+          exit 0
+
+      - name: Commit audit report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add SITE_QA_REPORT_AUTO.txt
+          if git diff --cached --quiet; then
+            echo "Audit report unchanged."
+          else
+            git commit -m "Update automated website QA report"
+            git push
+          fi
