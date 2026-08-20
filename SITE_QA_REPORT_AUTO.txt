@@ -1,21 +1,22 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 17:49:43 UTC
+Generated: 2026-08-20 17:54:11 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
 Root: /home/runner/work/ghostline-tech/ghostline-tech
 
-Found 4 issue(s):
+Found 5 issue(s):
 
 MISSING   /home/runner/work/ghostline-tech/ghostline-tech/arizona-paranormal-v2.html  -> images/haunted_echoes_studios.png
 MISSING   /home/runner/work/ghostline-tech/ghostline-tech/ghostline-chess.html  -> images/ghostline-chess-web-card-v1-2.png
 MISSING   /home/runner/work/ghostline-tech/ghostline-tech/index.html  -> images/ghostline-chess-web-card-v1-2.png
 MISSING   /home/runner/work/ghostline-tech/ghostline-tech/index.html  -> images/the-9th-vessel-cover.jpg
+MISSING   /home/runner/work/ghostline-tech/ghostline-tech/playjs.html  -> js/mycode.js
 
 site-qa.ps1 exit code: 1
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
-Repository files checked: 161
+Repository files checked: 153
 Root HTML pages: 45
 Sitemap/public pages: 22
 Media files: 84
@@ -74,6 +75,7 @@ Root HTML not in sitemap (review as legacy/private utility):
   BROKEN  ghostline-chess.html -> images/ghostline-chess-web-card-v1-2.png
   BROKEN  index.html -> images/ghostline-chess-web-card-v1-2.png
   BROKEN  index.html -> images/the-9th-vessel-cover.jpg
+  BROKEN  playjs.html -> js/mycode.js
 
 --- DIRECTORY / CASE CONSISTENCY ---
   PASS: canonical images/ directory casing is lowercase.
@@ -87,7 +89,6 @@ Root HTML not in sitemap (review as legacy/private utility):
   KEEP: css/styles.css refs=['about.html', 'academic-archive.html', 'accomplishments.html', 'arizona-paranormal-v2.html', 'arizona-paranormal.html', 'assignments.html', 'boston-ripper.html', 'broker-operations.html', 'calculator.html', 'choicemaker.html', 'company.html', 'construction-ops.html', 'contact.html', 'crypt.html', 'development-log.html', 'events.html', 'fleettrack-development-log.html', 'freightcalculator.html', 'gallery.html', 'ghostline-chess-development-log.html', 'ghostline-chess.html', 'haunted-echoes.html', 'helloworld.html', 'hobbies.html', 'index.html', 'labs.html', 'load-board-demo.html', 'load-board.html', 'media.html', 'photos.html', 'playbs.html', 'playjq1.html', 'playjq2.html', 'playjq3.html', 'playjs.html', 'portfolio.html', 'software-development.html', 'software.html', 'tando.html', 'thankyou.html', 'war-of-the-damned-development-log.html', 'war-of-the-damned.html', 'witchfinder-salem.html']
   KEEP: js/calculator.js refs=['calculator.html', 'freightcalculator.html']
   KEEP: js/copyright.js refs=['about.html', 'accomplishments.html', 'assignments.html', 'events.html', 'freightcalculator.html', 'gallery.html', 'hobbies.html', 'media.html', 'photos.html', 'playjs.html', 'portfolio.html', 'tando.html']
-  KEEP: js/mycode.js refs=['playjs.html']
   KEEP: js/myscript.js refs=['helloworld.html']
   KEEP: js/theme.js refs=['photos.html', 'tando.html']
 
@@ -144,7 +145,7 @@ Unreferenced media files: 26
   WORKFLOW  .github/workflows/site-qa.yml
 
 --- SUMMARY ---
-Missing local references: 4
+Missing local references: 5
 Legacy/non-sitemap root HTML pages: 23
 Exact duplicate groups: 3
 Unreferenced media candidates: 26
