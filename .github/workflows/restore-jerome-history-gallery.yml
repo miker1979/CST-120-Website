@@ -68,7 +68,6 @@ jobs:
 
           updated = text[:start] + replacement + text[end:]
 
-          # Public-page safety check: no miner names from the internal story section.
           for forbidden in ['Jack “Ironhand” Calloway', 'Samuel “Blaze” McKenna', 'Mateo Ruiz', 'Walter “Timber” Briggs', 'Emil Novak', 'Thomas “Pumps” Hale', 'Nathaniel Crowe', 'Isaiah Brooks']:
               if forbidden in updated:
                   raise SystemExit(f'Forbidden story name still present: {forbidden}')
@@ -88,3 +87,5 @@ jobs:
               '--input', '/tmp/update.json'
           ])
           PY
+
+# trigger revision 2
