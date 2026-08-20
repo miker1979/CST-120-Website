@@ -18,7 +18,7 @@ jobs:
       - name: Check out website
         uses: actions/checkout@v4
 
-      - name: Run website audit and write report
+      - name: Run comprehensive website audit and write report
         shell: bash
         run: |
           set +e
@@ -26,71 +26,237 @@ jobs:
             echo "Ghostline Website Automated QA Report"
             echo "Generated: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
             echo
-            echo "=== HTML LOCAL-LINK / ENCODING AUDIT ==="
+            echo "=== EXISTING HTML LOCAL-LINK / ENCODING AUDIT ==="
             pwsh ./scripts/site-qa.ps1
             QA_EXIT=$?
             echo
             echo "site-qa.ps1 exit code: $QA_EXIT"
             echo
-            echo "=== STRUCTURE / DUPLICATE-ASSET AUDIT ==="
+            echo "=== COMPREHENSIVE REPOSITORY / ASSET AUDIT ==="
             python3 - <<'PY'
           import hashlib
+          import html
+          import posixpath
+          import re
+          import urllib.parse
+          import xml.etree.ElementTree as ET
           from collections import defaultdict
           from pathlib import Path
 
           root = Path('.')
-          files = [p for p in root.rglob('*') if p.is_file() and '.git' not in p.parts]
-          problems = []
-          notes = []
+          all_files = [p for p in root.rglob('*') if p.is_file() and '.git' not in p.parts]
+          file_set = {p.as_posix().lstrip('./') for p in all_files}
+          root_html = sorted(p for p in root.glob('*.html') if p.is_file())
 
+          media_exts = {'.png','.jpg','.jpeg','.webp','.svg','.gif','.mp4','.webm','.mov','.wav','.mp3','.ogg'}
+          media_files = sorted(p for p in all_files if p.suffix.lower() in media_exts)
+
+          # Determine which root HTML pages are intentionally public from sitemap.xml.
+          public_pages = {'index.html'}
+          sitemap = root / 'sitemap.xml'
+          if sitemap.exists():
+              try:
+                  tree = ET.parse(sitemap)
+                  ns = {'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+                  for loc in tree.findall('.//s:loc', ns):
+                      url = (loc.text or '').strip()
+                      path = urllib.parse.urlparse(url).path.strip('/')
+                      public_pages.add(path or 'index.html')
+              except Exception as exc:
+                  print(f'WARNING: Could not parse sitemap.xml: {exc}')
+
+          # Runtime references from HTML and CSS.
+          html_attr = re.compile(r'(?i)(?:href|src)\s*=\s*["\']([^"\'#]+)["\']')
+          css_url = re.compile(r'(?i)url\(\s*["\']?([^"\')]+)')
+          refs = defaultdict(set)
+          active_refs = defaultdict(set)
+          missing = []
+
+          def normalize_target(source: Path, raw: str):
+              raw = html.unescape(raw.strip())
+              if not raw or raw.startswith(('#','mailto:','tel:','javascript:','data:','//')):
+                  return None
+              if re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:', raw):
+                  return None
+              raw = raw.split('#',1)[0].split('?',1)[0]
+              raw = urllib.parse.unquote(raw)
+              if not raw:
+                  return None
+              if raw.startswith('/'):
+                  candidate = raw.lstrip('/')
+              else:
+                  candidate = posixpath.normpath((source.parent / raw).as_posix())
+              while candidate.startswith('./'):
+                  candidate = candidate[2:]
+              return candidate
+
+          for page in root_html:
+              try:
+                  text = page.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              is_public = page.name in public_pages
+              for match in html_attr.finditer(text):
+                  target = normalize_target(page, match.group(1))
+                  if target is None:
+                      continue
+                  refs[target].add(page.name)
+                  if is_public:
+                      active_refs[target].add(page.name)
+                  if target not in file_set and not target.endswith('/'):
+                      missing.append((page.name, target))
+
+          for css in root.rglob('*.css'):
+              try:
+                  text = css.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              for match in css_url.finditer(text):
+                  target = normalize_target(css, match.group(1))
+                  if target:
+                      refs[target].add(css.as_posix())
+
+          print(f'Repository files checked: {len(all_files)}')
+          print(f'Root HTML pages: {len(root_html)}')
+          print(f'Sitemap/public pages: {len(public_pages)}')
+          print(f'Media files: {len(media_files)}')
+          print()
+
+          print('--- PUBLIC / LEGACY PAGE INVENTORY ---')
+          legacy_pages = [p.name for p in root_html if p.name not in public_pages]
+          print('Public pages from sitemap:')
+          for name in sorted(public_pages):
+              print(f'  KEEP  {name}')
+          if legacy_pages:
+              print('Root HTML not in sitemap (review as legacy/private utility):')
+              for name in legacy_pages:
+                  print(f'  REVIEW  {name}')
+          else:
+              print('No extra root HTML pages outside sitemap.')
+          print()
+
+          print('--- MISSING LOCAL RUNTIME REFERENCES ---')
+          if missing:
+              for source, target in sorted(set(missing)):
+                  print(f'  BROKEN  {source} -> {target}')
+          else:
+              print('  PASS: no missing local href/src targets in root HTML pages.')
+          print()
+
+          print('--- DIRECTORY / CASE CONSISTENCY ---')
           if (root / 'Images').exists():
-              problems.append('CASE: obsolete capitalized Images/ folder still exists')
+              print('  BROKEN/REVIEW: obsolete capitalized Images/ directory exists.')
+          else:
+              print('  PASS: canonical images/ directory casing is lowercase.')
           if (root / 'images' / 'Jerome Locations').exists():
-              notes.append('DUPLICATE TREE: images/Jerome Locations exists alongside images/jerome-locations')
+              old_prefix = 'images/Jerome Locations/'
+              active_old = [t for t in active_refs if t.startswith(old_prefix)]
+              print(f'  REVIEW: duplicate legacy tree images/Jerome Locations/ exists; public runtime references={len(active_old)}')
+          if (root / 'images' / 'jerome-locations').exists():
+              new_prefix = 'images/jerome-locations/'
+              active_new = [t for t in active_refs if t.startswith(new_prefix)]
+              print(f'  KEEP: canonical images/jerome-locations/ exists; public runtime references={len(active_new)}')
+          print()
 
+          print('--- SALEM COVER VARIANTS ---')
           for rel in [
+              'images/witchfinder-salem-cover.png',
               'images/witchfinder-salem-cover.jpg',
               'images/witchfinder-salem-cover.svg',
               'images/witchfinder-salem-cover.webp',
           ]:
-              if (root / rel).exists():
-                  notes.append(f'LEGACY ASSET: {rel}')
+              if rel in file_set:
+                  used = sorted(active_refs.get(rel, []))
+                  tag = 'KEEP' if rel.endswith('.png') else ('REVIEW' if used else 'DELETE-CANDIDATE')
+                  print(f'  {tag}: {rel} public_refs={used}')
+          print()
 
-          for p in (root / 'downloads').glob('*') if (root / 'downloads').exists() else []:
-              if p.is_file() and p.name != '.gitkeep' and p.stat().st_size < 1024:
-                  problems.append(f'DOWNLOAD: {p.as_posix()} is only {p.stat().st_size} byte(s)')
+          # CSS / JS usage from HTML.
+          print('--- CSS / JS USAGE ---')
+          for folder, ext in [('css','.css'),('js','.js')]:
+              for p in sorted((root / folder).glob(f'*{ext}')) if (root / folder).exists() else []:
+                  rel = p.as_posix()
+                  pages = sorted(refs.get(rel, []))
+                  tag = 'KEEP' if pages else 'REVIEW-UNREFERENCED'
+                  print(f'  {tag}: {rel} refs={pages}')
+          print()
 
+          # Exact duplicate files.
           by_hash = defaultdict(list)
-          for p in files:
+          for p in all_files:
               try:
                   size = p.stat().st_size
                   if size < 4096:
                       continue
-                  h = hashlib.sha256(p.read_bytes()).hexdigest()
-                  by_hash[h].append((p.as_posix(), size))
+                  digest = hashlib.sha256(p.read_bytes()).hexdigest()
+                  by_hash[digest].append((p.as_posix(), size))
               except OSError:
                   pass
+          duplicate_groups = [g for g in by_hash.values() if len(g) > 1]
+          duplicate_waste = sum(g[0][1] * (len(g)-1) for g in duplicate_groups)
 
-          duplicate_groups = [v for v in by_hash.values() if len(v) > 1]
-          duplicate_waste = sum(g[0][1] * (len(g) - 1) for g in duplicate_groups)
-
-          print(f'Repository files checked: {len(files)}')
+          print('--- EXACT DUPLICATES ---')
           print(f'Exact duplicate groups: {len(duplicate_groups)}')
-          print(f'Approx duplicate storage: {duplicate_waste / (1024*1024):.1f} MiB')
+          print(f'Approx duplicate storage: {duplicate_waste/(1024*1024):.1f} MiB')
+          for group in sorted(duplicate_groups, key=lambda g:g[0][1], reverse=True):
+              print('  DUPLICATE GROUP:')
+              for path, size in group:
+                  public_use = sorted(active_refs.get(path, []))
+                  any_use = sorted(refs.get(path, []))
+                  status = 'ACTIVE' if public_use else ('REFERENCED-LEGACY' if any_use else 'UNREFERENCED')
+                  print(f'    {status:17} {path} ({size} bytes) refs={public_use or any_use}')
           print()
 
-          for group in sorted(duplicate_groups, key=lambda g: g[0][1], reverse=True)[:40]:
-              print('DUPLICATE:')
-              for path, size in group:
-                  print(f'  {path} ({size} bytes)')
+          # Unreferenced media is a cleanup/archive candidate, not automatically safe to delete.
+          print('--- UNREFERENCED MEDIA CANDIDATES ---')
+          unreferenced = []
+          for p in media_files:
+              rel = p.as_posix()
+              if rel not in refs:
+                  unreferenced.append((p.stat().st_size, rel))
+          print(f'Unreferenced media files: {len(unreferenced)}')
+          for size, rel in sorted(unreferenced, reverse=True)[:80]:
+              print(f'  REVIEW  {rel} ({size/(1024*1024):.2f} MiB)')
+          if len(unreferenced) > 80:
+              print(f'  ... {len(unreferenced)-80} more omitted from report')
+          print()
 
-          for note in notes:
-              print(f'NOTE: {note}')
+          print('--- LARGE MEDIA (>20 MiB) ---')
+          large = [(p.stat().st_size,p.as_posix()) for p in media_files if p.stat().st_size > 20*1024*1024]
+          if large:
+              for size, rel in sorted(large, reverse=True):
+                  print(f'  REVIEW  {rel} ({size/(1024*1024):.1f} MiB) active_refs={sorted(active_refs.get(rel, []))}')
+          else:
+              print('  None.')
+          print()
 
-          if problems:
-              print('\nSTRUCTURAL PROBLEMS:')
-              for problem in problems:
-                  print(f'  {problem}')
+          print('--- DOWNLOADS ---')
+          if (root/'downloads').exists():
+              for p in sorted((root/'downloads').glob('*')):
+                  if p.is_file():
+                      if p.name == '.gitkeep':
+                          print('  KEEP  downloads/.gitkeep')
+                      elif p.stat().st_size < 1024:
+                          print(f'  BROKEN  {p.as_posix()} only {p.stat().st_size} byte(s)')
+                      else:
+                          print(f'  REVIEW  {p.as_posix()} {p.stat().st_size} bytes')
+          print()
+
+          print('--- WORKFLOW / SCRIPT CLEANUP CANDIDATES ---')
+          for p in sorted((root/'.github/workflows').glob('*')) if (root/'.github/workflows').exists() else []:
+              print(f'  WORKFLOW  {p.as_posix()}')
+          for p in sorted((root/'scripts').glob('apply-*.py')) if (root/'scripts').exists() else []:
+              print(f'  HISTORICAL-APPLY-SCRIPT  {p.as_posix()}')
+          if (root/'.fix-9th-vessel-video-playback').exists():
+              print('  DELETE-CANDIDATE  .fix-9th-vessel-video-playback (obsolete one-time trigger)')
+          print()
+
+          print('--- SUMMARY ---')
+          print(f'Missing local references: {len(set(missing))}')
+          print(f'Legacy/non-sitemap root HTML pages: {len(legacy_pages)}')
+          print(f'Exact duplicate groups: {len(duplicate_groups)}')
+          print(f'Unreferenced media candidates: {len(unreferenced)}')
+          print(f'Duplicate storage estimate: {duplicate_waste/(1024*1024):.1f} MiB')
           PY
           } > SITE_QA_REPORT_AUTO.txt 2>&1
 
