@@ -1,5 +1,5 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 15:36:21 UTC
+Generated: 2026-08-20 15:38:54 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
@@ -12,7 +12,7 @@ site-qa.ps1 exit code: 0
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
 Repository files checked: 218
 Root HTML pages: 45
-Sitemap/public pages: 20
+Sitemap/public pages: 22
 Media files: 142
 
 --- PUBLIC / LEGACY PAGE INVENTORY ---
@@ -27,6 +27,8 @@ Public pages from sitemap:
   KEEP  contact.html
   KEEP  crypt.html
   KEEP  development-log.html
+  KEEP  fleettrack-development-log.html
+  KEEP  ghostline-chess-development-log.html
   KEEP  ghostline-chess.html
   KEEP  haunted-echoes.html
   KEEP  index.html
@@ -44,11 +46,9 @@ Root HTML not in sitemap (review as legacy/private utility):
   REVIEW  assignments.html
   REVIEW  calculator.html
   REVIEW  events.html
-  REVIEW  fleettrack-development-log.html
   REVIEW  footer.html
   REVIEW  freightcalculator.html
   REVIEW  gallery.html
-  REVIEW  ghostline-chess-development-log.html
   REVIEW  helloworld.html
   REVIEW  hobbies.html
   REVIEW  load-board-demo.html
@@ -254,7 +254,7 @@ Unreferenced media files: 81
 
 --- SUMMARY ---
 Missing local references: 0
-Legacy/non-sitemap root HTML pages: 25
+Legacy/non-sitemap root HTML pages: 23
 Exact duplicate groups: 20
 Unreferenced media candidates: 81
 Duplicate storage estimate: 137.2 MiB
