@@ -14,16 +14,11 @@ $htmlFiles = Get-ChildItem -Path $Root -Filter *.html -File -Recurse |
 $problems = New-Object System.Collections.Generic.List[string]
 
 $mojibakePatterns = @(
-    'â€”',
-    'â€“',
-    'â€™',
-    'â€œ',
-    'â€',
-    'Ã',
-    'Â',
-    [char]0xFFFD
+    (([char]0x00E2).ToString() + [char]0x20AC),
+    ([char]0x00C3).ToString(),
+    ([char]0x00C2).ToString(),
+    ([char]0xFFFD).ToString()
 )
-
 foreach ($file in $htmlFiles) {
     $text = [System.IO.File]::ReadAllText($file.FullName, [System.Text.Encoding]::UTF8)
 
