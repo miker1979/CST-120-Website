@@ -1,5 +1,5 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 17:54:11 UTC
+Generated: 2026-08-20 17:59:08 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
@@ -16,7 +16,7 @@ MISSING   /home/runner/work/ghostline-tech/ghostline-tech/playjs.html  -> js/myc
 site-qa.ps1 exit code: 1
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
-Repository files checked: 153
+Repository files checked: 154
 Root HTML pages: 45
 Sitemap/public pages: 22
 Media files: 84
@@ -142,6 +142,7 @@ Unreferenced media files: 26
   KEEP  downloads/.gitkeep
 
 --- WORKFLOW / SCRIPT CLEANUP CANDIDATES ---
+  WORKFLOW  .github/workflows/restore-jerome-history-gallery.yml
   WORKFLOW  .github/workflows/site-qa.yml
 
 --- SUMMARY ---
