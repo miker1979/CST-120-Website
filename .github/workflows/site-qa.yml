@@ -1,0 +1,89 @@
+name: Website QA Audit
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Run existing website QA
+        shell: pwsh
+        run: ./scripts/site-qa.ps1
+
+      - name: Audit repository structure and suspicious assets
+        shell: python
+        run: |
+          import hashlib
+          from collections import defaultdict
+          from pathlib import Path
+
+          root = Path('.')
+          files = [p for p in root.rglob('*') if p.is_file() and '.git' not in p.parts]
+          problems = []
+          notes = []
+
+          # Folder/path consistency checks.
+          if (root / 'Images').exists():
+              problems.append("CASE: obsolete capitalized Images/ folder still exists")
+          if (root / 'images' / 'Jerome Locations').exists():
+              notes.append("DUPLICATE TREE: images/Jerome Locations exists alongside images/jerome-locations")
+
+          # Known obsolete Salem variants after PNG became canonical.
+          for rel in [
+              'images/witchfinder-salem-cover.jpg',
+              'images/witchfinder-salem-cover.svg',
+              'images/witchfinder-salem-cover.webp',
+          ]:
+              if (root / rel).exists():
+                  notes.append(f"LEGACY ASSET: {rel}")
+
+          # Suspiciously tiny downloadable artifacts.
+          for p in (root / 'downloads').glob('*') if (root / 'downloads').exists() else []:
+              if p.is_file() and p.name != '.gitkeep' and p.stat().st_size < 1024:
+                  problems.append(f"DOWNLOAD: {p.as_posix()} is only {p.stat().st_size} byte(s)")
+
+          # Exact duplicate files (skip tiny text/control files).
+          by_hash = defaultdict(list)
+          for p in files:
+              try:
+                  size = p.stat().st_size
+                  if size < 4096:
+                      continue
+                  h = hashlib.sha256(p.read_bytes()).hexdigest()
+                  by_hash[h].append((p.as_posix(), size))
+              except OSError:
+                  pass
+
+          duplicate_groups = [v for v in by_hash.values() if len(v) > 1]
+          duplicate_waste = 0
+          for group in duplicate_groups:
+              size = group[0][1]
+              duplicate_waste += size * (len(group) - 1)
+
+          print(f"Repository files checked: {len(files)}")
+          print(f"Exact duplicate groups: {len(duplicate_groups)}")
+          print(f"Approx duplicate storage: {duplicate_waste / (1024*1024):.1f} MiB")
+
+          for group in sorted(duplicate_groups, key=lambda g: g[0][1], reverse=True)[:30]:
+              print("DUPLICATE:")
+              for path, size in group:
+                  print(f"  {path} ({size} bytes)")
+
+          for note in notes:
+              print(f"NOTE: {note}")
+
+          if problems:
+              print("\nSTRUCTURAL PROBLEMS:")
+              for problem in problems:
+                  print(f"  {problem}")
+              raise SystemExit(1)
