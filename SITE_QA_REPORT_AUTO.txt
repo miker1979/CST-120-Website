@@ -1,5 +1,5 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 19:17:12 UTC
+Generated: 2026-08-20 19:41:15 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
@@ -11,7 +11,7 @@ site-qa.ps1 exit code: 0
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
 Repository files checked: 144
-Root HTML pages: 43
+Root HTML pages: 26
 Sitemap/public pages: 22
 Media files: 78
 
@@ -40,26 +40,9 @@ Public pages from sitemap:
   KEEP  war-of-the-damned.html
   KEEP  witchfinder-salem.html
 Root HTML not in sitemap (review as legacy/private utility):
-  REVIEW  about.html
-  REVIEW  accomplishments.html
-  REVIEW  assignments.html
-  REVIEW  calculator.html
-  REVIEW  events.html
   REVIEW  footer.html
-  REVIEW  freightcalculator.html
-  REVIEW  gallery.html
-  REVIEW  helloworld.html
-  REVIEW  hobbies.html
   REVIEW  load-board-demo.html
   REVIEW  navbar.html
-  REVIEW  photos.html
-  REVIEW  playbs.html
-  REVIEW  playjq1.html
-  REVIEW  playjq2.html
-  REVIEW  playjq3.html
-  REVIEW  playjs.html
-  REVIEW  portfolio.html
-  REVIEW  tando.html
   REVIEW  thankyou.html
 
 --- MISSING LOCAL RUNTIME REFERENCES ---
@@ -73,20 +56,20 @@ Root HTML not in sitemap (review as legacy/private utility):
   KEEP: images/witchfinder-salem-cover.png public_refs=['haunted-echoes.html', 'witchfinder-salem.html']
 
 --- CSS / JS USAGE ---
-  KEEP: css/calculator.css refs=['calculator.html', 'freightcalculator.html']
-  KEEP: css/styles.css refs=['about.html', 'academic-archive.html', 'accomplishments.html', 'arizona-paranormal.html', 'assignments.html', 'boston-ripper.html', 'broker-operations.html', 'calculator.html', 'choicemaker.html', 'company.html', 'construction-ops.html', 'contact.html', 'crypt.html', 'development-log.html', 'events.html', 'fleettrack-development-log.html', 'freightcalculator.html', 'gallery.html', 'ghostline-chess-development-log.html', 'ghostline-chess.html', 'haunted-echoes.html', 'helloworld.html', 'hobbies.html', 'index.html', 'labs.html', 'load-board-demo.html', 'load-board.html', 'photos.html', 'playbs.html', 'playjq1.html', 'playjq2.html', 'playjq3.html', 'playjs.html', 'portfolio.html', 'software-development.html', 'software.html', 'tando.html', 'thankyou.html', 'war-of-the-damned-development-log.html', 'war-of-the-damned.html', 'witchfinder-salem.html']
-  KEEP: js/calculator.js refs=['calculator.html', 'freightcalculator.html']
-  KEEP: js/copyright.js refs=['about.html', 'accomplishments.html', 'assignments.html', 'events.html', 'freightcalculator.html', 'gallery.html', 'hobbies.html', 'photos.html', 'playjs.html', 'portfolio.html', 'tando.html']
-  KEEP: js/mycode.js refs=['playjs.html']
-  KEEP: js/myscript.js refs=['helloworld.html']
-  KEEP: js/theme.js refs=['photos.html', 'tando.html']
+  REVIEW-UNREFERENCED: css/calculator.css refs=[]
+  KEEP: css/styles.css refs=['academic-archive.html', 'arizona-paranormal.html', 'boston-ripper.html', 'broker-operations.html', 'choicemaker.html', 'company.html', 'construction-ops.html', 'contact.html', 'crypt.html', 'development-log.html', 'fleettrack-development-log.html', 'ghostline-chess-development-log.html', 'ghostline-chess.html', 'haunted-echoes.html', 'index.html', 'labs.html', 'load-board-demo.html', 'load-board.html', 'software-development.html', 'software.html', 'thankyou.html', 'war-of-the-damned-development-log.html', 'war-of-the-damned.html', 'witchfinder-salem.html']
+  REVIEW-UNREFERENCED: js/calculator.js refs=[]
+  REVIEW-UNREFERENCED: js/copyright.js refs=[]
+  REVIEW-UNREFERENCED: js/mycode.js refs=[]
+  REVIEW-UNREFERENCED: js/myscript.js refs=[]
+  REVIEW-UNREFERENCED: js/theme.js refs=[]
 
 --- EXACT DUPLICATES ---
 Exact duplicate groups: 0
 Approx duplicate storage: 0.0 MiB
 
 --- UNREFERENCED MEDIA CANDIDATES ---
-Unreferenced media files: 21
+Unreferenced media files: 22
   REVIEW  Video/haunted-echoes-studio-intro.mp4 (3.47 MiB)
   REVIEW  images/Gothic Card Set/000ChatGPT Image Aug 14, 2026, 03_00_19 PM (2).png (2.93 MiB)
   REVIEW  images/Gothic Card Set/ChatGPT Image Aug 14, 542026, 03_00_21 PM (9).png (2.85 MiB)
@@ -108,6 +91,7 @@ Unreferenced media files: 21
   REVIEW  images/project1.png (0.12 MiB)
   REVIEW  images/jerome-locations/Belgian Jennie.webp (0.09 MiB)
   REVIEW  images/photo2.jpg (0.01 MiB)
+  REVIEW  images/gcu_logo.png (0.01 MiB)
 
 --- LARGE MEDIA (>20 MiB) ---
   REVIEW  Video/the-9th-vessel-gameplay-concept.mp4 (39.1 MiB) active_refs=['arizona-paranormal.html']
@@ -120,7 +104,7 @@ Unreferenced media files: 21
 
 --- SUMMARY ---
 Missing local references: 0
-Legacy/non-sitemap root HTML pages: 21
+Legacy/non-sitemap root HTML pages: 4
 Exact duplicate groups: 0
-Unreferenced media candidates: 21
+Unreferenced media candidates: 22
 Duplicate storage estimate: 0.0 MiB
