@@ -1,5 +1,5 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 17:08:33 UTC
+Generated: 2026-08-20 17:31:09 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
@@ -15,7 +15,7 @@ MISSING   /home/runner/work/ghostline-tech/ghostline-tech/index.html  -> images/
 site-qa.ps1 exit code: 1
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
-Repository files checked: 161
+Repository files checked: 163
 Root HTML pages: 45
 Sitemap/public pages: 22
 Media files: 84
@@ -142,6 +142,7 @@ Unreferenced media files: 26
 
 --- WORKFLOW / SCRIPT CLEANUP CANDIDATES ---
   WORKFLOW  .github/workflows/site-qa.yml
+  WORKFLOW  .github/workflows/update-9th-vessel-page.yml
 
 --- SUMMARY ---
 Missing local references: 4
