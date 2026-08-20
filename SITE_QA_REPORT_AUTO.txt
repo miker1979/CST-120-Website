@@ -1,5 +1,5 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 15:34:28 UTC
+Generated: 2026-08-20 15:36:21 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
@@ -10,7 +10,7 @@ PASS: No encoding artifacts or missing local href/src targets found.
 site-qa.ps1 exit code: 0
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
-Repository files checked: 225
+Repository files checked: 218
 Root HTML pages: 45
 Sitemap/public pages: 20
 Media files: 142
@@ -80,7 +80,6 @@ Root HTML not in sitemap (review as legacy/private utility):
 
 --- CSS / JS USAGE ---
   KEEP: css/calculator.css refs=['calculator.html', 'freightcalculator.html']
-  REVIEW-UNREFERENCED: css/jerome-location-gallery.css refs=[]
   KEEP: css/styles.css refs=['about.html', 'academic-archive.html', 'accomplishments.html', 'arizona-paranormal-v2.html', 'arizona-paranormal.html', 'assignments.html', 'boston-ripper.html', 'broker-operations.html', 'calculator.html', 'choicemaker.html', 'company.html', 'construction-ops.html', 'contact.html', 'crypt.html', 'development-log.html', 'events.html', 'fleettrack-development-log.html', 'freightcalculator.html', 'gallery.html', 'ghostline-chess-development-log.html', 'ghostline-chess.html', 'haunted-echoes.html', 'helloworld.html', 'hobbies.html', 'index.html', 'labs.html', 'load-board-demo.html', 'load-board.html', 'media.html', 'photos.html', 'playbs.html', 'playjq1.html', 'playjq2.html', 'playjq3.html', 'playjs.html', 'portfolio.html', 'software-development.html', 'software.html', 'tando.html', 'thankyou.html', 'war-of-the-damned-development-log.html', 'war-of-the-damned.html', 'witchfinder-salem.html']
   KEEP: js/calculator.js refs=['calculator.html', 'freightcalculator.html']
   KEEP: js/copyright.js refs=['about.html', 'accomplishments.html', 'assignments.html', 'events.html', 'freightcalculator.html', 'gallery.html', 'hobbies.html', 'media.html', 'photos.html', 'playjs.html', 'portfolio.html', 'tando.html']
@@ -252,11 +251,6 @@ Unreferenced media files: 81
 
 --- WORKFLOW / SCRIPT CLEANUP CANDIDATES ---
   WORKFLOW  .github/workflows/site-qa.yml
-  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-05-development-log-update.py
-  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-10-jerome-site-update.py
-  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-10-jerome-spoiler-cleanup.py
-  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-11-choicemaker-discovery.py
-  HISTORICAL-APPLY-SCRIPT  scripts/apply-2026-08-11-software-development-seo.py
 
 --- SUMMARY ---
 Missing local references: 0
