@@ -1,12 +1,14 @@
 Ghostline Website Automated QA Report
-Generated: 2026-08-20 18:26:42 UTC
+Generated: 2026-08-20 18:46:22 UTC
 
 === EXISTING HTML LOCAL-LINK / ENCODING AUDIT ===
 Ghostline website QA
 Root: /home/runner/work/ghostline-tech/ghostline-tech
 
-Found 5 issue(s):
+Found 7 issue(s):
 
+ENCODING  /home/runner/work/ghostline-tech/ghostline-tech/arizona-paranormal.html  contains 'â€'
+ENCODING  /home/runner/work/ghostline-tech/ghostline-tech/arizona-paranormal.html  contains 'â€™'
 MISSING   /home/runner/work/ghostline-tech/ghostline-tech/arizona-paranormal-v2.html  -> images/haunted_echoes_studios.png
 MISSING   /home/runner/work/ghostline-tech/ghostline-tech/ghostline-chess.html  -> images/ghostline-chess-web-card-v1-2.png
 MISSING   /home/runner/work/ghostline-tech/ghostline-tech/index.html  -> images/ghostline-chess-web-card-v1-2.png
@@ -16,7 +18,7 @@ MISSING   /home/runner/work/ghostline-tech/ghostline-tech/playjs.html  -> js/myc
 site-qa.ps1 exit code: 1
 
 === COMPREHENSIVE REPOSITORY / ASSET AUDIT ===
-Repository files checked: 154
+Repository files checked: 153
 Root HTML pages: 45
 Sitemap/public pages: 22
 Media files: 84
@@ -79,7 +81,7 @@ Root HTML not in sitemap (review as legacy/private utility):
 
 --- DIRECTORY / CASE CONSISTENCY ---
   PASS: canonical images/ directory casing is lowercase.
-  KEEP: canonical images/jerome-locations/ exists; public runtime references=24
+  KEEP: canonical images/jerome-locations/ exists; public runtime references=32
 
 --- SALEM COVER VARIANTS ---
   KEEP: images/witchfinder-salem-cover.png public_refs=['haunted-echoes.html', 'witchfinder-salem.html']
